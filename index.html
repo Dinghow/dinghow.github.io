@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Dinghow的个人博客">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://ouluvpd0z.bkt.clouddn.com/favicon.png">
+    <link rel="alternate" type="application/atom+xml" title="Dinghow" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Dinghow&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://dinghow.site/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://ouluvpd0z.bkt.clouddn.com/habowangyuangjing_paishe_xingkong_yuzhou-016.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+" data-ishome = "true" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Dinghow
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+							
+						
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/archives/">archives</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+
+<style>
+
+    .custom-haojen-container .post-preview:nth-of-type(1),
+    .custom-haojen-container .post-preview-poetry:nth-of-type(1) {
+        text-align: center;
+        background-repeat: no-repeat;
+        border-radius: 3px;
+        background-size: cover;
+        padding: 0;
+        height: 300px;
+        display: table;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.16);
+    }
+
+    /*去掉诗歌的背景图片*/
+    .custom-haojen-container .post-preview-poetry:nth-of-type(1) {
+        background-image: none !important;
+        background-color: rgba(255, 248, 220, 0.5);
+    }
+
+    .custom-haojen-container .post-preview:nth-child(1) h2,
+    .custom-haojen-container .post-preview:nth-child(1) .post-meta,
+    .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
+        text-shadow: 0 0 40px rgba(0, 0, 0, 1);
+        letter-spacing: 1px;
+        color: #fff;
+        margin-top: 0;
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+    .custom-haojen-container .post-preview:nth-child(1) .post-meta {
+        font-size: .9em;
+        font-weight: 300;
+        margin-top: 0;
+    }
+
+    .custom-haojen-container .post-preview-poetry:nth-child(1) .post-subtitle {
+        letter-spacing: 6px;
+        font-size: 18px;
+        font-family: unset;
+        font-weight: 400;
+        color: rgba(0, 0, 0, .75)
+    }
+
+    /*不显示摘要*/
+    .custom-haojen-container .post-preview:nth-child(1) .post-content-preview {
+        display: none
+    }
+
+    /*只第一个显示背景图片*/
+    .custom-haojen-container .post-preview:not(:nth-child(1)) {
+        background-image: none !important;
+    }
+
+    /*第一个分界线去掉*/
+    .custom-haojen-container hr:nth-of-type(1) {
+        display: none;
+    }
+
+    /*主题*/
+    .custom-haojen-container .post-preview:nth-of-type(1) > a {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    /*诗词标题*/
+    .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
+        font-size: 35px;
+        font-family: STKaiti;
+        color: rgba(0, 0, 0, .8);
+    }
+
+    .custom-haojen-container .post-preview-poetry:nth-of-type(1) .post-meta {
+        color: #0e2231;
+    }
+
+    @media (max-width: 768px) {
+        .custom-haojen-container .post-preview:nth-child(1) {
+            height: 240px;
+        }
+
+        .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
+            font-size: 28px !important;
+            margin-top: 0;
+        }
+
+        .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .custom-haojen-container .post-preview:nth-of-type(1) > a {
+            padding: 20px
+        }
+    }
+
+    /*手机屏幕*/
+    @media (max-width: 400px) {
+        .custom-haojen-container .post-preview:nth-child(1) {
+            height: 195px;
+        }
+
+        .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
+            font-size: 20px !important;
+        }
+
+        .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
+            font-size: 16px;
+        }
+
+        .custom-haojen-container .post-preview:nth-child(1) a {
+            padding: 30px 20px;
+        }
+    }
+</style>
+
+<!-- Page Header -->
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
+    <div class="row">
+        <header class="intro-header">
+            <div class="container">
+                <div class="site-heading text-center">
+                    <div class="about-me">
+                        <!--移动端头部显示-->
+                        <img src="http://ouluvpd0z.bkt.clouddn.com/konatsu%282%29"/>
+                        <h5><a href="/about/">Dinghow</a></h5>
+                        <p>Writing words,writing codes.</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+</div>
+<!-- Main Content -->
+<div class="container custom-haojen-container">
+    <!-- Post Container -->
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
+            <!-- Main Content -->
+
+
+
+<div class="post-preview  "
+     style="background-image: url('http://ouluvpd0z.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE-137822531.jpg')">
+    <a href="/2018/03/25/Google-ML-note1/">
+        <h2 class="post-title">
+            Google机器学习开源课程笔记part1
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-03-25
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                 从上个学期开始接触ML，由于自身懒散，西瓜书进度一直堪忧，寒假机械盘暴毙，ubuntu引导直接丢了，环境全废（ヾ(。￣□￣)ﾂ゜゜゜），碰巧Google的ML入门课程推出了官方中文版，是时候重新学习一波了
+机器学习概念框架处理常见术语
+标签：预测的事物，y变量
+特征：输入变量，x变量
+模型：定..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview  "
+     style="background-image: url('http://ouluvpd0z.bkt.clouddn.com/winner_tree&loser_tree.jpg')">
+    <a href="/2018/01/18/winner-tree-loser-tree/">
+        <h2 class="post-title">
+            胜者树与败者树
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-01-18
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                胜者树与败者树0.前言查阅了网路上关于胜败者树区别的回答和文章，发现在描述败者树的比较过程中大多一笔带过，容易引起误解，写这一篇笔记更清晰地区分一下两者。
+1.简介胜者树与败者树均是完全二叉树，是树形选择排序的变形。用叶子节点表示待排序元素，中间节点储存两个子节点比较的结果（胜者\败者），根节点..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview  "
+     style="background-image: url('http://ouluvpd0z.bkt.clouddn.com/nebula-008.jpg')">
+    <a href="/2018/01/17/ssr-share/">
+        <h2 class="post-title">
+            SSR节点免费分享
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-01-17
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                 因为国际小气候和国内大气候的影响，某ss节点提供商前段时间暴涨了一波价格，让我表示压力山大，算了一下不如自己买一个VPS搭，虽然只能有一个节点，不过最近对吃鸡失去了兴趣，满足日常科学上网需求也就足够了。在搬瓦工蹲点半天买不到最便宜的VPS，去Vultr也等不到日本服务器，索性买了Miami的V..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview  "
+     style="background-image: url('http://ouluvpd0z.bkt.clouddn.com/AppRender.jpg')">
+    <a href="/2017/10/19/CheckboxPreference/">
+        <h2 class="post-title">
+            Android:CheckBoxPreference组件运用再解
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2017-10-19
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                最近强行参加了Google的Android挑战赛，从9月18号十分愧疚地在大腿的挂载下“打”完CUMCM，我才开始学习Android怎么写（Orz，万恶的假期拖延症），到10月10日截止时间前二十分钟完成提交，可以说中途一路肝过来，最终做出了一个基本能交，还是不能看的App，很多地方后面有时间再..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview  "
+     style="background-image: url('http://ouluvpd0z.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE-102303171.jpg')">
+    <a href="/2017/09/26/I-with-the-physical/">
+        <h2 class="post-title">
+            物理记
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2017-09-26
+        </p>
+        
+        <h3 class="post-subtitle">
+            一篇没有营养的吐槽
+        </h3>
+        
+        <div class="post-content-preview">
+            <p>
+                上学期的成绩今天全部都出来了。我感到很遗憾，当然是指我对我自己，在经历了大一上的适应期后，下期我选择了更加努力，去践行自己进入大学时的承诺。努力争取更高的绩点，每门课程都以5为目标。
+期末面向对象程序设计的大作业是基于Cocos引擎做个游戏。担了组长的我负责了前期的分工。作为第一次多人协作项目，..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview  "
+     style="background-image: url('http://ouluvpd0z.bkt.clouddn.com/DSC_0026.jpg')">
+    <a href="/2017/08/28/Chinese-class/">
+        <h2 class="post-title">
+            致“矫情”岁月
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2017-08-28
+        </p>
+        
+        <h3 class="post-subtitle">
+            上了大学才知道，杨老师守着我们看笔记的语文课，是我学生时代的最后一节
+        </h3>
+        
+        <div class="post-content-preview">
+            <p>
+                ​    手放在键盘上，思考了许久，却已不知道该摁些什么。拖拖拉拉写点东西的想法稍纵即逝，朝朝暮暮间日复一日，我想，我的“矫情”岁月恐怕已然离去。
+​    曾幻想以后当一个作家，热爱着每一节语文课，抓紧了每一分阅读的机会，最大的爱好是周末溜出校园逛逛书店，身为一个留校生，包里装满了当地各大书店..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview  "
+     style="background-image: url('http://ouluvpd0z.bkt.clouddn.com/timg.jpg')">
+    <a href="/2017/06/28/note-for-cocos2dx/">
+        <h2 class="post-title">
+            cocos2dx-3.10期末项目踩坑记录
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2017-06-28
+        </p>
+        
+        <div class="post-content-preview">
+            <p>
+                ​    不得不吐槽在先，cocos整体框架十分强悍，但是很多细节的东西写得不够人性化，而且官方的文档也没有跟上，导致浪费大量的时间在一些不必要的坑上，实在是不划算，记录一下这次期末项目用cocos2d-x3.10开发泡泡堂踩到的坑吧！
+1.cocosStudio导出的csb文件组件获取auto..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+<div class="post-preview  "
+     style="background-image: url('http://ouluvpd0z.bkt.clouddn.com/habowangyuangjing_paishe_xingkong_yuzhou-001.jpg')">
+    <a href="/2017/04/11/heap-stack-stackframe/">
+        <h2 class="post-title">
+            堆、栈、栈帧学习笔记
+        </h2>
+        <p class="post-meta">
+            <i class="fa fa-calendar" aria-hidden="true"></i> 2017-04-11
+        </p>
+        
+        <h3 class="post-subtitle">
+            A question presented by teaching assistant
+        </h3>
+        
+        <div class="post-content-preview">
+            <p>
+                上学期初略地了解了一下堆栈知识，还以为暂时够用了，没想到这学期assignment2遇到了内存管理专项训练，才发现漏洞百出，知之甚少。这几天查阅了大量的相关资料，为了确保我确实是学到了，整理凝练一下，防止日后要用时又要重复查阅。
+一、首先是堆栈的概念C/C++编译的程序内存占用方式大致如下图：
+..
+            </p>
+        </div>
+    </a>
+
+</div>
+
+<hr>
+
+
+
+
+<!-- 翻页 pager -->
+
+<ul class="pager">
+    
+    
+    <li class="next">
+        <a href="/page/2/">Older Posts &rarr;</a>
+    </li>
+    
+</ul>
+
+
+        </div>
+        <!-- Sidebar Container -->
+        <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+
+            <!-- About Me -->
+            <section class="visible-md visible-lg" style="padding: 0 18px">
+                <div class="short-about">
+                    <!--侧边栏头像-->
+                    
+                    <img src="http://ouluvpd0z.bkt.clouddn.com/konatsu%282%29"/>
+                    
+                    <h5><a href="/about/">Dinghow</a></h5>
+                    
+                    <p>Writing words,writing codes.</p>
+                    
+                    <hr>
+                    <!-- SNS Link 社交 -->
+                    <ul class="list-inline">
+                        
+                        
+                        <li>
+                            <a target="_blank" href="https://twitter.com/Dinghow11">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                        </span>
+                            </a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a target="_blank" href="https://www.zhihu.com/people/dinghow9">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
+                                        </span>
+                            </a>
+                        </li>
+                        
+
+                        
+
+                        
+
+                        
+                        <li>
+                            <a target="_blank" href="https://github.com/Dinghow">
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                        </span>
+                            </a>
+                        </li>
+                        
+
+                        
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Featured Tags  标签 -->
+            
+            <section>
+                <div class="tags">
+                    
+                    
+                    <a href="/tags/#数据结构" title="数据结构"
+                       rel="2">数据结构</a>
+                    
+                    
+                    
+                    <a href="/tags/#机器学习" title="机器学习"
+                       rel="1">机器学习</a>
+                    
+                    
+                    
+                    <a href="/tags/#cocos2dx" title="cocos2dx"
+                       rel="1">cocos2dx</a>
+                    
+                    
+                    
+                    <a href="/tags/#Android" title="Android"
+                       rel="1">Android</a>
+                    
+                    
+                    
+                    <a href="/tags/#生活" title="生活"
+                       rel="3">生活</a>
+                    
+                    
+                    
+                    <a href="/tags/#其他" title="其他"
+                       rel="1">其他</a>
+                    
+                    
+                    
+                    <a href="/tags/#摄影" title="摄影"
+                       rel="1">摄影</a>
+                    
+                    
+                </div>
+            </section>
+            
+
+            
+            <hr>
+            <h5 style="text-align: center;">Friends</h5>
+            <ul class="list-inline" style="text-align: center;">
+                
+                <li><a href="http://quanyulong.net/" target="_blank">Quanyu Long</a></li>
+                
+                <li><a href="https://lovesnowbest.site" target="_blank">loveSnowBest</a></li>
+                
+                <li><a href="https://www.zhouii.com" target="_blank">01的翼</a></li>
+                
+                <li><a href="http://npkho.me" target="_blank">Snogy</a></li>
+                
+                <li><a href="https://blog.csdn.net/qq_38265784" target="_blank">一世长安乱</a></li>
+                
+                <li><a href="http://www.foxerlee.top" target="_blank">Foxerlee</a></li>
+                
+            </ul>
+            
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Dinghow11">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/dinghow9">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Dinghow">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Dinghow 2018
+                    Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://dinghow.site/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = 'cfc1f626a232642e2c231a7c376d7e72';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ouluvpd0z.bkt.clouddn.com/konatsu%282%29">
+</body>
+
+</html>
