@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Dinghow的个人博客">
+    <meta name="keyword" content="">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="http://ouluvpd0z.bkt.clouddn.com/favicon.png">
+    <link rel="alternate" type="application/atom+xml" title="Dinghow" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Google机器学习课程笔记part2｜Dinghow&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="http://dinghow.site/2018/06/15/Google-ML-note2/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://ouluvpd0z.bkt.clouddn.com/habowangyuangjing_paishe_xingkong_yuzhou-016.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Dinghow
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+					
+                    
+                        
+							
+								
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/archives/">archives</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+							
+						
+                    
+					
+					
+						<li>
+							<a href="/about">About</a>
+						</li>
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://ouluvpd0z.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE-137822531.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://ouluvpd0z.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE-137822531.jpg');
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Google机器学习课程笔记part2</h1>
+                    
+                    <span class="meta">
+                         作者 Dinghow
+                        <span>
+                          日期 2018-06-15
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#机器学习"
+                           title="机器学习">机器学习</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Google机器学习课程笔记part2
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="9-正则化-Regularization-：简单性"><a href="#9-正则化-Regularization-：简单性" class="headerlink" title="9.正则化(Regularization)：简单性"></a>9.正则化(Regularization)：简单性</h2><h4 id="L2正则化"><a href="#L2正则化" class="headerlink" title="L2正则化"></a>L2正则化</h4><p>定义：通过降低复杂模型的复杂度来<strong>防止过拟合</strong>的原则称为正则化</p>
+<p>为了避免训练集数据过拟合，应该求<strong>结构风险最小化</strong>（最小化损失和复杂度）：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/2.png" alt=""></p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-4.png" alt=""></p>
+<p>而衡量模型复杂度有两种常见方式：</p>
+<ul>
+<li><p>用所有特征的权重的函数</p>
+<p>可以使用 <strong>L2 正则化</strong>公式来量化复杂度，该公式将正则化项定义为所有特征权重的平方和：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/3.png" alt=""></p>
+</li>
+<li><p>用具有非零权重的特征总数的函数</p>
+</li>
+</ul>
+<p>执行L2正则化对模型的影响：</p>
+<ul>
+<li>使权重接近于0（并非正好为0）</li>
+<li>使权重的平均值接近于0，且呈正态（钟形曲线或高斯曲线）分布</li>
+</ul>
+<blockquote>
+<p>L2 正则化降低较大权重的程度高于降低较小权重的程度。因此，即使某个权重降低的速度比另一个快，L2 正则化也往往会使较大权重降低的速度快于较小的权重。</p>
+</blockquote>
+<h4 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h4><p>lambda又称<strong>正则化率</strong></p>
+<p>模型开发者通过以下方式来调整正则化项的整体影响：用正则化项的值乘以名为 <strong>lambda</strong>的标量</p>
+<p>即：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/4.png" alt=""></p>
+<p>增加lambda值将增强正则化的效果（直方图更剧烈），降低lambda值则会得到比较平缓的直方图</p>
+<p>理想的 lambda 值取决于数据，因此您需要手动或自动进行一些调整</p>
+<h3 id="10-逻辑回归-Logistic-Regression"><a href="#10-逻辑回归-Logistic-Regression" class="headerlink" title="10.逻辑回归 (Logistic Regression)"></a>10.逻辑回归 (Logistic Regression)</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>一种模型，通过将 <a href="https://developers.google.cn/machine-learning/crash-course/glossary#sigmoid_function" target="_blank" rel="external"><strong>S 型函数</strong></a>应用于线性预测，生成分类问题中每个可能的离散标签值的概率（有渐近线，可以提供(0,1)之间的有界值）。虽然逻辑回归经常用于<a href="https://developers.google.cn/machine-learning/crash-course/glossary#binary_classification" target="_blank" rel="external"><strong>二元分类</strong></a>问题，但也可用于<a href="https://developers.google.cn/machine-learning/crash-course/glossary#multi-class" target="_blank" rel="external"><strong>多类别</strong></a>分类问题（其叫法变为<strong>多类别逻辑回归</strong>或<strong>多项回归</strong>）。</p>
+<h4 id="S型函数的运用"><a href="#S型函数的运用" class="headerlink" title="S型函数的运用"></a>S型函数的运用</h4><p>如果 z 表示使用逻辑回归训练的模型的线性层的输出，则 S 型(z) 函数会生成一个介于 0 和 1 之间的值（概率）。用数学方法表示为：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/5.png" alt=""></p>
+<ul>
+<li><p>y’ 是逻辑回归模型针对特定样本的输出</p>
+</li>
+<li><p>z 是 b + w1x1 + w2x2 + … wNxN，又称为对数几率，因为z的反函数为：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/6.png" alt=""></p>
+<ul>
+<li>w:该模型学习的权重和偏差</li>
+<li>x:特定样本的特征值</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-5.png" alt=""></p>
+<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><p>对数损失函数：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/7.png" alt=""></p>
+<ul>
+<li>(x,y)&straightepsilon;D 是包含很多有标签样本 (x,y) 的数据集。</li>
+<li>“y”是有标签样本中的标签。由于这是逻辑回归，因此“y”的每个值必须是 0 或 1。</li>
+<li>“y’”是对于特征集“x”的预测值（介于 0 和 1 之间）。</li>
+</ul>
+<h4 id="逻辑回归中的正则化"><a href="#逻辑回归中的正则化" class="headerlink" title="逻辑回归中的正则化"></a>逻辑回归中的正则化</h4><p>因为逻辑回归的渐近性，如果不进行正则化，模型会因为促使所有样本的损失达到0但又做不到而造成过拟合，逻辑回归常常采用一下三种正则化方法：</p>
+<ul>
+<li>L1正则化</li>
+<li>L2正则化</li>
+<li>早停法（即限制训练步数或步长）</li>
+</ul>
+<h3 id="11-分类"><a href="#11-分类" class="headerlink" title="11.分类"></a>11.分类</h3><h4 id="真与假以及正类别与负类别"><a href="#真与假以及正类别与负类别" class="headerlink" title="真与假以及正类别与负类别"></a>真与假以及正类别与负类别</h4><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">正例（预测值）</th>
+<th style="text-align:center">反例（预测值）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>正例（真实值）</strong></td>
+<td style="text-align:center">真正例(TP)</td>
+<td style="text-align:center">假正例(FP)</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>反例（真实值）</strong></td>
+<td style="text-align:center">假负例(FN)</td>
+<td style="text-align:center">真负例(TN)</td>
+</tr>
+</tbody>
+</table>
+<p>正类别、负类别（Positive,Negative）：定义的样本中的二分类情况</p>
+<p>真、假（True,False）:真——实际值与预测值相同，假——实际值与预测值相反</p>
+<p><strong>真正例</strong>是指模型将正类别样本正确地预测为正类别。同样，<strong>真负例</strong>是指模型将负类别样本正确地预测为负类别。</p>
+<p><strong>假正例</strong>是指模型将负类别样本错误地预测为正类别，而<strong>假负例</strong>是指模型将正类别样本错误地预测为负类别。</p>
+<p>TP,TN不会造成损失</p>
+<h4 id="准确率-Accuracy"><a href="#准确率-Accuracy" class="headerlink" title="准确率(Accuracy)"></a>准确率(Accuracy)</h4><p>定义：预测正确的结果所占比例</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/8.png" alt=""></p>
+<p>二分类问题中</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/9.png" alt=""></p>
+<h4 id="精确率和召回率（Precision-amp-Recall）"><a href="#精确率和召回率（Precision-amp-Recall）" class="headerlink" title="精确率和召回率（Precision &amp; Recall）"></a>精确率和召回率（Precision &amp; Recall）</h4><h5 id="精确率"><a href="#精确率" class="headerlink" title="精确率"></a>精确率</h5><p>定义：表示的是预测为正的样本中有多少是真正的正样本，又称为<strong>查准率</strong></p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/10.png" alt=""></p>
+<h5 id="召回率"><a href="#召回率" class="headerlink" title="召回率"></a>召回率</h5><p>定义：表示真正的正样本中有多少被正确预测，又称为<strong>查全率</strong></p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/11.png" alt=""></p>
+<p>查准和查全二者之间是矛盾的。查准率高（尽可能只挑选有把握的），那查全率就会低；查全率高（试想把所有类别都预测为正例），那查准率就会低。</p>
+<p>为了综合考虑二者，常常采用$F_1$值：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/12.png" alt=""></p>
+<h4 id="ROC和曲线下面积"><a href="#ROC和曲线下面积" class="headerlink" title="ROC和曲线下面积"></a>ROC和曲线下面积</h4><p>真正例率    (TPR)：等同于召回率</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/13.png" alt=""></p>
+<p>假正例率(FPR)：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/14.png" alt=""></p>
+<p>ROC 曲线用于绘制采用不同分类阈值时的 TPR 与 FPR</p>
+<h4 id="ROC和曲线下面积-1"><a href="#ROC和曲线下面积-1" class="headerlink" title="ROC和曲线下面积"></a>ROC和曲线下面积</h4><h5 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a>ROC曲线</h5><p>真正例率(TPR)：等同于召回率</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/15.png" alt=""></p>
+<p>假正例率(FPR)：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/16.png" alt=""></p>
+<p>ROC(Receiver Operating Characteristic Curve)曲线用于绘制采用不同分类阈值时的 TPR 与 FPR，横轴为FPR，纵轴为TPR</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-6.png" alt=""></p>
+<p>ROC曲线的主要作用：</p>
+<ul>
+<li>能很容易的查出任意阈值对学习器的泛化性能影响 </li>
+<li>有助于选择最佳的阈值。ROC曲线越靠近左上角，模型的查全率就越高。最靠近左上角的ROC曲线上的点是分类错误最少的最好阈值，其假正例和假反例总数最少 </li>
+<li>可以对不同的学习器比较性能。将各个学习器的ROC曲线绘制到同一坐标中，直观地鉴别优劣，靠近左上角的ROC曲所代表的学习器准确性最高 </li>
+</ul>
+<h5 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h5><p>ROC曲线下面积(Area Under ROC Curve)用来反映分类器对<strong>样本的排序能力</strong></p>
+<blockquote>
+<p>AUC就是从所有1样本中随机选取一个样本, 从所有0样本中随机选取一个样本,然后根据你的分类器对两个随机样本进行预测，把1样本预测为1的概率为p1，把0样本预测为1的概率为p0，p1&gt;p0的概率就是AUC</p>
+</blockquote>
+<h4 id="预测偏差"><a href="#预测偏差" class="headerlink" title="预测偏差"></a>预测偏差</h4><p>预测偏差  =  预测平均值 - 数据集中相应标签的平均值</p>
+<p>可以通过校准层来纠正预测偏差，但是使用校准层需注意，并不推荐使用：</p>
+<ul>
+<li>校准层仅仅是修复症状而非原因</li>
+<li>相当于建立了一个更脆弱的系统，需要持续地更新</li>
+</ul>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/03/25/Google-ML-note1/" data-toggle="tooltip" data-placement="top"
+                           title="Google机器学习课程笔记part1">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+                <!-- 来必力City版安装代码 -->
+                <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDE1MS82NzA2">
+                    <script type="text/javascript">
+                        (function(d, s) {
+                            var j, e = d.getElementsByTagName(s)[0];
+
+                            if (typeof LivereTower === 'function') { return; }
+
+                            j = d.createElement(s);
+                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                            j.async = true;
+
+                            e.parentNode.insertBefore(j, e);
+                        })(document, 'script');
+                    </script>
+                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+                </div>
+                <!-- City版安装代码已完成 -->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-正则化-Regularization-：简单性"><span class="toc-text">9.正则化(Regularization)：简单性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#L2正则化"><span class="toc-text">L2正则化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Lambda"><span class="toc-text">Lambda</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-逻辑回归-Logistic-Regression"><span class="toc-text">10.逻辑回归 (Logistic Regression)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S型函数的运用"><span class="toc-text">S型函数的运用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#损失函数"><span class="toc-text">损失函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#逻辑回归中的正则化"><span class="toc-text">逻辑回归中的正则化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-分类"><span class="toc-text">11.分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#真与假以及正类别与负类别"><span class="toc-text">真与假以及正类别与负类别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#准确率-Accuracy"><span class="toc-text">准确率(Accuracy)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#精确率和召回率（Precision-amp-Recall）"><span class="toc-text">精确率和召回率（Precision & Recall）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#精确率"><span class="toc-text">精确率</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#召回率"><span class="toc-text">召回率</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ROC和曲线下面积"><span class="toc-text">ROC和曲线下面积</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ROC和曲线下面积-1"><span class="toc-text">ROC和曲线下面积</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ROC曲线"><span class="toc-text">ROC曲线</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#AUC"><span class="toc-text">AUC</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#预测偏差"><span class="toc-text">预测偏差</span></a></li></ol></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#机器学习"
+                           title="机器学习">机器学习</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="http://quanyulong.net/">Quanyu Long</a></li>
+                        
+                        <li><a href="https://lovesnowbest.site">loveSnowBest</a></li>
+                        
+                        <li><a href="https://www.zhouii.com">01的翼</a></li>
+                        
+                        <li><a href="http://npkho.me">Snogy</a></li>
+                        
+                        <li><a href="https://blog.csdn.net/qq_38265784">一世长安乱</a></li>
+                        
+                        <li><a href="http://www.foxerlee.top">Foxerlee</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/Dinghow11">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/dinghow9">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Dinghow">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Dinghow 2018
+                    Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://dinghow.site/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    var _baId = 'cfc1f626a232642e2c231a7c376d7e72';
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?" + _baId;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://ouluvpd0z.bkt.clouddn.com/konatsu%282%29">
+</body>
+
+</html>
