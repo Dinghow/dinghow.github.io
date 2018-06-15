@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        SSR节点免费分享｜Dinghow&#39;s blog
+        Linux根目录空间不足解决｜Dinghow&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://dinghow.site/2018/01/17/ssr-share/">
+    <link rel="canonical" href="http://dinghow.site/2018/04/23/gparted/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -145,13 +145,13 @@
 <!--only post-->
 
 
-<img class="wechat-title-img" src="http://ouluvpd0z.bkt.clouddn.com/nebula-008.jpg">
+<img class="wechat-title-img" src="http://ouluvpd0z.bkt.clouddn.com/ubuntu-1.png">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('http://ouluvpd0z.bkt.clouddn.com/nebula-008.jpg');
+        background-image: url('http://ouluvpd0z.bkt.clouddn.com/ubuntu-1.png');
     }
 
     
@@ -162,18 +162,18 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>SSR节点免费分享</h1>
+                    <h1>Linux根目录空间不足解决</h1>
                     
                     <span class="meta">
                          作者 Dinghow
                         <span>
-                          日期 2018-01-17
+                          日期 2018-04-23
                          </span>
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/tags/#其他"
-                           title="其他">其他</a>
+                        <a class="tag" href="/tags/#linux"
+                           title="linux">linux</a>
                         
                     </div>
                 </div>
@@ -182,7 +182,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            SSR节点免费分享
+            Linux根目录空间不足解决
         </span>
     </div>
 </header>
@@ -193,8 +193,55 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p> 因为国际小气候和国内大气候的影响，某ss节点提供商前段时间暴涨了一波价格，让我表示压力山大，算了一下不如自己买一个VPS搭，虽然只能有一个节点，不过最近对吃鸡失去了兴趣，满足日常科学上网需求也就足够了。在搬瓦工蹲点半天买不到最便宜的VPS，去Vultr也等不到日本服务器，索性买了Miami的VPS，正常情况200~300ms延迟（ChinaTelecom 20M），不过U2B看高清还是很稳的，每个月500G流量，个人用不完，所以就分享出来啦，想要的朋友可以私戳我。</p>
-<p><img src="http://ouluvpd0z.bkt.clouddn.com/ssr.jpg" alt="ssr"></p>
+                <h1 id="解决Linux根目录空间不足问题"><a href="#解决Linux根目录空间不足问题" class="headerlink" title="解决Linux根目录空间不足问题"></a>解决Linux根目录空间不足问题</h1><p>环境：windows10 1803 + ubuntu 16.04双系统</p>
+<blockquote>
+<p>当初装双系统是还不了解linux的包安装机制，/目录就只分了10g，于是当我愉快地搭完DL环境后，用了一段时间，突然被win丑到，决定再愉快地装了一套wine软件以及网易云等日常使用工具后，我发现我的根目录已经只剩200M了，已经寸步难行</p>
+</blockquote>
+<p>网络上给出修改linux分区的方法是使用GParted，不用格式化可以直接对linux分区进行修改，随着软件更新，在我真正使用过程中发现某些教程还是有些坑，于是决定自己写一篇新的。</p>
+<h2 id="1-制作GParted启动盘"><a href="#1-制作GParted启动盘" class="headerlink" title="1.制作GParted启动盘"></a>1.制作GParted启动盘</h2><h3 id="1-1-烧写启动盘的软件："><a href="#1-1-烧写启动盘的软件：" class="headerlink" title="1.1 烧写启动盘的软件："></a>1.1 烧写启动盘的软件：</h3><ul>
+<li>ubuntu: tuxboot </li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line">sudo apt-add-repository ppa:thomas.tsai/ubuntu-tuxboot</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install tuxboot</div></pre></td></tr></table></figure>
+<ul>
+<li>windows:<a href="http://www.ezbsystems.com/ultraiso/download.htm" target="_blank" rel="external">UltraOS</a></li>
+</ul>
+<h3 id="1-2-下载GParted"><a href="#1-2-下载GParted" class="headerlink" title="1.2 下载GParted"></a>1.2 下载GParted</h3><p><a href="https://gparted.org/download.php" target="_blank" rel="external">官方下载页</a></p>
+<p><strong>如果64位版U盘启动后出现“gparted启动错误”等提示，重新下载32位版进行烧写，不要再去褥BIOS了</strong>（我在这里被坑了很久=。=）</p>
+<h3 id="1-3-开始烧写"><a href="#1-3-开始烧写" class="headerlink" title="1.3 开始烧写"></a>1.3 开始烧写</h3><ul>
+<li><p>使用tuxboot：</p>
+<p>pre Downloaded选择镜像文件→开始刻录</p>
+<p><img src="http://ouluvpd0z.bkt.clouddn.com/gparted_1.png" alt=""></p>
+</li>
+<li><p>使用UltraISO:</p>
+<p>打开镜像文件→启动→写入硬盘镜像</p>
+<p><img src="http://ouluvpd0z.bkt.clouddn.com/gparted_2.png" alt=""></p>
+</li>
+</ul>
+<h2 id="2-使用GParted调整分区"><a href="#2-使用GParted调整分区" class="headerlink" title="2.使用GParted调整分区"></a>2.使用GParted调整分区</h2><h3 id="2-1-设置U盘启动"><a href="#2-1-设置U盘启动" class="headerlink" title="2.1 设置U盘启动"></a>2.1 设置U盘启动</h3><p>不同机型不同操作，自行百度</p>
+<h3 id="2-2-启动GParted"><a href="#2-2-启动GParted" class="headerlink" title="2.2 启动GParted"></a>2.2 启动GParted</h3><ul>
+<li>选择GParted Live</li>
+</ul>
+<p><img src="http://ouluvpd0z.bkt.clouddn.com/gparted_3.png" alt=""></p>
+<ul>
+<li>按键映射有关的东西，不管，直接回车</li>
+</ul>
+<p><img src="http://ouluvpd0z.bkt.clouddn.com/gparted_4.png" alt=""></p>
+<ul>
+<li>语言选择，凭个人爱好</li>
+</ul>
+<p><img src="http://ouluvpd0z.bkt.clouddn.com/gparted_5.png" alt=""></p>
+<ul>
+<li>选择模式，默认为图形界面，按回车即可</li>
+</ul>
+<p><img src="http://ouluvpd0z.bkt.clouddn.com/gparted_6.png" alt=""></p>
+<ul>
+<li>进去之后点击GParted图标，开始修改分区</li>
+</ul>
+<p><img src="http://ouluvpd0z.bkt.clouddn.com/gparted_7.png" alt=""></p>
+<p>需要注意的是GParted只能合并磁盘上连续的分区，如果想把有间隔的分区调整，需要分步搬过去，调整完后点击<strong>“Apply”</strong>，完成后就可以愉快地继续改造你的linux了</p>
+<blockquote>
+<p>部分内容参考自：<a href="https://blog.csdn.net/travel0er/article/details/77725215（侵删）" target="_blank" rel="external">https://blog.csdn.net/travel0er/article/details/77725215（侵删）</a></p>
+</blockquote>
 
                 <hr>
                 
@@ -202,14 +249,14 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2018/01/18/winner-tree-loser-tree/" data-toggle="tooltip" data-placement="top"
-                           title="胜者树与败者树">&larr; Previous Post</a>
+                        <a href="/2018/06/15/Google-ML-note2/" data-toggle="tooltip" data-placement="top"
+                           title="Google机器学习课程笔记part2">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2017/10/19/CheckboxPreference/" data-toggle="tooltip" data-placement="top"
-                           title="Android:CheckBoxPreference组件运用再解">Next Post &rarr;</a>
+                        <a href="/2018/03/25/Google-ML-note1/" data-toggle="tooltip" data-placement="top"
+                           title="Google机器学习课程笔记part1">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -244,7 +291,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#解决Linux根目录空间不足问题"><span class="toc-text">解决Linux根目录空间不足问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-制作GParted启动盘"><span class="toc-text">1.制作GParted启动盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-烧写启动盘的软件："><span class="toc-text">1.1 烧写启动盘的软件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-下载GParted"><span class="toc-text">1.2 下载GParted</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-开始烧写"><span class="toc-text">1.3 开始烧写</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-使用GParted调整分区"><span class="toc-text">2.使用GParted调整分区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-设置U盘启动"><span class="toc-text">2.1 设置U盘启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-启动GParted"><span class="toc-text">2.2 启动GParted</span></a></li></ol></li></ol></li></ol>
                 </div>
             </div>
         </div>
@@ -266,8 +313,8 @@
                     </h5>
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#其他"
-                           title="其他">其他</a>
+                        <a class="tag" href="/tags/#linux"
+                           title="linux">linux</a>
                         
                     </div>
                 </section>
