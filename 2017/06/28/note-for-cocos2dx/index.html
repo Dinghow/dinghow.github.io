@@ -86,7 +86,7 @@
                         
 							
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">archives</a>
                         </li>
 							
 						
@@ -94,7 +94,7 @@
                         
 							
                         <li>
-                            <a href="/archives/">archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
 							
 						
@@ -218,6 +218,7 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="keyword">void</span> Login::StartGameTouch(Ref* pSender, Widget::TouchEventType type) &#123;</div><div class="line">	<span class="keyword">switch</span> (type) &#123;</div><div class="line">	<span class="keyword">case</span> Widget::TouchEventType::ENDED:</div><div class="line">		<span class="keyword">auto</span> director = Director::getInstance();</div><div class="line">		<span class="comment">//transfer to MapScene</span></div><div class="line">		<span class="keyword">auto</span> scene = MapOfGame::createScene();</div><div class="line">		<span class="keyword">auto</span> transition = TransitionCrossFade::create(<span class="number">1.0f</span>, scene);</div><div class="line">		SimpleAudioEngine::getInstance()-&gt;stopBackgroundMusic();</div><div class="line">		director-&gt;pushScene(transition);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>坑爹指数：★★★★★（真乃神坑，花了我一天就弄一个背景音乐Orz……是我太菜）</p>
 
+                <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b683f13817fa82e"></script>
                 <hr>
                 
 
