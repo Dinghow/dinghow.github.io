@@ -79,6 +79,14 @@
                     
                         
 							
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+							
+						
+                    
+                        
+							
 								
 							
 						
@@ -87,14 +95,6 @@
 							
                         <li>
                             <a href="/archives/">archives</a>
-                        </li>
-							
-						
-                    
-                        
-							
-                        <li>
-                            <a href="/tags/">Tags</a>
                         </li>
 							
 						
@@ -302,10 +302,11 @@
 <li>有助于选择最佳的阈值。ROC曲线越靠近左上角，模型的查全率就越高。最靠近左上角的ROC曲线上的点是分类错误最少的最好阈值，其假正例和假反例总数最少 </li>
 <li>可以对不同的学习器比较性能。将各个学习器的ROC曲线绘制到同一坐标中，直观地鉴别优劣，靠近左上角的ROC曲所代表的学习器准确性最高 </li>
 </ul>
-<h5 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h5><p>ROC曲线下面积(Area Under ROC Curve)用来反映分类器对<strong>样本的排序能力</strong></p>
+<h5 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h5><p>ROC曲线下面积(Area Under ROC Curve)用来反映分类器对<strong>样本的排序能力</strong>，取值范围[0.5,1s]一般情况下AUC越大模型较佳</p>
 <blockquote>
 <p>AUC就是从所有1样本中随机选取一个样本, 从所有0样本中随机选取一个样本,然后根据你的分类器对两个随机样本进行预测，把1样本预测为1的概率为p1，把0样本预测为1的概率为p0，p1&gt;p0的概率就是AUC</p>
 </blockquote>
+<p>改善AUC的一种方法：只要不过拟合，就训练更长时间——增加步数/或批量大小</p>
 <h4 id="预测偏差"><a href="#预测偏差" class="headerlink" title="预测偏差"></a>预测偏差</h4><p>预测偏差  =  预测平均值 - 数据集中相应标签的平均值</p>
 <p>可以通过校准层来纠正预测偏差，但是使用校准层需注意，并不推荐使用：</p>
 <ul>
