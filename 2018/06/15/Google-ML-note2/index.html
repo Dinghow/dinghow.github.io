@@ -79,15 +79,15 @@
                     
                         
 							
-								
+                        <li>
+                            <a href="/archives/">archives</a>
+                        </li>
 							
 						
                     
                         
 							
-                        <li>
-                            <a href="/archives/">archives</a>
-                        </li>
+								
 							
 						
                     
@@ -307,11 +307,24 @@
 <p>AUC就是从所有1样本中随机选取一个样本, 从所有0样本中随机选取一个样本,然后根据你的分类器对两个随机样本进行预测，把1样本预测为1的概率为p1，把0样本预测为1的概率为p0，p1&gt;p0的概率就是AUC</p>
 </blockquote>
 <p>改善AUC的一种方法：只要不过拟合，就训练更长时间——增加步数/或批量大小</p>
-<h4 id="预测偏差"><a href="#预测偏差" class="headerlink" title="预测偏差"></a>预测偏差</h4><p>预测偏差  =  预测平均值 - 数据集中相应标签的平均值</p>
-<p>可以通过校准层来纠正预测偏差，但是使用校准层需注意，并不推荐使用：</p>
+<ul>
+<li><h4 id="预测偏差"><a href="#预测偏差" class="headerlink" title="预测偏差"></a>预测偏差</h4><p>预测偏差  =  预测平均值 - 数据集中相应标签的平均值</p>
+<p>造成预测偏差的原因可能有：</p>
+<ol>
+<li>特征集不完整</li>
+<li>数据集混乱</li>
+<li>模型实现的流水线有错误</li>
+<li>训练样本有偏差</li>
+<li>正则化过强</li>
+</ol>
+<p>可以通过校准层来纠正预测偏差，但是使用校准层需注意：</p>
 <ul>
 <li>校准层仅仅是修复症状而非原因</li>
 <li>相当于建立了一个更脆弱的系统，需要持续地更新</li>
+</ul>
+<p>因此并不推荐使用校准层。</p>
+<p>逻辑回归常常用于预测0/1值，所以无法根据一个样本就确定预测偏差，需要运用分桶的方法在每个桶中计算预测偏差</p>
+</li>
 </ul>
 
                 <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b683f13817fa82e"></script>

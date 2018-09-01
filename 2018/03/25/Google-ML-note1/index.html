@@ -79,15 +79,15 @@
                     
                         
 							
-								
+                        <li>
+                            <a href="/archives/">archives</a>
+                        </li>
 							
 						
                     
                         
 							
-                        <li>
-                            <a href="/archives/">archives</a>
-                        </li>
+								
 							
 						
                     
@@ -210,7 +210,12 @@
 </ul>
 <h3 id="深入了解机器学习"><a href="#深入了解机器学习" class="headerlink" title="深入了解机器学习"></a>深入了解机器学习</h3><h4 id="训练与损失："><a href="#训练与损失：" class="headerlink" title="训练与损失："></a>训练与损失：</h4><p>均方误差（MSE）：</p>
 <p><img src="http://ouluvpd0z.bkt.clouddn.com/TIM%E6%88%AA%E5%9B%BE20180329145940.png" alt=""></p>
-<h3 id="降低损失"><a href="#降低损失" class="headerlink" title="降低损失"></a>降低损失</h3><p> 梯度下降算法中，下一点位置 = 梯度x学习速率（步长）</p>
+<h3 id="降低损失"><a href="#降低损失" class="headerlink" title="降低损失"></a>降低损失</h3><p>在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。在求解损失函数的最小值时，可以通过梯度下降法来一步步的迭代求解，得到最小化的损失函数和模型参数值。</p>
+<p> 梯度下降算法中，下一点位置 = 梯度x学习速率（步长）</p>
+<blockquote>
+<p><strong>梯度(gradient)</strong>：<a href="https://developers.google.cn/machine-learning/glossary/#partial_derivative" target="_blank" rel="external"><strong>偏导数</strong></a>相对于所有自变量的向量。 在机器学习中，梯度是模型函数偏导数的向量。梯度指向最快上升的方向。</p>
+<p><strong>梯度下降法(gradient descent)</strong>：一种通过计算并且减小梯度将<a href="https://developers.google.cn/machine-learning/glossary/#loss" target="_blank" rel="external"><strong>损失</strong></a>降至最低的技术，它以训练数据为条件，来计算损失相对于模型参数的梯度。通俗来说，梯度下降法以迭代方式调整参数，逐渐找到<a href="https://developers.google.cn/machine-learning/glossary/#weight" target="_blank" rel="external"><strong>权重</strong></a>和偏差的最佳组合，从而将损失降至最低。</p>
+</blockquote>
 <h4 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h4><p><img src="http://ouluvpd0z.bkt.clouddn.com/google-1.jpg" alt=""></p>
 <h3 id="使用TF基础"><a href="#使用TF基础" class="headerlink" title="使用TF基础"></a>使用TF基础</h3><p>合成特征：一种<a href="https://developers.google.cn/machine-learning/crash-course/glossary#feature" target="_blank" rel="external"><strong>特征</strong></a>，不在输入特征之列，而是从一个或多个输入特征衍生而来</p>
 <h3 id="泛化"><a href="#泛化" class="headerlink" title="泛化"></a>泛化</h3><h4 id="判断模型出色与否"><a href="#判断模型出色与否" class="headerlink" title="判断模型出色与否"></a>判断模型出色与否</h4><p>理论上：泛化理论（略）</p>
