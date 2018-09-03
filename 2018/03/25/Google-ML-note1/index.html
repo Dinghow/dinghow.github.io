@@ -86,7 +86,7 @@
                         
 							
                         <li>
-                            <a href="/archives/">archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
 							
 						
@@ -94,7 +94,7 @@
                         
 							
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">archives</a>
                         </li>
 							
 						
@@ -194,7 +194,7 @@
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
                 <p> 从上个学期开始接触ML，由于自身懒散，西瓜书进度一直堪忧，寒假机械盘暴毙，ubuntu引导直接丢了，环境全废（ヾ(。￣□￣)ﾂ゜゜゜），碰巧Google的ML入门课程推出了<a href="https://developers.google.cn/machine-learning/crash-course/" target="_blank" rel="external">官方中文版</a>，是时候重新学习一波了</p>
-<h2 id="机器学习概念"><a href="#机器学习概念" class="headerlink" title="机器学习概念"></a>机器学习概念</h2><h3 id="框架处理"><a href="#框架处理" class="headerlink" title="框架处理"></a>框架处理</h3><h4 id="常见术语"><a href="#常见术语" class="headerlink" title="常见术语"></a>常见术语</h4><ul>
+<h2 id="机器学习概念"><a href="#机器学习概念" class="headerlink" title="机器学习概念"></a>机器学习概念</h2><h3 id="1-框架处理"><a href="#1-框架处理" class="headerlink" title="1.框架处理"></a>1.框架处理</h3><h4 id="常见术语"><a href="#常见术语" class="headerlink" title="常见术语"></a>常见术语</h4><ul>
 <li>标签：预测的事物，y变量</li>
 <li>特征：输入变量，x变量</li>
 <li>模型：定义了x与y之间的关系</li>
@@ -208,17 +208,18 @@
 <ul>
 <li>聚类</li>
 </ul>
-<h3 id="深入了解机器学习"><a href="#深入了解机器学习" class="headerlink" title="深入了解机器学习"></a>深入了解机器学习</h3><h4 id="训练与损失："><a href="#训练与损失：" class="headerlink" title="训练与损失："></a>训练与损失：</h4><p>均方误差（MSE）：</p>
-<p><img src="http://ouluvpd0z.bkt.clouddn.com/TIM%E6%88%AA%E5%9B%BE20180329145940.png" alt=""></p>
-<h3 id="降低损失"><a href="#降低损失" class="headerlink" title="降低损失"></a>降低损失</h3><p>在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。在求解损失函数的最小值时，可以通过梯度下降法来一步步的迭代求解，得到最小化的损失函数和模型参数值。</p>
+<h3 id="2-深入了解机器学习"><a href="#2-深入了解机器学习" class="headerlink" title="2.深入了解机器学习"></a>2.深入了解机器学习</h3><h4 id="训练与损失："><a href="#训练与损失：" class="headerlink" title="训练与损失："></a>训练与损失：</h4><h5 id="损失-Loss"><a href="#损失-Loss" class="headerlink" title="损失 (Loss)"></a>损失 (Loss)</h5><p>一种衡量指标，用于衡量模型的<a href="https://developers.google.cn/machine-learning/crash-course/glossary#prediction" target="_blank" rel="external"><strong>预测</strong></a>偏离其<a href="https://developers.google.cn/machine-learning/crash-course/glossary#label" target="_blank" rel="external"><strong>标签</strong></a>的程度。或者更悲观地说是衡量模型有多差。要确定此值，模型必须定义损失函数。例如，线性回归模型通常将<a href="https://developers.google.cn/machine-learning/crash-course/glossary#MSE" target="_blank" rel="external"><strong>均方误差</strong></a>用于损失函数，而逻辑回归模型则使用<a href="https://developers.google.cn/machine-learning/crash-course/glossary#Log_Loss" target="_blank" rel="external"><strong>对数损失函数</strong></a>。</p>
+<p>均方误差（MSE）：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/1.png" alt=""></p>
+<h3 id="3-降低损失"><a href="#3-降低损失" class="headerlink" title="3.降低损失"></a>3.降低损失</h3><p>在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。在求解损失函数的最小值时，可以通过梯度下降法来一步步的迭代求解，得到最小化的损失函数和模型参数值。</p>
 <p> 梯度下降算法中，下一点位置 = 梯度x学习速率（步长）</p>
 <blockquote>
 <p><strong>梯度(gradient)</strong>：<a href="https://developers.google.cn/machine-learning/glossary/#partial_derivative" target="_blank" rel="external"><strong>偏导数</strong></a>相对于所有自变量的向量。 在机器学习中，梯度是模型函数偏导数的向量。梯度指向最快上升的方向。</p>
 <p><strong>梯度下降法(gradient descent)</strong>：一种通过计算并且减小梯度将<a href="https://developers.google.cn/machine-learning/glossary/#loss" target="_blank" rel="external"><strong>损失</strong></a>降至最低的技术，它以训练数据为条件，来计算损失相对于模型参数的梯度。通俗来说，梯度下降法以迭代方式调整参数，逐渐找到<a href="https://developers.google.cn/machine-learning/glossary/#weight" target="_blank" rel="external"><strong>权重</strong></a>和偏差的最佳组合，从而将损失降至最低。</p>
 </blockquote>
-<h4 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h4><p><img src="http://ouluvpd0z.bkt.clouddn.com/google-1.jpg" alt=""></p>
-<h3 id="使用TF基础"><a href="#使用TF基础" class="headerlink" title="使用TF基础"></a>使用TF基础</h3><p>合成特征：一种<a href="https://developers.google.cn/machine-learning/crash-course/glossary#feature" target="_blank" rel="external"><strong>特征</strong></a>，不在输入特征之列，而是从一个或多个输入特征衍生而来</p>
-<h3 id="泛化"><a href="#泛化" class="headerlink" title="泛化"></a>泛化</h3><h4 id="判断模型出色与否"><a href="#判断模型出色与否" class="headerlink" title="判断模型出色与否"></a>判断模型出色与否</h4><p>理论上：泛化理论（略）</p>
+<h4 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h4><p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-1.jpg" alt=""></p>
+<h3 id="4-使用TF基础"><a href="#4-使用TF基础" class="headerlink" title="4.使用TF基础"></a>4.使用TF基础</h3><p>合成特征：一种<a href="https://developers.google.cn/machine-learning/crash-course/glossary#feature" target="_blank" rel="external"><strong>特征</strong></a>，不在输入特征之列，而是从一个或多个输入特征衍生而来</p>
+<h3 id="5-泛化"><a href="#5-泛化" class="headerlink" title="5.泛化"></a>5.泛化</h3><h4 id="判断模型出色与否"><a href="#判断模型出色与否" class="headerlink" title="判断模型出色与否"></a>判断模型出色与否</h4><p>理论上：泛化理论（略）</p>
 <p>直觉上：奥卡姆剃刀（越简单越好）</p>
 <p>经验上：用测试集上的表现作为新数据的预测</p>
 <p>前提假设：</p>
@@ -227,15 +228,15 @@
 <li>分布是平稳的</li>
 <li>始终从同一分布中抽取样本</li>
 </ul>
-<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p>为了防止对测试集的过拟合，将数据集分为三个子集（新增一个验证集）</p>
-<p><img src="http://ouluvpd0z.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE-8144468.jpg" alt=""></p>
-<h3 id="表示法"><a href="#表示法" class="headerlink" title="表示法"></a>表示法</h3><h4 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h4><p>定义：将原始数据转化为特征矢量</p>
-<p><img src="http://ouluvpd0z.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE-76708687.jpg" alt=""></p>
+<h3 id="6-验证"><a href="#6-验证" class="headerlink" title="6.验证"></a>6.验证</h3><p>为了防止对测试集的过拟合，将数据集分为三个子集（新增一个验证集）</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-2.jpg" alt=""></p>
+<h3 id="7-表示法"><a href="#7-表示法" class="headerlink" title="7.表示法"></a>7.表示法</h3><h4 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h4><p>定义：将原始数据转化为特征矢量</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-3.jpg" alt=""></p>
 <p>对于一些无法直接转化为数字的数据（如字符串），通过映射，独热编码转化：</p>
 <ul>
 <li><p>首先，为您要表示的所有特征的字符串值定义一个<strong>词汇表</strong></p>
 </li>
-<li><p>然后，使用该词汇表创建一个<strong>独热编码</strong>（使用N位状态寄存器对N个状态进行编码），用于将指定字符串值表示为一个二元矢量。在该矢量（与指定的字符串值对应）中：</p>
+<li><p>然后，使用该词汇表创建一个<strong>独热（one-hot）编码</strong>（使用N位状态寄存器对N个状态进行编码），用于将指定字符串值表示为一个二元矢量。在该矢量（与指定的字符串值对应）中：</p>
 <ul>
 <li>只有一个元素设为 <code>1</code>。</li>
 <li>其他所有元素均设为 <code>0</code>。</li>
@@ -271,8 +272,13 @@
 </ul>
 <h5 id="分箱"><a href="#分箱" class="headerlink" title="分箱"></a>分箱</h5><p>某些特征值需要分箱处理后才能与标签值建立更好的预测模型（如房价与纬度没有线性关系，但在某一纬度范围内是可以预测的）</p>
 <h5 id="清查"><a href="#清查" class="headerlink" title="清查"></a>清查</h5><p>处理数据集时要将不可靠的样本给移出或修正</p>
-<h3 id="特征组合"><a href="#特征组合" class="headerlink" title="特征组合"></a>特征组合</h3><p>定义：通过将两个或多个输入特征相乘来对特征空间中的非线性规律进行编码的合成特征</p>
+<h3 id="8-特征组合"><a href="#8-特征组合" class="headerlink" title="8.特征组合"></a>8.特征组合</h3><p>定义：通过将两个或多个输入特征相乘来对特征空间中的<strong>非线性</strong>规律进行编码的合成特征</p>
 <p>种类：如[A x B],[A x B x C],[A x A]</p>
+<p>学习高度复杂模型：</p>
+<ul>
+<li>对大规模数据集使用特征组合</li>
+<li>神经网络</li>
+</ul>
 
                 <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b683f13817fa82e"></script>
                 <hr>
@@ -323,7 +329,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#机器学习概念"><span class="toc-text">机器学习概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#框架处理"><span class="toc-text">框架处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见术语"><span class="toc-text">常见术语</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入了解机器学习"><span class="toc-text">深入了解机器学习</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#训练与损失："><span class="toc-text">训练与损失：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#降低损失"><span class="toc-text">降低损失</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#迭代方法"><span class="toc-text">迭代方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用TF基础"><span class="toc-text">使用TF基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛化"><span class="toc-text">泛化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#判断模型出色与否"><span class="toc-text">判断模型出色与否</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#验证"><span class="toc-text">验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表示法"><span class="toc-text">表示法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特征工程"><span class="toc-text">特征工程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#良好特征具备的特性："><span class="toc-text">良好特征具备的特性：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#清理数据"><span class="toc-text">清理数据</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#缩放特征值："><span class="toc-text">缩放特征值：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#处理极端离群值"><span class="toc-text">处理极端离群值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#分箱"><span class="toc-text">分箱</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#清查"><span class="toc-text">清查</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#特征组合"><span class="toc-text">特征组合</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#机器学习概念"><span class="toc-text">机器学习概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-框架处理"><span class="toc-text">1.框架处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见术语"><span class="toc-text">常见术语</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-深入了解机器学习"><span class="toc-text">2.深入了解机器学习</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#训练与损失："><span class="toc-text">训练与损失：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#损失-Loss"><span class="toc-text">损失 (Loss)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-降低损失"><span class="toc-text">3.降低损失</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#迭代方法"><span class="toc-text">迭代方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-使用TF基础"><span class="toc-text">4.使用TF基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-泛化"><span class="toc-text">5.泛化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#判断模型出色与否"><span class="toc-text">判断模型出色与否</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-验证"><span class="toc-text">6.验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-表示法"><span class="toc-text">7.表示法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特征工程"><span class="toc-text">特征工程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#良好特征具备的特性："><span class="toc-text">良好特征具备的特性：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#清理数据"><span class="toc-text">清理数据</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#缩放特征值："><span class="toc-text">缩放特征值：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#处理极端离群值"><span class="toc-text">处理极端离群值</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#分箱"><span class="toc-text">分箱</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#清查"><span class="toc-text">清查</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-特征组合"><span class="toc-text">8.特征组合</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
