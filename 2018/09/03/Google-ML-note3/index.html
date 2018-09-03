@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        堆、栈、栈帧学习笔记｜Dinghow&#39;s blog
+        Google机器学习课程笔记part2｜Dinghow&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://dinghow.site/2017/04/11/heap-stack-stackframe/">
+    <link rel="canonical" href="http://dinghow.site/2018/09/03/Google-ML-note3/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -145,13 +145,13 @@
 <!--only post-->
 
 
-<img class="wechat-title-img" src="http://ouluvpd0z.bkt.clouddn.com/habowangyuangjing_paishe_xingkong_yuzhou-001.jpg">
+<img class="wechat-title-img" src="http://ouluvpd0z.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE-137822531.jpg">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('http://ouluvpd0z.bkt.clouddn.com/habowangyuangjing_paishe_xingkong_yuzhou-001.jpg');
+        background-image: url('http://ouluvpd0z.bkt.clouddn.com/360%E6%88%AA%E5%9B%BE-137822531.jpg');
     }
 
     
@@ -162,20 +162,18 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>堆、栈、栈帧学习笔记</h1>
-                    
-                    <h2 class="subheading">A question presented by teaching assistant</h2>
+                    <h1>Google机器学习课程笔记part2</h1>
                     
                     <span class="meta">
                          作者 Dinghow
                         <span>
-                          日期 2017-04-11
+                          日期 2018-09-03
                          </span>
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/tags/#数据结构"
-                           title="数据结构">数据结构</a>
+                        <a class="tag" href="/tags/#机器学习"
+                           title="机器学习">机器学习</a>
                         
                     </div>
                 </div>
@@ -184,7 +182,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            堆、栈、栈帧学习笔记
+            Google机器学习课程笔记part2
         </span>
     </div>
 </header>
@@ -195,42 +193,46 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>上学期初略地了解了一下堆栈知识，还以为暂时够用了，没想到这学期assignment2遇到了内存管理专项训练，才发现漏洞百出，知之甚少。这几天查阅了大量的相关资料，为了确保我确实是学到了，整理凝练一下，防止日后要用时又要重复查阅。</p>
-<h2 id="一、首先是堆栈的概念"><a href="#一、首先是堆栈的概念" class="headerlink" title="一、首先是堆栈的概念"></a><strong>一、首先是堆栈的概念</strong></h2><p>C/C++编译的程序内存占用方式大致如下图：</p>
-<p><img src="http://ouluvpd0z.bkt.clouddn.com/article2/1.png" alt="clipboard.png"></p>
-<h4 id="数据结构："><a href="#数据结构：" class="headerlink" title="数据结构："></a>数据结构：</h4><h5 id="1-栈区（stack）"><a href="#1-栈区（stack）" class="headerlink" title="1.栈区（stack）"></a>1.栈区（stack）</h5><p>由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于中的栈，其地址有高地址向低地址延伸，即栈底的地址最高，而栈顶是浮动的，具体出入栈情况后面再总结。</p>
-<h5 id="2-堆区（heap）"><a href="#2-堆区（heap）" class="headerlink" title="2.堆区（heap）"></a>2.堆区（heap）</h5><p>一般由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表。常见的在堆上申请内存的方式有malloc,calloc.realloc,new等，堆的地址是由低地址向高地址增长。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="keyword">int</span> a[<span class="number">100</span>] = &#123;<span class="number">0</span>&#125; <span class="comment">// 这是在栈中的</span></div><div class="line"><span class="keyword">int</span> a[<span class="number">100</span>] = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*<span class="number">100</span>); <span class="comment">// 这是在堆中的</span></div></pre></td></tr></table></figure>
-<h5 id="3-全局区（静态区）（static）"><a href="#3-全局区（静态区）（static）" class="headerlink" title="3.全局区（静态区）（static）"></a>3.全局区（静态区）（static）</h5><p>全局变量和静态变量的存储是放在一块的，初始化的全局变量和静态变量在一块区域，<br>未初始化的全局变量和未初始化的静态变量在相邻的另一块区域。-程序结束后由系统释放。（提一句：静态局部变量出了作用域后仍然占用内存，不过只能在函数内被访问）</p>
-<h5 id="4-文字常量区"><a href="#4-文字常量区" class="headerlink" title="4.文字常量区"></a>4.文字常量区</h5><p>常量字符串就是放在这里的。 程序结束后由系统释放</p>
-<h5 id="5-程序代码区"><a href="#5-程序代码区" class="headerlink" title="5.程序代码区"></a>5.程序代码区</h5><p>存放函数体的二进制代码</p>
-<h2 id="二、栈帧"><a href="#二、栈帧" class="headerlink" title="二、栈帧"></a><strong>二、栈帧</strong></h2><h5 id="1-概念"><a href="#1-概念" class="headerlink" title="1.概念"></a>1.概念</h5><p>借用百度百科，C语言中，每个栈帧对应着一个未运行完的函数。栈帧中保存了该函数的返回地址和局部变量。栈帧又名活动过程记录，通俗来讲，栈帧就是在栈上的用来表示程序的函数调用记录的一种数据结构。</p>
-<h5 id="2-ebp与esp"><a href="#2-ebp与esp" class="headerlink" title="2.ebp与esp"></a>2.ebp与esp</h5><p>是两个寄存器，ebp指向当前栈帧的底部，esp指向当前栈帧的顶部，需要注意，底部地址高而顶部地址低。每一个函数栈帧的形成正是通过系统操作这两个寄存器来完成的。</p>
-<h5 id="3-过程详解"><a href="#3-过程详解" class="headerlink" title="3.过程详解"></a>3.过程详解</h5><p>下面我们就来看一下栈帧形成的具体过程：</p>
-<p>选用这次作业第一题的代码，经过优化后如下：</p>
-<p><img src="http://ouluvpd0z.bkt.clouddn.com/article2/2.png" alt="EEQ\@BBNTOT.png"></p>
-<p>为了让这个栈看起来更符合物理定律┌(。Д。)┐一些，我决定将上上图的倒过来：</p>
-<p><img src="http://ouluvpd0z.bkt.clouddn.com/article2/3.jpg" alt="img_20170411_231404.jpg"></p>
-<p>首先是main函数栈帧，因为main中只有foo函数，所以main的栈帧中没有参数入栈，ebp指向目前栈帧（main栈帧）底部，esp通过执行esp-4向低地址处移动，腾出空间，放下下一个指令的地址（如果下一个函数有返回就是其返回地址，如果没有就是下一条语句的地址）每一次入栈，都会有esp-的活动，以腾出空间。</p>
-<p><img src="http://ouluvpd0z.bkt.clouddn.com/article2/4.jpg" alt="img_20170411_231415.jpg"></p>
-<p>随后执行</p>
-<p><code>push ebp</code>//即将当前（main）函数的ebp入栈，目的是进入下一个栈帧前留一个上一栈帧的栈底地址，这样才有路找回来。</p>
-<p><code>mov ebp,esp</code>//将ebp挪到esp的位置，开始构建下一个栈帧了（上图已经跳过了这一步骤）。</p>
-<p>现在我们进入了foo函数的栈帧，而首先入栈的是函数的参数，需要注意的是，在C与C++中，参数的入栈顺序是从右向左的，即是d-c-b-a，参数入栈完毕后即是局部变量入栈，局部变量入栈的顺序就是按照语句的自然顺序了，即e-f。</p>
-<p>按照这个构想，如上图所示，地址的大小应该是<code>d\&gt;c\&gt;b\&gt;a\&gt;e\&gt;f</code>的，我们执行以下代码看一看：</p>
-<p><img src="http://ouluvpd0z.bkt.clouddn.com/article2/5.png" alt="0\$WOD6VIML\~N.png"></p>
-<p>结果符合预期，不过有一点，我们发现a和e的地址在g++ -32bit-release的编译环境下相差了14个字节，我十分好奇这14个字节的储存内容，同样查阅了网络上的资料,杨小卫先生的文章：</p>
+                <h3 id="12-正则化：稀疏性"><a href="#12-正则化：稀疏性" class="headerlink" title="12. 正则化：稀疏性"></a>12. 正则化：稀疏性</h3><p>稀疏矢量的特征组合通常会导致包含更多无意义维度，在降低模型复杂度时，我们希望将一些无意义的权重设为0（即L0正则化），但是L0正则化是非凸优化，并存在其他问题，所以我们将条件放宽至L1正则化，减小权重的绝对值，即采用L1正则化</p>
 <blockquote>
-<p><em><a href="http://blog.csdn.net/tdgx2004/article/details/5985531" target="_blank" rel="external">http://blog.csdn.net/tdgx2004/article/details/5985531</a></em></p>
-<p>在函数参数与函数局部变量之间存在类似与两个栈帧之间的保存下一地址和上一栈底的行为</p>
+<p>凸优化：不严格的说，凸优化就是在标准优化问题的范畴内，要求目标函数和约束函数是凸函数的一类优化问题。</p>
 </blockquote>
-<p>但是按照这个说法应该是占据8个字节（32位下地址占4个字节），这就十分奇怪了，因为在栈上出现地址差不为4的倍数是很奇怪的，还有6个Byte存储的是什么？</p>
-<h2 id="三、后续"><a href="#三、后续" class="headerlink" title="三、后续"></a>三、后续</h2><p>我将问题挂到了<a href="https://segmentfault.com/q/1010000009037489" target="_blank" rel="external">SegmentFault</a>上，在几周后得到了回答</p>
+<h4 id="L1正则化"><a href="#L1正则化" class="headerlink" title="L1正则化"></a>L1正则化</h4><h5 id="L1-和-L2-正则化"><a href="#L1-和-L2-正则化" class="headerlink" title="L1 和 L2 正则化"></a>L1 和 L2 正则化</h5><p>L2 和 L1 采用不同的方式降低权重：</p>
+<ul>
+<li>L2 会降低权重2。</li>
+<li>L1 会降低 |权重|。</li>
+</ul>
+<p>因此，L2 和 L1 具有不同的导数：</p>
+<ul>
+<li>L2 的导数为 2 * 权重。</li>
+<li>L1 的导数为 k（一个常数，其值与权重无关）</li>
+</ul>
+<p>即</p>
+<ul>
+<li>L2正则化永远不回将权重变为0</li>
+<li>L1正则化可以使权重为0: L1 在 0 处具有不连续性，这会导致与 0 相交的减法结果变为 0。例如，如果减法使权重从 +0.1 变为 -0.2，L1 便会将权重设为 0</li>
+</ul>
+<h3 id="13-神经网络"><a href="#13-神经网络" class="headerlink" title="13. 神经网络"></a>13. 神经网络</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>之前处理特殊的非线性问题时，我们采用了特征组合的方法，但是对于一般的非线性问题，我们采用神经网络来进行模型的建立。</p>
 <blockquote>
-<p> EngineWorld：</p>
-<p> “这个问题跟平台和采用的调用惯例以及编译器都有关系。i386平台，默认的_cdecl调用惯例条件下，在运行时栈上，函数参数和函数局部变量中间还有1: 返回地址(pc after call instruction), 2: caller的栈帧基址(ebp), 3: callee save registers(不同平台个数不同)，4：为了处理异常而在栈上增加的信息（不同编译器可能实现不同，gcc就会增加东西）“</p>
+<p>神经网络(neural network)：一种模型，灵感来源于脑部结构，由多个层构成（至少有一个是<a href="https://developers.google.cn/machine-learning/crash-course/glossary#hidden_layer" target="_blank" rel="external"><strong>隐藏层</strong></a>），每个层都包含简单相连的单元或<a href="https://developers.google.cn/machine-learning/crash-course/glossary#neuron" target="_blank" rel="external"><strong>神经元</strong></a>（具有非线性关系）。</p>
+<p>隐藏层(hidden layer)：<a href="https://developers.google.cn/machine-learning/crash-course/glossary#neural_network" target="_blank" rel="external"><strong>神经网络</strong></a>中的合成层，介于<a href="https://developers.google.cn/machine-learning/crash-course/glossary#input_layer" target="_blank" rel="external"><strong>输入层</strong></a>（即特征）和<a href="https://developers.google.cn/machine-learning/crash-course/glossary#output_layer" target="_blank" rel="external"><strong>输出层</strong></a>（即预测）之间。神经网络包含一个或多个隐藏层。</p>
 </blockquote>
-<p>等学了汇编之后会自己测试一下，现贴上来也希望有dalao能看看栈帧具体情况。</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-7.png" alt=""></p>
+<h4 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h4><p>这样添加隐藏层后，线性函数与线性函数的组合依然是线性的，所以我们通过添加激活函数（非线性转化层）来使模型可以处理非线性问题。</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-8.png" alt=""></p>
+<blockquote>
+<p>激活函数 (activation function)：一种函数（例如 <a href="https://developers.google.cn/machine-learning/crash-course/glossary#ReLU" target="_blank" rel="external"><strong>ReLU</strong></a> 或 <a href="https://developers.google.cn/machine-learning/crash-course/glossary#sigmoid_function" target="_blank" rel="external"><strong>S 型</strong></a>函数），用于对上一层的所有输入求加权和，然后生成一个输出值（通常为非线性值），并将其传递给下一层。</p>
+<p>ReLU函数：修正线性单元(Rectified Linear Unit)，规则为：F(x)=max(0,x)</p>
+</blockquote>
+<p>激活函数的引入，在非线性上堆叠非线性，使得模型可以处理更为复杂的输出预测</p>
+<p>实际上所有的函数都可以作为激活函数，我们假设激活函数 $\sigma$ ，网络中节点的值为 $v$ :<br>$$<br>v = \sigma(\boldsymbol w \cdot \boldsymbol x+b)<br>$$</p>
+<h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><p>神经网络包括：</p>
+<ul>
+<li>一组节点$v$，类似于神经元，位于层中。</li>
+<li>一组权重$w$，表示每个神经网络层与其下方的层之间的关系。下方的层可能是另一个神经网络层，也可能是其他类型的层。</li>
+<li>一组偏差$b$，每个节点一个偏差。</li>
+<li>一个激活函数$\sigma$ ，对层中每个节点的输出进行转换。不同的层可能拥有不同的激活函数。</li>
+</ul>
 
                 <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b683f13817fa82e"></script>
                 <hr>
@@ -238,15 +240,10 @@
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2017/06/28/note-for-cocos2dx/" data-toggle="tooltip" data-placement="top"
-                           title="cocos2dx-3.10期末项目踩坑记录">&larr; Previous Post</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2017/04/10/note-for-photography/" data-toggle="tooltip" data-placement="top"
-                           title="摄影学习笔记">Next Post &rarr;</a>
+                        <a href="/2018/08/09/as-jar-aar/" data-toggle="tooltip" data-placement="top"
+                           title="使用Android Studio打包aar与jar">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -281,7 +278,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、首先是堆栈的概念"><span class="toc-text">一、首先是堆栈的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数据结构："><span class="toc-text">数据结构：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-栈区（stack）"><span class="toc-text">1.栈区（stack）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-堆区（heap）"><span class="toc-text">2.堆区（heap）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-全局区（静态区）（static）"><span class="toc-text">3.全局区（静态区）（static）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-文字常量区"><span class="toc-text">4.文字常量区</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-程序代码区"><span class="toc-text">5.程序代码区</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、栈帧"><span class="toc-text">二、栈帧</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-概念"><span class="toc-text">1.概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-ebp与esp"><span class="toc-text">2.ebp与esp</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-过程详解"><span class="toc-text">3.过程详解</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、后续"><span class="toc-text">三、后续</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-正则化：稀疏性"><span class="toc-text">12. 正则化：稀疏性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#L1正则化"><span class="toc-text">L1正则化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#L1-和-L2-正则化"><span class="toc-text">L1 和 L2 正则化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-神经网络"><span class="toc-text">13. 神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念"><span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#激活函数"><span class="toc-text">激活函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组件"><span class="toc-text">组件</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
@@ -303,8 +300,8 @@
                     </h5>
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#数据结构"
-                           title="数据结构">数据结构</a>
+                        <a class="tag" href="/tags/#机器学习"
+                           title="机器学习">机器学习</a>
                         
                     </div>
                 </section>
