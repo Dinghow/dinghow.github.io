@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Google机器学习课程笔记part3｜Dinghow&#39;s blog
+        Google机器学习课程笔记part3：L2正则化，逻辑回归，分类｜Dinghow&#39;s blog
         
     </title>
 
@@ -79,9 +79,7 @@
                     
                         
 							
-                        <li>
-                            <a href="/tags/">Tags</a>
-                        </li>
+								
 							
 						
                     
@@ -95,7 +93,9 @@
                     
                         
 							
-								
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
 							
 						
                     
@@ -162,7 +162,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>Google机器学习课程笔记part3</h1>
+                    <h1>Google机器学习课程笔记part3：L2正则化，逻辑回归，分类</h1>
                     
                     <span class="meta">
                          作者 Dinghow
@@ -182,7 +182,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            Google机器学习课程笔记part3
+            Google机器学习课程笔记part3：L2正则化，逻辑回归，分类
         </span>
     </div>
 </header>
@@ -193,52 +193,156 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <h3 id="12-正则化：稀疏性"><a href="#12-正则化：稀疏性" class="headerlink" title="12. 正则化：稀疏性"></a>12. 正则化：稀疏性</h3><p>稀疏矢量的特征组合通常会导致包含更多无意义维度，在降低模型复杂度时，我们希望将一些无意义的权重设为0（即L0正则化），但是L0正则化是非凸优化，并存在其他问题，所以我们将条件放宽至L1正则化，减小权重的绝对值，即采用L1正则化</p>
-<blockquote>
-<p>凸优化：不严格的说，凸优化就是在标准优化问题的范畴内，要求目标函数和约束函数是凸函数的一类优化问题。</p>
+                <blockquote>
+<h3 id="系列笔记索引："><a href="#系列笔记索引：" class="headerlink" title="系列笔记索引："></a>系列笔记索引：</h3><p><a href="https://developers.google.cn/machine-learning/crash-course/" target="_blank" rel="external">官方课程</a></p>
+<p><a href="https://github.com/Dinghow/MyRoadToMachineLearning" target="_blank" rel="external">Github仓库</a></p>
+<p><a href="https://dinghow.site/2018/03/25/Google-ML-note1/">Part1：基础概念，降低损失</a></p>
+<p><a href="https://dinghow.site/2018/06/15/Google-ML-note2/">Part2：泛化，验证，表示法，特征组合</a></p>
+<p><a href="https://dinghow.site/2018/09/03/Google-ML-note3/">Part3：L2正则化，逻辑回归，分类</a></p>
+<p><a href="https://dinghow.site/2018/09/23/Google-ML-note4/">Part4：L1正则化，神经网络</a></p>
+<p><a href="https://dinghow.site/2018/09/24/Google-ML-note5/">Part5：训练神经网络，多类别神经网络，嵌套</a></p>
 </blockquote>
-<h4 id="L1正则化"><a href="#L1正则化" class="headerlink" title="L1正则化"></a>L1正则化</h4><h5 id="L1-和-L2-正则化"><a href="#L1-和-L2-正则化" class="headerlink" title="L1 和 L2 正则化"></a>L1 和 L2 正则化</h5><p>L2 和 L1 采用不同的方式降低权重：</p>
+<h3 id="9-正则化-Regularization-：简单性"><a href="#9-正则化-Regularization-：简单性" class="headerlink" title="9.正则化(Regularization)：简单性"></a>9.正则化(Regularization)：简单性</h3><h4 id="L2正则化"><a href="#L2正则化" class="headerlink" title="L2正则化"></a>L2正则化</h4><p>定义：通过降低复杂模型的复杂度来<strong>防止过拟合</strong>的原则称为正则化</p>
+<p>为了避免训练集数据过拟合，应该求<strong>结构风险最小化</strong>（最小化损失和复杂度）：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/2.png" alt=""></p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-4.png" alt=""></p>
+<p>而衡量模型复杂度有两种常见方式：</p>
 <ul>
-<li>L2 会降低权重2。</li>
-<li>L1 会降低 |权重|。</li>
+<li><p>用所有特征的权重的函数</p>
+<p>可以使用 <strong>L2 正则化</strong>公式来量化复杂度，该公式将正则化项定义为所有特征权重的平方和：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/3.png" alt=""></p>
+</li>
+<li><p>用具有非零权重的特征总数的函数</p>
+</li>
 </ul>
-<p>因此，L2 和 L1 具有不同的导数：</p>
+<p>执行L2正则化对模型的影响：</p>
 <ul>
-<li>L2 的导数为 2 * 权重。</li>
-<li>L1 的导数为 k（一个常数，其值与权重无关）</li>
+<li>使权重接近于0（并非正好为0）</li>
+<li>使权重的平均值接近于0，且呈正态（钟形曲线或高斯曲线）分布</li>
 </ul>
-<p>即</p>
-<ul>
-<li>L2正则化永远不回将权重变为0</li>
-<li>L1正则化可以使权重为0: L1 在 0 处具有不连续性，这会导致与 0 相交的减法结果变为 0。例如，如果减法使权重从 +0.1 变为 -0.2，L1 便会将权重设为 0</li>
-</ul>
-<h3 id="13-神经网络"><a href="#13-神经网络" class="headerlink" title="13. 神经网络"></a>13. 神经网络</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>之前处理特殊的非线性问题时，我们采用了特征组合的方法，但是对于一般的非线性问题，我们采用神经网络来进行模型的建立。</p>
 <blockquote>
-<p>神经网络(neural network)：一种模型，灵感来源于脑部结构，由多个层构成（至少有一个是<a href="https://developers.google.cn/machine-learning/crash-course/glossary#hidden_layer" target="_blank" rel="external"><strong>隐藏层</strong></a>），每个层都包含简单相连的单元或<a href="https://developers.google.cn/machine-learning/crash-course/glossary#neuron" target="_blank" rel="external"><strong>神经元</strong></a>（具有非线性关系）。</p>
-<p>隐藏层(hidden layer)：<a href="https://developers.google.cn/machine-learning/crash-course/glossary#neural_network" target="_blank" rel="external"><strong>神经网络</strong></a>中的合成层，介于<a href="https://developers.google.cn/machine-learning/crash-course/glossary#input_layer" target="_blank" rel="external"><strong>输入层</strong></a>（即特征）和<a href="https://developers.google.cn/machine-learning/crash-course/glossary#output_layer" target="_blank" rel="external"><strong>输出层</strong></a>（即预测）之间。神经网络包含一个或多个隐藏层。</p>
+<p>L2 正则化降低较大权重的程度高于降低较小权重的程度。因此，即使某个权重降低的速度比另一个快，L2 正则化也往往会使较大权重降低的速度快于较小的权重。</p>
 </blockquote>
-<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-7.png" alt=""></p>
-<h4 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h4><p>这样添加隐藏层后，线性函数与线性函数的组合依然是线性的，所以我们通过添加激活函数（非线性转化层）来使模型可以处理非线性问题。</p>
-<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-8.png" alt=""></p>
-<blockquote>
-<p>激活函数 (activation function)：一种函数（例如 <a href="https://developers.google.cn/machine-learning/crash-course/glossary#ReLU" target="_blank" rel="external"><strong>ReLU</strong></a> 或 <a href="https://developers.google.cn/machine-learning/crash-course/glossary#sigmoid_function" target="_blank" rel="external"><strong>S 型</strong></a>函数），用于对上一层的所有输入求加权和，然后生成一个输出值（通常为非线性值），并将其传递给下一层。</p>
-<p>ReLU函数：修正线性单元(Rectified Linear Unit)，规则为：F(x)=max(0,x)</p>
-</blockquote>
-<p>激活函数的引入，在非线性上堆叠非线性，使得模型可以处理更为复杂的输出预测</p>
-<p>实际上所有的函数都可以作为激活函数，我们假设激活函数 $\sigma$ ，网络中节点的值为 $v$ :<br>$$<br>v = \sigma(\boldsymbol w \cdot \boldsymbol x+b)<br>$$</p>
-<h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><p>神经网络包括：</p>
+<h4 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h4><p>lambda又称<strong>正则化率</strong></p>
+<p>模型开发者通过以下方式来调整正则化项的整体影响：用正则化项的值乘以名为 <strong>lambda</strong>的标量</p>
+<p>即：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/4.png" alt=""></p>
+<p>增加lambda值将增强正则化的效果（直方图更剧烈），降低lambda值则会得到比较平缓的直方图</p>
+<p>理想的 lambda 值取决于数据，因此您需要手动或自动进行一些调整</p>
+<h3 id="10-逻辑回归-Logistic-Regression"><a href="#10-逻辑回归-Logistic-Regression" class="headerlink" title="10.逻辑回归 (Logistic Regression)"></a>10.逻辑回归 (Logistic Regression)</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>一种模型，通过将 <a href="https://developers.google.cn/machine-learning/crash-course/glossary#sigmoid_function" target="_blank" rel="external"><strong>S 型函数</strong></a>应用于线性预测，生成分类问题中每个可能的离散标签值的概率（有渐近线，可以提供(0,1)之间的有界值）。虽然逻辑回归经常用于<a href="https://developers.google.cn/machine-learning/crash-course/glossary#binary_classification" target="_blank" rel="external"><strong>二元分类</strong></a>问题，但也可用于<a href="https://developers.google.cn/machine-learning/crash-course/glossary#multi-class" target="_blank" rel="external"><strong>多类别</strong></a>分类问题（其叫法变为<strong>多类别逻辑回归</strong>或<strong>多项回归</strong>）。</p>
+<h4 id="S型函数的运用"><a href="#S型函数的运用" class="headerlink" title="S型函数的运用"></a>S型函数的运用</h4><p>如果 z 表示使用逻辑回归训练的模型的线性层的输出，则 S 型(z) 函数会生成一个介于 0 和 1 之间的值（概率）。用数学方法表示为：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/5.png" alt=""></p>
 <ul>
-<li>一组节点$v$，类似于神经元，位于层中。</li>
-<li>一组权重$w$，表示每个神经网络层与其下方的层之间的关系。下方的层可能是另一个神经网络层，也可能是其他类型的层。</li>
-<li>一组偏差$b$，每个节点一个偏差。</li>
-<li>一个激活函数$\sigma$ ，对层中每个节点的输出进行转换。不同的层可能拥有不同的激活函数。</li>
+<li><p>y’ 是逻辑回归模型针对特定样本的输出</p>
+</li>
+<li><p>z 是 b + w1x1 + w2x2 + … wNxN，又称为对数几率，因为z的反函数为：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/6.png" alt=""></p>
+<ul>
+<li>w:该模型学习的权重和偏差</li>
+<li>x:特定样本的特征值</li>
 </ul>
+</li>
+</ul>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-5.png" alt=""></p>
+<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><p>对数损失函数：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/7.png" alt=""></p>
+<ul>
+<li>(x,y)&straightepsilon;D 是包含很多有标签样本 (x,y) 的数据集。</li>
+<li>“y”是有标签样本中的标签。由于这是逻辑回归，因此“y”的每个值必须是 0 或 1。</li>
+<li>“y’”是对于特征集“x”的预测值（介于 0 和 1 之间）。</li>
+</ul>
+<h4 id="逻辑回归中的正则化"><a href="#逻辑回归中的正则化" class="headerlink" title="逻辑回归中的正则化"></a>逻辑回归中的正则化</h4><p>因为逻辑回归的渐近性，如果不进行正则化，模型会因为促使所有样本的损失达到0但又做不到而造成过拟合，逻辑回归常常采用一下三种正则化方法：</p>
+<ul>
+<li>L1正则化</li>
+<li>L2正则化</li>
+<li>早停法（即限制训练步数或步长）</li>
+</ul>
+<h3 id="11-分类"><a href="#11-分类" class="headerlink" title="11.分类"></a>11.分类</h3><h4 id="真与假以及正类别与负类别"><a href="#真与假以及正类别与负类别" class="headerlink" title="真与假以及正类别与负类别"></a>真与假以及正类别与负类别</h4><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">正例（预测值）</th>
+<th style="text-align:center">反例（预测值）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>正例（真实值）</strong></td>
+<td style="text-align:center">真正例(TP)</td>
+<td style="text-align:center">假正例(FP)</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>反例（真实值）</strong></td>
+<td style="text-align:center">假负例(FN)</td>
+<td style="text-align:center">真负例(TN)</td>
+</tr>
+</tbody>
+</table>
+<p>正类别、负类别（Positive,Negative）：定义的样本中的二分类情况</p>
+<p>真、假（True,False）:真——实际值与预测值相同，假——实际值与预测值相反</p>
+<p><strong>真正例</strong>是指模型将正类别样本正确地预测为正类别。同样，<strong>真负例</strong>是指模型将负类别样本正确地预测为负类别。</p>
+<p><strong>假正例</strong>是指模型将负类别样本错误地预测为正类别，而<strong>假负例</strong>是指模型将正类别样本错误地预测为负类别。</p>
+<p>TP,TN不会造成损失</p>
+<h4 id="准确率-Accuracy"><a href="#准确率-Accuracy" class="headerlink" title="准确率(Accuracy)"></a>准确率(Accuracy)</h4><p>定义：预测正确的结果所占比例</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/8.png" alt=""></p>
+<p>二分类问题中</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/9.png" alt=""></p>
+<h4 id="精确率和召回率（Precision-amp-Recall）"><a href="#精确率和召回率（Precision-amp-Recall）" class="headerlink" title="精确率和召回率（Precision &amp; Recall）"></a>精确率和召回率（Precision &amp; Recall）</h4><h5 id="精确率"><a href="#精确率" class="headerlink" title="精确率"></a>精确率</h5><p>定义：表示的是预测为正的样本中有多少是真正的正样本，又称为<strong>查准率</strong></p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/10.png" alt=""></p>
+<h5 id="召回率"><a href="#召回率" class="headerlink" title="召回率"></a>召回率</h5><p>定义：表示真正的正样本中有多少被正确预测，又称为<strong>查全率</strong></p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/11.png" alt=""></p>
+<p>查准和查全二者之间是矛盾的。查准率高（尽可能只挑选有把握的），那查全率就会低；查全率高（试想把所有类别都预测为正例），那查准率就会低。</p>
+<p>为了综合考虑二者，常常采用$F_1$值：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/12.png" alt=""></p>
+<h4 id="ROC和曲线下面积"><a href="#ROC和曲线下面积" class="headerlink" title="ROC和曲线下面积"></a>ROC和曲线下面积</h4><p>真正例率    (TPR)：等同于召回率</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/13.png" alt=""></p>
+<p>假正例率(FPR)：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/14.png" alt=""></p>
+<p>ROC 曲线用于绘制采用不同分类阈值时的 TPR 与 FPR</p>
+<h4 id="ROC和曲线下面积-1"><a href="#ROC和曲线下面积-1" class="headerlink" title="ROC和曲线下面积"></a>ROC和曲线下面积</h4><h5 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a>ROC曲线</h5><p>真正例率(TPR)：等同于召回率</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/15.png" alt=""></p>
+<p>假正例率(FPR)：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/16.png" alt=""></p>
+<p>ROC(Receiver Operating Characteristic Curve)曲线用于绘制采用不同分类阈值时的 TPR 与 FPR，横轴为FPR，纵轴为TPR</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-6.png" alt=""></p>
+<p>ROC曲线的主要作用：</p>
+<ul>
+<li>能很容易的查出任意阈值对学习器的泛化性能影响 </li>
+<li>有助于选择最佳的阈值。ROC曲线越靠近左上角，模型的查全率就越高。最靠近左上角的ROC曲线上的点是分类错误最少的最好阈值，其假正例和假反例总数最少 </li>
+<li>可以对不同的学习器比较性能。将各个学习器的ROC曲线绘制到同一坐标中，直观地鉴别优劣，靠近左上角的ROC曲所代表的学习器准确性最高 </li>
+</ul>
+<h5 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h5><p>ROC曲线下面积(Area Under ROC Curve)用来反映分类器对<strong>样本的排序能力</strong>，取值范围[0.5,1s]一般情况下AUC越大模型较佳</p>
+<blockquote>
+<p>AUC就是从所有1样本中随机选取一个样本, 从所有0样本中随机选取一个样本,然后根据你的分类器对两个随机样本进行预测，把1样本预测为1的概率为p1，把0样本预测为1的概率为p0，p1&gt;p0的概率就是AUC</p>
+</blockquote>
+<p>改善AUC的一种方法：只要不过拟合，就训练更长时间——增加步数/或批量大小</p>
+<h4 id="预测偏差"><a href="#预测偏差" class="headerlink" title="预测偏差"></a>预测偏差</h4><p>预测偏差  =  预测平均值 - 数据集中相应标签的平均值</p>
+<p>造成预测偏差的原因可能有：</p>
+<ol>
+<li>特征集不完整</li>
+<li>数据集混乱</li>
+<li>模型实现的流水线有错误</li>
+<li>训练样本有偏差</li>
+<li>正则化过强</li>
+</ol>
+<p>可以通过校准层来纠正预测偏差，但是使用校准层需注意：</p>
+<ul>
+<li>校准层仅仅是修复症状而非原因</li>
+<li>相当于建立了一个更脆弱的系统，需要持续地更新</li>
+</ul>
+<p>因此并不推荐使用校准层。</p>
+<p>逻辑回归常常用于预测0/1值，所以无法根据一个样本就确定预测偏差，需要运用分桶的方法在每个桶中计算预测偏差</p>
 
                 <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b683f13817fa82e"></script>
                 <hr>
                 
 
                 <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/09/23/Google-ML-note4/" data-toggle="tooltip" data-placement="top"
+                           title="Google机器学习课程笔记part4：L1正则化，神经网络">&larr; Previous Post</a>
+                    </li>
                     
                     
                     <li class="next">
@@ -278,7 +382,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-正则化：稀疏性"><span class="toc-text">12. 正则化：稀疏性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#L1正则化"><span class="toc-text">L1正则化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#L1-和-L2-正则化"><span class="toc-text">L1 和 L2 正则化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-神经网络"><span class="toc-text">13. 神经网络</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念"><span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#激活函数"><span class="toc-text">激活函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组件"><span class="toc-text">组件</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#系列笔记索引："><span class="toc-text">系列笔记索引：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-正则化-Regularization-：简单性"><span class="toc-text">9.正则化(Regularization)：简单性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#L2正则化"><span class="toc-text">L2正则化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Lambda"><span class="toc-text">Lambda</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-逻辑回归-Logistic-Regression"><span class="toc-text">10.逻辑回归 (Logistic Regression)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S型函数的运用"><span class="toc-text">S型函数的运用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#损失函数"><span class="toc-text">损失函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#逻辑回归中的正则化"><span class="toc-text">逻辑回归中的正则化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-分类"><span class="toc-text">11.分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#真与假以及正类别与负类别"><span class="toc-text">真与假以及正类别与负类别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#准确率-Accuracy"><span class="toc-text">准确率(Accuracy)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#精确率和召回率（Precision-amp-Recall）"><span class="toc-text">精确率和召回率（Precision & Recall）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#精确率"><span class="toc-text">精确率</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#召回率"><span class="toc-text">召回率</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ROC和曲线下面积"><span class="toc-text">ROC和曲线下面积</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ROC和曲线下面积-1"><span class="toc-text">ROC和曲线下面积</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ROC曲线"><span class="toc-text">ROC曲线</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#AUC"><span class="toc-text">AUC</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#预测偏差"><span class="toc-text">预测偏差</span></a></li></ol></li></ol>
                 </div>
             </div>
         </div>
