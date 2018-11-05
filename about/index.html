@@ -10,7 +10,7 @@
 		
 
 <head>
-	<title>about</title>
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><title>about</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI" />
@@ -22,13 +22,16 @@
 	<link rel="stylesheet" href="/css/style.css">
 
 	<!-- favicon -->
-	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+  <link rel="icon" href="/imgs/favicon.png">
+  
 	
 	<!-- font-awesome -->
 	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 	<body>	
-		<!--Preloader-->
+		<!-- hexo-inject:begin --><!-- hexo-inject:end --><!--Preloader-->
 <div id="preloader">
 	<div id="status">
 		<img alt="PRELOADER" src="/img/logo.png">
@@ -38,7 +41,7 @@
 
 <!-- header -->
 
-	<header id="header-bg-1" style="background-image: url( https://source.unsplash.com/collection/954550/1920x1080 );">	
+	<header id="header-bg-1" style="background-image: url( / );">	
 
 	
 		<div id="cd-logo"><a href="/"><img src="/imgs/logo.png" alt="Logo"></a></div>
@@ -61,7 +64,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		11/3/2018 
+		11/6/2018 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -113,33 +116,29 @@
 	<nav id="cd-main-nav">
 		<ul>
 			
-      		<li class="fa fa-/">
-           		<a href="/" title="主页">主页</a>	
+      		<li class="fa fa-/">	
+           		<a href="/">Home</a>
       		</li>
     		
-      		<li class="fa fa-/archives">
-           		<a href="/archives" title="归档">归档</a>	
+      		<li class="fa fa-/archives">	
+           		<a href="/archives">Archive</a>
       		</li>
     		
-      		<li class="fa fa-/categories">
-           		<a href="/categories" title="分类">分类</a>	
+      		<li class="fa fa-/tags">	
+           		<a href="/tags">Tag</a>
       		</li>
     		
-      		<li class="fa fa-/tags">
-           		<a href="/tags" title="标签">标签</a>	
+      		<li class="fa fa-/about">	
+           		<a href="/about">About</a>
       		</li>
     		
-      		<li class="fa fa-/about">
-           		<a href="/about" title="关于">关于</a>	
-      		</li>
-    		
-      		<li class="fa fa-/gallery">
-           		<a href="/gallery" title="相册">相册</a>	
+      		<li class="fa fa-/friends">	
+           		<a href="/friends">Friend</a>
       		</li>
     		
     		
         	
-            	<li class="fa fa-/search"><a href="javascript:;" class="popup-trigger" title="Search">搜索</a></li>
+            	<li class="fa fa-/search"><a href="javascript:;" class="popup-trigger" title="Search">Search</a></li>
         	
 		</ul>
 	</nav>
@@ -148,29 +147,69 @@
 		<!--main-->
 		<main> 
 		<div class="page-container">
-		<!--content start-->
-<div class="am-g am-g-fixed blog-fixed blog-content">
-    <div class="am-u-md-8 am-u-sm-12">
-        <article class="am-article blog-article-p">
+		<!-- Chinese Version -->
+<div class="about">
+    <div class="content" id="about-header"> 
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                <div>
+                    <img  src="/imgs/avatar.jpeg"  style="border-radius: 50%;"/>
+                </div>
+                <div class="text-center">
+                     <h2>Dinghow</h2>
+                    <p>Writing words,writing codes.</p>
+                </div>
+            </div>
+        </div>
+        <!--正文-->
+        <div class="row" id="offer">
+            <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                <div class="person-info">
+                    <h3 class="title"><span class="glyphicon glyphicon-user"></span> About Me </h3>
+                    <div class="person-body">
+                        <p>Tongji Univ SSE undergrad</p>
+                        <p>V2EX: <a target="_blank" href="https://www.v2ex.com/member/dinghow">dinghow <span class="glyphicon glyphicon-link"></span></a></p>
+                        <p>Music list:<a target="_blank" href="https://y.qq.com/w/taoge.html?id=2186874964">favorite <span class="glyphicon glyphicon-link"></span></a></p>
+                        <p>Bangumi: <a target="_blank" href="http://bangumi.tv/user/413269"> Dinghow <span class="glyphicon glyphicon-link"></span> </a></p>
+                        <p>Hobbies:Coding, Reading, Basketball ,Fitness ,Guitar ,Music ,ACG</p>
+                        <p>Interest: ML ,DL ,DIP ,CV(But I'm just a beginner)</p>
+                    </div>
+                </div>
+                <div class="contact-show">
+                    <h3 class="title "> <span class="glyphicon glyphicon-earphone"></span> Contact Me </h3>
+                    <div class="person-body">
+                        <p>
+                            telegram: <a target="_blank" href="https://telegram.me/dinghow9"> @dinghow9 <span class="glyphicon glyphicon-link"></span> </a></p>
+                        </p>
+                        <p>
+                            E-mail: <a target="_blank" href="mailto:dinghowyang@gmail.com"> dinghowyang@gmail.com <span class="glyphicon glyphicon-link"></span> </a></p>
+                        </p>
+                    </div>                    
+                    <!-- 来必力City版安装代码 -->
+					<div id="lv-container"  data-id="city" data-uid="MTAyMC8zMDE1MS82NzA2">
+					<script type="text/javascript">
+					   (function(d, s) {
+					       var j, e = d.getElementsByTagName(s)[0];
 
-            <div class="page-header">
-	<div class="blog-text-center">
-		
-			
-			about
+					       if (typeof LivereTower === 'function') { return; }
 
-		  	 		
-	</div>    	 		
-</div>  	 		
+					       j = d.createElement(s);
+					       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+					       j.async = true;
 
-                
-
-                
-
-            
-        </article>
-    </div>
+					       e.parentNode.insertBefore(j, e);
+					   })(document, 'script');
+					</script>
+					<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+					</div>
+					<!-- City版安装代码已完成 -->
+                </div>
+            </div>
+        </div></div>
 </div>
+
+
+
 
 
 		</div>
@@ -206,7 +245,7 @@
 
 	<div class="blog-text-center">
 		<div class="theme-annie-copyright">
-			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="external">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="external">Annie</a> by Sariay.		
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="external">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="external">Annie</a> by Sariay & Dinghow.		
 		</div>
 	</div>
 </footer>
@@ -624,7 +663,7 @@
 
 	<div id="totop">
   		<a href="javascript:;" class="fa fa-arrow-up"></a>
-	</div>
+	</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 	</body>
 	</html>

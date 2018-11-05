@@ -10,7 +10,7 @@
 		
 
 <head>
-	<title>Dinghow</title>
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Dinghow</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI" />
@@ -22,13 +22,16 @@
 	<link rel="stylesheet" href="/css/style.css">
 
 	<!-- favicon -->
-	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+  <link rel="icon" href="/imgs/favicon.png">
+  
 	
 	<!-- font-awesome -->
 	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-</head>
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 	<body>	
-		<!--Preloader-->
+		<!-- hexo-inject:begin --><!-- hexo-inject:end --><!--Preloader-->
 <div id="preloader">
 	<div id="status">
 		<img alt="PRELOADER" src="/img/logo.png">
@@ -38,7 +41,7 @@
 
 <!-- header -->
 
-	<header id="header-bg-1" style="background-image: url( https://source.unsplash.com/collection/954550/1920x1080 );">	
+	<header id="header-bg-1" style="background-image: url( / );">	
 
 	
 		<div id="cd-logo"><a href="/"><img src="/imgs/logo.png" alt="Logo"></a></div>
@@ -54,14 +57,14 @@
 		
 		
 			
-			<p class=page-name>主页</p>	
+			<p class=page-name>Home</p>	
 			
 		
 	
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		11/3/2018 
+		11/6/2018 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -113,33 +116,29 @@
 	<nav id="cd-main-nav">
 		<ul>
 			
-      		<li class="fa fa-/">
-           		<a href="/" title="主页">主页</a>	
+      		<li class="fa fa-/">	
+           		<a href="/">Home</a>
       		</li>
     		
-      		<li class="fa fa-/archives">
-           		<a href="/archives" title="归档">归档</a>	
+      		<li class="fa fa-/archives">	
+           		<a href="/archives">Archive</a>
       		</li>
     		
-      		<li class="fa fa-/categories">
-           		<a href="/categories" title="分类">分类</a>	
+      		<li class="fa fa-/tags">	
+           		<a href="/tags">Tag</a>
       		</li>
     		
-      		<li class="fa fa-/tags">
-           		<a href="/tags" title="标签">标签</a>	
+      		<li class="fa fa-/about">	
+           		<a href="/about">About</a>
       		</li>
     		
-      		<li class="fa fa-/about">
-           		<a href="/about" title="关于">关于</a>	
-      		</li>
-    		
-      		<li class="fa fa-/gallery">
-           		<a href="/gallery" title="相册">相册</a>	
+      		<li class="fa fa-/friends">	
+           		<a href="/friends">Friend</a>
       		</li>
     		
     		
         	
-            	<li class="fa fa-/search"><a href="javascript:;" class="popup-trigger" title="Search">搜索</a></li>
+            	<li class="fa fa-/search"><a href="javascript:;" class="popup-trigger" title="Search">Search</a></li>
         	
 		</ul>
 	</nav>
@@ -181,9 +180,7 @@
 							<i class="fa fa-clock-o"></i>&nbsp2018-01-18
 						</span>
 						<span class="continue-read">       	
-							<a href="/2018/01/18/winner-tree-loser-tree/" class="pull-right">
-								展开全文
-							</a>		
+							<a href="/2018/01/18/winner-tree-loser-tree/" class="pull-right">View all</a>		
 						<span>
 						
 					</div>       
@@ -215,9 +212,7 @@
 							<i class="fa fa-clock-o"></i>&nbsp2017-10-19
 						</span>
 						<span class="continue-read">       	
-							<a href="/2017/10/19/CheckboxPreference/" class="pull-right">
-								展开全文
-							</a>		
+							<a href="/2017/10/19/CheckboxPreference/" class="pull-right">View all</a>		
 						<span>
 						
 					</div>       
@@ -248,9 +243,7 @@
 							<i class="fa fa-clock-o"></i>&nbsp2017-08-28
 						</span>
 						<span class="continue-read">       	
-							<a href="/2017/08/28/Chinese-class/" class="pull-right">
-								展开全文
-							</a>		
+							<a href="/2017/08/28/Chinese-class/" class="pull-right">View all</a>		
 						<span>
 						
 					</div>       
@@ -272,7 +265,7 @@
 							<p>
 								
 									​    不得不吐槽在先，cocos整体框架十分强悍，但是很多细节的东西写得不够人性化，而且官方的文档也没有跟上，导致浪费大量的时间在一些不必要的坑上，实在是不划算，记录一下这次期末项目用cocos2d-x3.10开发泡泡堂踩到的坑吧！
-1.cocosStudio导出的csb文件组件获取auto rootNode = CSLoader::createNode(&quot;LoginScene/Lo	
+1.cocosStudio导出的csb文件组件获取auto rootNode = CSLoader::createNode("LoginScene/LoginSc	
 								  
 							</p>
 						
@@ -281,9 +274,7 @@
 							<i class="fa fa-clock-o"></i>&nbsp2017-06-28
 						</span>
 						<span class="continue-read">       	
-							<a href="/2017/06/28/note-for-cocos2dx/" class="pull-right">
-								展开全文
-							</a>		
+							<a href="/2017/06/28/note-for-cocos2dx/" class="pull-right">View all</a>		
 						<span>
 						
 					</div>       
@@ -316,9 +307,7 @@
 							<i class="fa fa-clock-o"></i>&nbsp2017-04-11
 						</span>
 						<span class="continue-read">       	
-							<a href="/2017/04/11/heap-stack-stackframe/" class="pull-right">
-								展开全文
-							</a>		
+							<a href="/2017/04/11/heap-stack-stackframe/" class="pull-right">View all</a>		
 						<span>
 						
 					</div>       
@@ -355,9 +344,7 @@
 							<i class="fa fa-clock-o"></i>&nbsp2017-04-10
 						</span>
 						<span class="continue-read">       	
-							<a href="/2017/04/10/note-for-photography/" class="pull-right">
-								展开全文
-							</a>		
+							<a href="/2017/04/10/note-for-photography/" class="pull-right">View all</a>		
 						<span>
 						
 					</div>       
@@ -369,7 +356,7 @@
 	<ul class="am-pagination">
 		
 			<li class="am-pagination-prev">
-				<a href="/">&laquo; 上一页 </a>
+				<a href="/">&laquo; Pre page </a>
 			</li>
 		
 		
@@ -424,7 +411,7 @@
 
 	<div class="blog-text-center">
 		<div class="theme-annie-copyright">
-			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="external">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="external">Annie</a> by Sariay.		
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="external">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="external">Annie</a> by Sariay & Dinghow.		
 		</div>
 	</div>
 </footer>
@@ -842,7 +829,7 @@
 
 	<div id="totop">
   		<a href="javascript:;" class="fa fa-arrow-up"></a>
-	</div>
+	</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 	</body>
 	</html>

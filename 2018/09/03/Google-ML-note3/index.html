@@ -1,0 +1,917 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head>
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Google机器学习课程笔记part3：L2正则化，逻辑回归，分类</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Dinghow">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	
+  <link rel="icon" href="/imgs/favicon.png">
+  
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+	<body>	
+		<!-- hexo-inject:begin --><!-- hexo-inject:end --><!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-1" style="background-image: url( / );">	
+
+	
+		<div id="cd-logo"><a href="/"><img src="/imgs/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto">Dinghow的个人博客</p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class=page-name>Current post&nbsp;:&nbsp;《Google机器学习课程笔记part3：L2正则化，逻辑回归，分类》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		11/6/2018 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i  class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">	
+           		<a href="/">Home</a>
+      		</li>
+    		
+      		<li class="fa fa-/archives">	
+           		<a href="/archives">Archive</a>
+      		</li>
+    		
+      		<li class="fa fa-/tags">	
+           		<a href="/tags">Tag</a>
+      		</li>
+    		
+      		<li class="fa fa-/about">	
+           		<a href="/about">About</a>
+      		</li>
+    		
+      		<li class="fa fa-/friends">	
+           		<a href="/friends">Friend</a>
+      		</li>
+    		
+    		
+        	
+            	<li class="fa fa-/search"><a href="javascript:;" class="popup-trigger" title="Search">Search</a></li>
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<!-- show math formula -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2018/09/03/Google-ML-note3/" itemprop="url">		
+			Google机器学习课程笔记part3：L2正则化，逻辑回归，分类		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/09/03/Google-ML-note3/" itemprop="url">
+	<time datetime="2018-09-03T15:59:00.000Z" itemprop="datePublished">
+  		2018-09-03
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#机器学习" title="机器学习" rel="5">机器学习</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<!-- Go to www.addthis.com/dashboard to customize your tools --> 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b683f13817fa82e">
+</script>
+					
+					
+						<blockquote>
+<h3 id="系列笔记索引："><a href="#系列笔记索引：" class="headerlink" title="系列笔记索引："></a>系列笔记索引：</h3><p><a href="https://developers.google.cn/machine-learning/crash-course/" target="_blank" rel="external">官方课程</a></p>
+<p><a href="https://github.com/Dinghow/MyRoadToMachineLearning" target="_blank" rel="external">Github仓库</a></p>
+<p><a href="https://dinghow.site/2018/03/25/Google-ML-note1/">Part1：基础概念，降低损失</a></p>
+<p><a href="https://dinghow.site/2018/06/15/Google-ML-note2/">Part2：泛化，验证，表示法，特征组合</a></p>
+<p><a href="https://dinghow.site/2018/09/03/Google-ML-note3/">Part3：L2正则化，逻辑回归，分类</a></p>
+<p><a href="https://dinghow.site/2018/09/23/Google-ML-note4/">Part4：L1正则化，神经网络</a></p>
+<p><a href="https://dinghow.site/2018/09/24/Google-ML-note5/">Part5：训练神经网络，多类别神经网络，嵌套</a></p>
+</blockquote>
+<h3 id="9-正则化-Regularization-：简单性"><a href="#9-正则化-Regularization-：简单性" class="headerlink" title="9.正则化(Regularization)：简单性"></a>9.正则化(Regularization)：简单性</h3><h4 id="L2正则化"><a href="#L2正则化" class="headerlink" title="L2正则化"></a>L2正则化</h4><p>定义：通过降低复杂模型的复杂度来<strong>防止过拟合</strong>的原则称为正则化</p>
+<p>为了避免训练集数据过拟合，应该求<strong>结构风险最小化</strong>（最小化损失和复杂度）：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/2.png" alt=""></p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-4.png" alt=""></p>
+<p>而衡量模型复杂度有两种常见方式：</p>
+<ul>
+<li><p>用所有特征的权重的函数</p>
+<p>可以使用 <strong>L2 正则化</strong>公式来量化复杂度，该公式将正则化项定义为所有特征权重的平方和：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/3.png" alt=""></p>
+</li>
+<li><p>用具有非零权重的特征总数的函数</p>
+</li>
+</ul>
+<p>执行L2正则化对模型的影响：</p>
+<ul>
+<li>使权重接近于0（并非正好为0）</li>
+<li>使权重的平均值接近于0，且呈正态（钟形曲线或高斯曲线）分布</li>
+</ul>
+<blockquote>
+<p>L2 正则化降低较大权重的程度高于降低较小权重的程度。因此，即使某个权重降低的速度比另一个快，L2 正则化也往往会使较大权重降低的速度快于较小的权重。</p>
+</blockquote>
+<h4 id="Lambda"><a href="#Lambda" class="headerlink" title="Lambda"></a>Lambda</h4><p>lambda又称<strong>正则化率</strong></p>
+<p>模型开发者通过以下方式来调整正则化项的整体影响：用正则化项的值乘以名为 <strong>lambda</strong>的标量</p>
+<p>即：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/4.png" alt=""></p>
+<p>增加lambda值将增强正则化的效果（直方图更剧烈），降低lambda值则会得到比较平缓的直方图</p>
+<p>理想的 lambda 值取决于数据，因此您需要手动或自动进行一些调整</p>
+<h3 id="10-逻辑回归-Logistic-Regression"><a href="#10-逻辑回归-Logistic-Regression" class="headerlink" title="10.逻辑回归 (Logistic Regression)"></a>10.逻辑回归 (Logistic Regression)</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>一种模型，通过将 <a href="https://developers.google.cn/machine-learning/crash-course/glossary#sigmoid_function" target="_blank" rel="external"><strong>S 型函数</strong></a>应用于线性预测，生成分类问题中每个可能的离散标签值的概率（有渐近线，可以提供(0,1)之间的有界值）。虽然逻辑回归经常用于<a href="https://developers.google.cn/machine-learning/crash-course/glossary#binary_classification" target="_blank" rel="external"><strong>二元分类</strong></a>问题，但也可用于<a href="https://developers.google.cn/machine-learning/crash-course/glossary#multi-class" target="_blank" rel="external"><strong>多类别</strong></a>分类问题（其叫法变为<strong>多类别逻辑回归</strong>或<strong>多项回归</strong>）。</p>
+<h4 id="S型函数的运用"><a href="#S型函数的运用" class="headerlink" title="S型函数的运用"></a>S型函数的运用</h4><p>如果 z 表示使用逻辑回归训练的模型的线性层的输出，则 S 型(z) 函数会生成一个介于 0 和 1 之间的值（概率）。用数学方法表示为：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/5.png" alt=""></p>
+<ul>
+<li><p>y’ 是逻辑回归模型针对特定样本的输出</p>
+</li>
+<li><p>z 是 b + w1x1 + w2x2 + … wNxN，又称为对数几率，因为z的反函数为：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/6.png" alt=""></p>
+<ul>
+<li>w:该模型学习的权重和偏差</li>
+<li>x:特定样本的特征值</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-5.png" alt=""></p>
+<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><p>对数损失函数：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/7.png" alt=""></p>
+<ul>
+<li>(x,y)&straightepsilon;D 是包含很多有标签样本 (x,y) 的数据集。</li>
+<li>“y”是有标签样本中的标签。由于这是逻辑回归，因此“y”的每个值必须是 0 或 1。</li>
+<li>“y’”是对于特征集“x”的预测值（介于 0 和 1 之间）。</li>
+</ul>
+<h4 id="逻辑回归中的正则化"><a href="#逻辑回归中的正则化" class="headerlink" title="逻辑回归中的正则化"></a>逻辑回归中的正则化</h4><p>因为逻辑回归的渐近性，如果不进行正则化，模型会因为促使所有样本的损失达到0但又做不到而造成过拟合，逻辑回归常常采用一下三种正则化方法：</p>
+<ul>
+<li>L1正则化</li>
+<li>L2正则化</li>
+<li>早停法（即限制训练步数或步长）</li>
+</ul>
+<h3 id="11-分类"><a href="#11-分类" class="headerlink" title="11.分类"></a>11.分类</h3><h4 id="真与假以及正类别与负类别"><a href="#真与假以及正类别与负类别" class="headerlink" title="真与假以及正类别与负类别"></a>真与假以及正类别与负类别</h4><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">正例（预测值）</th>
+<th style="text-align:center">反例（预测值）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>正例（真实值）</strong></td>
+<td style="text-align:center">真正例(TP)</td>
+<td style="text-align:center">假正例(FP)</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>反例（真实值）</strong></td>
+<td style="text-align:center">假负例(FN)</td>
+<td style="text-align:center">真负例(TN)</td>
+</tr>
+</tbody>
+</table>
+<p>正类别、负类别（Positive,Negative）：定义的样本中的二分类情况</p>
+<p>真、假（True,False）:真——实际值与预测值相同，假——实际值与预测值相反</p>
+<p><strong>真正例</strong>是指模型将正类别样本正确地预测为正类别。同样，<strong>真负例</strong>是指模型将负类别样本正确地预测为负类别。</p>
+<p><strong>假正例</strong>是指模型将负类别样本错误地预测为正类别，而<strong>假负例</strong>是指模型将正类别样本错误地预测为负类别。</p>
+<p>TP,TN不会造成损失</p>
+<h4 id="准确率-Accuracy"><a href="#准确率-Accuracy" class="headerlink" title="准确率(Accuracy)"></a>准确率(Accuracy)</h4><p>定义：预测正确的结果所占比例</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/8.png" alt=""></p>
+<p>二分类问题中</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/9.png" alt=""></p>
+<h4 id="精确率和召回率（Precision-amp-Recall）"><a href="#精确率和召回率（Precision-amp-Recall）" class="headerlink" title="精确率和召回率（Precision &amp; Recall）"></a>精确率和召回率（Precision &amp; Recall）</h4><h5 id="精确率"><a href="#精确率" class="headerlink" title="精确率"></a>精确率</h5><p>定义：表示的是预测为正的样本中有多少是真正的正样本，又称为<strong>查准率</strong></p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/10.png" alt=""></p>
+<h5 id="召回率"><a href="#召回率" class="headerlink" title="召回率"></a>召回率</h5><p>定义：表示真正的正样本中有多少被正确预测，又称为<strong>查全率</strong></p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/11.png" alt=""></p>
+<p>查准和查全二者之间是矛盾的。查准率高（尽可能只挑选有把握的），那查全率就会低；查全率高（试想把所有类别都预测为正例），那查准率就会低。</p>
+<p>为了综合考虑二者，常常采用$F_1$值：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/12.png" alt=""></p>
+<h4 id="ROC和曲线下面积"><a href="#ROC和曲线下面积" class="headerlink" title="ROC和曲线下面积"></a>ROC和曲线下面积</h4><p>真正例率    (TPR)：等同于召回率</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/13.png" alt=""></p>
+<p>假正例率(FPR)：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/14.png" alt=""></p>
+<p>ROC 曲线用于绘制采用不同分类阈值时的 TPR 与 FPR</p>
+<h4 id="ROC和曲线下面积-1"><a href="#ROC和曲线下面积-1" class="headerlink" title="ROC和曲线下面积"></a>ROC和曲线下面积</h4><h5 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a>ROC曲线</h5><p>真正例率(TPR)：等同于召回率</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/15.png" alt=""></p>
+<p>假正例率(FPR)：</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/16.png" alt=""></p>
+<p>ROC(Receiver Operating Characteristic Curve)曲线用于绘制采用不同分类阈值时的 TPR 与 FPR，横轴为FPR，纵轴为TPR</p>
+<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-6.png" alt=""></p>
+<p>ROC曲线的主要作用：</p>
+<ul>
+<li>能很容易的查出任意阈值对学习器的泛化性能影响 </li>
+<li>有助于选择最佳的阈值。ROC曲线越靠近左上角，模型的查全率就越高。最靠近左上角的ROC曲线上的点是分类错误最少的最好阈值，其假正例和假反例总数最少 </li>
+<li>可以对不同的学习器比较性能。将各个学习器的ROC曲线绘制到同一坐标中，直观地鉴别优劣，靠近左上角的ROC曲所代表的学习器准确性最高 </li>
+</ul>
+<h5 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h5><p>ROC曲线下面积(Area Under ROC Curve)用来反映分类器对<strong>样本的排序能力</strong>，取值范围[0.5,1s]一般情况下AUC越大模型较佳</p>
+<blockquote>
+<p>AUC就是从所有1样本中随机选取一个样本, 从所有0样本中随机选取一个样本,然后根据你的分类器对两个随机样本进行预测，把1样本预测为1的概率为p1，把0样本预测为1的概率为p0，p1&gt;p0的概率就是AUC</p>
+</blockquote>
+<p>改善AUC的一种方法：只要不过拟合，就训练更长时间——增加步数/或批量大小</p>
+<h4 id="预测偏差"><a href="#预测偏差" class="headerlink" title="预测偏差"></a>预测偏差</h4><p>预测偏差  =  预测平均值 - 数据集中相应标签的平均值</p>
+<p>造成预测偏差的原因可能有：</p>
+<ol>
+<li>特征集不完整</li>
+<li>数据集混乱</li>
+<li>模型实现的流水线有错误</li>
+<li>训练样本有偏差</li>
+<li>正则化过强</li>
+</ol>
+<p>可以通过校准层来纠正预测偏差，但是使用校准层需注意：</p>
+<ul>
+<li>校准层仅仅是修复症状而非原因</li>
+<li>相当于建立了一个更脆弱的系统，需要持续地更新</li>
+</ul>
+<p>因此并不推荐使用校准层。</p>
+<p>逻辑回归常常用于预测0/1值，所以无法根据一个样本就确定预测偏差，需要运用分桶的方法在每个桶中计算预测偏差</p>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2018/09/23/Google-ML-note4/" title="Google机器学习课程笔记part4：L1正则化，神经网络">
+      		&laquo; Pre post
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/08/09/as-jar-aar/" title="使用Android Studio打包aar与jar">
+			Next post &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		Load comment
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment valine -->
+			<!-- show livere comment -->
+ <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMDE1MS82NzA2">
+	<script type="text/javascript">
+	   (function(d, s) {
+	       var j, e = d.getElementsByTagName(s)[0];
+
+	       if (typeof LivereTower === 'function') { return; }
+
+	       j = d.createElement(s);
+	       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+	       j.async = true;
+
+	       e.parentNode.insertBefore(j, e);
+	   })(document, 'script');
+	</script>
+	<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+					<strong>Catalog</strong>
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#系列笔记索引："><span class="post-toc-text">系列笔记索引：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-正则化-Regularization-：简单性"><span class="post-toc-text">9.正则化(Regularization)：简单性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#L2正则化"><span class="post-toc-text">L2正则化</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Lambda"><span class="post-toc-text">Lambda</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-逻辑回归-Logistic-Regression"><span class="post-toc-text">10.逻辑回归 (Logistic Regression)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#定义"><span class="post-toc-text">定义</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#S型函数的运用"><span class="post-toc-text">S型函数的运用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#损失函数"><span class="post-toc-text">损失函数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#逻辑回归中的正则化"><span class="post-toc-text">逻辑回归中的正则化</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-分类"><span class="post-toc-text">11.分类</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#真与假以及正类别与负类别"><span class="post-toc-text">真与假以及正类别与负类别</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#准确率-Accuracy"><span class="post-toc-text">准确率(Accuracy)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#精确率和召回率（Precision-amp-Recall）"><span class="post-toc-text">精确率和召回率（Precision & Recall）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#精确率"><span class="post-toc-text">精确率</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#召回率"><span class="post-toc-text">召回率</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ROC和曲线下面积"><span class="post-toc-text">ROC和曲线下面积</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ROC和曲线下面积-1"><span class="post-toc-text">ROC和曲线下面积</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#ROC曲线"><span class="post-toc-text">ROC曲线</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#AUC"><span class="post-toc-text">AUC</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#预测偏差"><span class="post-toc-text">预测偏差</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="http://github.com/Dinghow" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="mailto:dinghowyang@gmail.com" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+				
+					<a href="https://twitter.com/Dinghow11" title="Twitter" target="_blank"><i class="fa fa-twitter"></i>&nbsp;</a>
+						
+				
+		</div>
+	</div>
+
+	<div  class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2017 - 2018, content by Dinghow. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="external">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="external">Annie</a> by Sariay & Dinghow.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+	<div class="popup search-popup local-search-popup">
+    <span class="popup-btn-close">
+      ESC
+    </span>
+    <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+
+        <div class="local-search-header clearfix">
+            <span class="search-icon"></span>
+            <div class="local-search-input-wrapper">
+              <input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+            </div>
+        </div>
+
+        <div id="local-search-result"></div>
+
+      </div>
+    </div>
+</div>
+
+<script src="/js/ziploader.js"></script>
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // get search zip version
+    $.get('/searchVersion.txt?t=' + (+new Date()), function(res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson () {
+      initLoad(['/search.zip'], {
+        loadOptions: {
+          success: function(obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function(e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions:{
+          'json':'application/json'
+        }
+      })
+    }
+
+    // search function;
+    var searchFunc = function(search_id, content_id) {
+      'use strict';
+
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function() {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          // perform local searching
+          datas.forEach(function(data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title ? data.title.trim() : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content ? data.content.trim().replace(/<[^>]+>/g,"") : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function(keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0, position = [], index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+
+            // show search results
+
+            if (isMatch) {
+              // sort index by position of keyword
+
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+
+              // merge hits into slices
+
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+
+                  // move to next position of hit
+
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {
+                  hits: hits,
+                  start: start,
+                  end: end,
+                  searchTextCount: searchTextCountInSlice
+                };
+              }
+
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if(start < 0){
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if(end > content.length){
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+
+              // sort slices in content by search text's count and hits' count
+
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+
+              // select top N slices in content
+
+              var upperBound = parseInt('2');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+
+              // highlight title and content
+
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+
+              var resultItem = '';
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+              } else {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+              }
+
+              slicesOfContent.forEach(function (slice) {
+                resultItem +=  "<p class=\"search-result\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+
+              resultItem += "</li>";
+              resultItems.push({
+                item: resultItem,
+                searchTextCount: searchTextCount,
+                hitCount: hitCount,
+                id: resultItems.length
+              });
+            }
+          })
+        };
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /> no result </div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<ul class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</ul>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+
+      // remove loading animation
+      $('body').css('overflow', '');
+
+      proceedsearch();
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        $('.sb-close').click();
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+	</body>
+	</html>
+
