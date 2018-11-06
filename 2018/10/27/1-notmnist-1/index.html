@@ -238,17 +238,18 @@ disp_samples<span class="token punctuation">(</span>test_folders<span class="tok
 <p>Let’s verify that the data still looks good. Displaying a sample of the labels and images from the ndarray. Hint: you can use matplotlib.pyplot.</p>
 </blockquote>
 <p>To verify the data, I used <code>random</code> to select some samples in the same group and used pyplot to see their conditions:</p>
-<pre><code>def disp_samples(data_folders):
-    folder = random.sample(data_folders, 1)
-    folder_path = folder + &#39;.pickle&#39;
-    dataset = pickle.load(open(folder_path,&quot;r&quot;))
-    plt.suptitle(&#39;&#39;.join(folder)[-1])
-    item = random.sample(list(dataset), 8)
-    for i, item in enumerate(items):
-        plt.subplot(2, 4, i+1)
-        plt.axis(&#39;off&#39;)
-        plt.imshow(item)
-</code></pre><h2 id="3-Problem-3"><a href="#3-Problem-3" class="headerlink" title="3. Problem 3"></a>3. Problem 3</h2><blockquote>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">disp_samples</span><span class="token punctuation">(</span>data_folders<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    folder <span class="token operator">=</span> random<span class="token punctuation">.</span>sample<span class="token punctuation">(</span>data_folders<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    folder_path <span class="token operator">=</span> folder <span class="token operator">+</span> <span class="token string">'.pickle'</span>
+    dataset <span class="token operator">=</span> pickle<span class="token punctuation">.</span>load<span class="token punctuation">(</span>open<span class="token punctuation">(</span>folder_path<span class="token punctuation">,</span><span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>suptitle<span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>folder<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    item <span class="token operator">=</span> random<span class="token punctuation">.</span>sample<span class="token punctuation">(</span>list<span class="token punctuation">(</span>dataset<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span> item <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>items<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        plt<span class="token punctuation">.</span>subplot<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+        plt<span class="token punctuation">.</span>axis<span class="token punctuation">(</span><span class="token string">'off'</span><span class="token punctuation">)</span>
+        plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="3-Problem-3"><a href="#3-Problem-3" class="headerlink" title="3. Problem 3"></a>3. Problem 3</h2><blockquote>
 <p>Another check: we expect the data to be balanced across classes. Verify that.</p>
 <p>Merge and prune the training data as needed. Depending on your computer setup, you might not be able to fit it all in memory, and you can tune train_size as needed. The labels will be stored into a separate array of integers 0 through 9.</p>
 <p>Also create a validation dataset for hyperparameter tuning.</p>
