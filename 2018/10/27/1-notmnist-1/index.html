@@ -10,7 +10,7 @@
 		
 
 <head>
-	<!-- hexo-inject:begin --><!-- hexo-inject:end --><title>胜者树与败者树</title>
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><title>Solution to 1_notmnist part1</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI" />
@@ -57,7 +57,7 @@
 		
 		
 			
-			<p class=page-name>Current post&nbsp;:&nbsp;《胜者树与败者树》</p>
+			<p class=page-name>Current post&nbsp;:&nbsp;《Solution to 1_notmnist part1》</p>
 			
 		
 	
@@ -172,8 +172,8 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 					
 					
 	
-		<a href="/2018/01/18/winner-tree-loser-tree/" itemprop="url">		
-			胜者树与败者树		
+		<a href="/2018/10/27/1-notmnist-1/" itemprop="url">		
+			Solution to 1_notmnist part1		
 		</a>
 	
 
@@ -182,9 +182,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2018/01/18/winner-tree-loser-tree/" itemprop="url">
-	<time datetime="2018-01-18T09:00:00.000Z" itemprop="datePublished">
-  		2018-01-18
+						<a href="/2018/10/27/1-notmnist-1/" itemprop="url">
+	<time datetime="2018-10-27T10:00:00.000Z" itemprop="datePublished">
+  		2018-10-27
   </time>
 </a>    
 &nbsp;
@@ -194,7 +194,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 						
 							<i class="fa fa-tags"></i>
 							
-								<a href="#数据结构" title="数据结构" rel="2">数据结构</a>&nbsp;
+								<a href="#机器学习" title="机器学习" rel="6">机器学习</a>&nbsp;
+							
+								<a href="#深度学习" title="深度学习" rel="1">深度学习</a>&nbsp;
 													 											
 						
 					</span>
@@ -209,20 +211,82 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 </script>
 					
 					
-						<h1 id="胜者树与败者树"><a href="#胜者树与败者树" class="headerlink" title="胜者树与败者树"></a>胜者树与败者树</h1><h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h2><p>查阅了网路上关于胜败者树区别的回答和文章，发现在描述败者树的比较过程中大多一笔带过，容易引起误解，写这一篇笔记更清晰地区分一下两者。</p>
-<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>胜者树与败者树均是完全二叉树，是树形选择排序的变形。用叶子节点表示待排序元素，中间节点储存两个子节点比较的结果（胜者\败者），根节点即为最终的胜者\败者。</p>
-<h2 id="2-比较"><a href="#2-比较" class="headerlink" title="2.比较"></a>2.比较</h2><p>比较堆、胜者树、败者树，三者在时间复杂度上没有数量级区别，每一次重构的代价均为$O(log_2n)$。</p>
-<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>不过三者的复杂度系数上有所区别，当移出已构建好的树的根节点元素后，在加入新元素重构过程中，每调整一层，堆排序需要比较两次：</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#i为要下调的元素</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span>heap<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span><span class="token number">1</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">&lt;</span>heap<span class="token punctuation">[</span><span class="token number">2</span><span class="token operator">*</span>i<span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> j <span class="token operator">=</span> <span class="token number">2</span><span class="token operator">*</span><span class="token number">1</span><span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//指向两个child中较大者</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span>heap<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">></span>heap<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//较大者再与i比较</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>而采用胜\败者树的话，就只需要与中间节点存储的胜\败者比较一次。</p>
-<h3 id="胜者树与败者树-1"><a href="#胜者树与败者树-1" class="headerlink" title="胜者树与败者树"></a>胜者树与败者树</h3><p>胜者树每一个中间节点存储的是两个子节点比较得到的胜者，当最终的胜者移出树后，其所在路径上所有中间节点值均变为无效值，加入新值后调整过程中，每调整一层，需要先访问父节点，再访问兄弟节点，从兄弟节点得到兄弟子树的胜者位置，再取该值与新值进行比较，即需要3次访存操作。</p>
-<p><img src="http://ouluvpd0z.bkt.clouddn.com/1333509362_2438.jpg" alt="winner_tree"></p>
-<p>败者树的中间节点存储的是两个子节点比较得到的败者（在树的根节点上再添加一个节点存储最终胜者），每次比较的值是用败者位置反选出的胜者，胜者值必然不会被存储到中间节点，所以原胜者移出后中间节点值仍有效，每调整一层，访问父节点，得出父节点中原败者位置（<strong>兄弟子树中的胜者</strong> ），与其比较，若败，则更新败者值，胜则保持该节点不变，依次自底向上重复该操作，完成调整，共访存2次。</p>
-<p><img src="http://ouluvpd0z.bkt.clouddn.com/1333509449_7969.jpg" alt="loser_tree"></p>
-<p>相比胜者树，败者树不需要访问兄弟节点，在访存上更有优势，因此在实现大量数据的外部排序时，采用败者树具有明显的优势。理解败者树的关键在于，调整过程中，新值所在子树比较时通过败者值反选出胜者参与比较，而兄弟节点的胜者则已经存储在父节点中（前败者值）。</p>
+						<p>1_notmnist  is the first practice of <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/examples/udacity/1_notmnist.ipynb" target="_blank" rel="external">Udacity Deep Learning course</a>.</p>
+<p>The solution ipynb file is in my <a href="https://github.com/Dinghow/MyRoadToMachineLearning/tree/master/assignment/udacity_deep_learning" target="_blank" rel="external">github repository</a> </p>
+<h2 id="1-Problem-1"><a href="#1-Problem-1" class="headerlink" title="1. Problem 1"></a>1. Problem 1</h2><blockquote>
+<p>Let’s take a peek at some of the data to make sure it looks sensible. Each exemplar should be an image of a character A through J rendered in a different font. Display a sample of the images that we just downloaded. Hint: you can use the package IPython.display.</p>
+</blockquote>
+<p>To verify the data, I used <code>random</code> to select some samples and used pyplot to see its condition:</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> random
+
+<span class="token keyword">def</span> <span class="token function">disp_samples</span><span class="token punctuation">(</span>data_folders<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> folder <span class="token keyword">in</span> data_folders<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>folder<span class="token punctuation">)</span>
+        folder_path <span class="token operator">=</span> folder <span class="token operator">+</span> <span class="token string">'.pickle'</span>
+        sample <span class="token operator">=</span> pickle<span class="token punctuation">.</span>load<span class="token punctuation">(</span>open<span class="token punctuation">(</span>folder_path<span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>sample<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        size <span class="token operator">=</span> sample<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+
+        plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>sample<span class="token punctuation">[</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>size<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span>
+disp_samples<span class="token punctuation">(</span>train_folders<span class="token punctuation">)</span>
+disp_samples<span class="token punctuation">(</span>test_folders<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="/2018/10/27/1-notmnist-1/1.png" alt="img1" title="img1">
+<p>Then I ran the functions already been written.</p>
+<h2 id="2-Problem-2"><a href="#2-Problem-2" class="headerlink" title="2. Problem 2"></a>2. Problem 2</h2><blockquote>
+<p>Let’s verify that the data still looks good. Displaying a sample of the labels and images from the ndarray. Hint: you can use matplotlib.pyplot.</p>
+</blockquote>
+<p>To verify the data, I used <code>random</code> to select some samples in the same group and used pyplot to see their conditions:</p>
+<pre><code>def disp_samples(data_folders):
+    folder = random.sample(data_folders, 1)
+    folder_path = folder + &#39;.pickle&#39;
+    dataset = pickle.load(open(folder_path,&quot;r&quot;))
+    plt.suptitle(&#39;&#39;.join(folder)[-1])
+    item = random.sample(list(dataset), 8)
+    for i, item in enumerate(items):
+        plt.subplot(2, 4, i+1)
+        plt.axis(&#39;off&#39;)
+        plt.imshow(item)
+</code></pre><h2 id="3-Problem-3"><a href="#3-Problem-3" class="headerlink" title="3. Problem 3"></a>3. Problem 3</h2><blockquote>
+<p>Another check: we expect the data to be balanced across classes. Verify that.</p>
+<p>Merge and prune the training data as needed. Depending on your computer setup, you might not be able to fit it all in memory, and you can tune train_size as needed. The labels will be stored into a separate array of integers 0 through 9.</p>
+<p>Also create a validation dataset for hyperparameter tuning.</p>
+</blockquote>
+<p>As some data can’t be read, we need to validate whether the data are balanced or not after processed them to ‘.pickle’ file, I print the size of them respectively</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Check the data size of classes</span>
+<span class="token keyword">def</span> <span class="token function">show_size</span><span class="token punctuation">(</span>data_folders<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">for</span> folder <span class="token keyword">in</span> data_folders<span class="token punctuation">:</span>
+        folder_path <span class="token operator">=</span> folder <span class="token operator">+</span> <span class="token string">'.pickle'</span>
+        sample <span class="token operator">=</span> pickle<span class="token punctuation">.</span>load<span class="token punctuation">(</span>open<span class="token punctuation">(</span>folder_path<span class="token punctuation">,</span><span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'The size of '</span><span class="token operator">+</span> folder <span class="token operator">+</span><span class="token string">' is:'</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>sample<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+show_size<span class="token punctuation">(</span>train_folders<span class="token punctuation">)</span>
+show_size<span class="token punctuation">(</span>test_folders<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="/2018/10/27/1-notmnist-1/2.png" alt="img2" title="img2">
+<p>Then I run the functions already been written without changing them, after the data preprocessing, we need to verify the data again:</p>
+<pre class="line-numbers language-python"><code class="language-python">num2letter <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">:</span> <span class="token string">'A'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">:</span> <span class="token string">'B'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">:</span> <span class="token string">'C'</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">:</span> <span class="token string">'D'</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">:</span> <span class="token string">'E'</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">:</span> <span class="token string">'F'</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">:</span> <span class="token string">'G'</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">:</span> <span class="token string">'H'</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">:</span> <span class="token string">'I'</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">:</span> <span class="token string">'J'</span><span class="token punctuation">}</span>
+
+test <span class="token operator">=</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">200000</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>train_dataset<span class="token punctuation">[</span>test<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>num2letter<span class="token punctuation">[</span>train_labels<span class="token punctuation">[</span>test<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="/2018/10/27/1-notmnist-1/3.png" alt="img3" title="img3">
+<h2 id="4-Problem-4"><a href="#4-Problem-4" class="headerlink" title="4. Problem 4"></a>4. Problem 4</h2><blockquote>
+<p>Convince yourself that the data is still good after shuffling!</p>
+</blockquote>
+<p>To see the condition of data, I picked some of them in train set and related label randomly</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">disp_sample_dataset</span><span class="token punctuation">(</span>dataset<span class="token punctuation">,</span> labels<span class="token punctuation">)</span><span class="token punctuation">:</span>
+  items <span class="token operator">=</span> random<span class="token punctuation">.</span>sample<span class="token punctuation">(</span>range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>labels<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span>
+  <span class="token keyword">for</span> i<span class="token punctuation">,</span> item <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>items<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    plt<span class="token punctuation">.</span>subplot<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>axis<span class="token punctuation">(</span><span class="token string">'off'</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span>num2letter<span class="token punctuation">[</span>labels<span class="token punctuation">[</span>item<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    plt<span class="token punctuation">.</span>imshow<span class="token punctuation">(</span>dataset<span class="token punctuation">[</span>item<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="/2018/10/27/1-notmnist-1/4.png" alt="img4" title="img4">
+<p>The conditions looked good, so we just need to save the data.</p>
 
 					
 				</div>
@@ -231,15 +295,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 
 		<ul class="am-pagination">
     
-    	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2018/03/25/Google-ML-note1/" title="Google机器学习课程笔记part1：基础概念，降低损失">
-      		&laquo; Pre post
-		</a>
-		</li>
-	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2017/10/19/CheckboxPreference/" title="Android:CheckBoxPreference组件运用再解">
+		<a class="pull-right" href="/2018/09/24/Google-ML-note5/" title="Google机器学习课程笔记part5：训练神经网络，多类别神经网络，嵌套">
 			Next post &raquo;
 		</a>
 		</li>
@@ -319,7 +377,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 			<nav class="post-toc-wrap" id="post-toc">
 					<strong>Catalog</strong>
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#胜者树与败者树"><span class="post-toc-text">胜者树与败者树</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#0-前言"><span class="post-toc-text">0.前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-简介"><span class="post-toc-text">1.简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-比较"><span class="post-toc-text">2.比较</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#堆排序"><span class="post-toc-text">堆排序</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#胜者树与败者树-1"><span class="post-toc-text">胜者树与败者树</span></a></li></ol></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-Problem-1"><span class="post-toc-text">1. Problem 1</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-Problem-2"><span class="post-toc-text">2. Problem 2</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-Problem-3"><span class="post-toc-text">3. Problem 3</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-Problem-4"><span class="post-toc-text">4. Problem 4</span></a></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</aside>
