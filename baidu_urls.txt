@@ -1,7 +1,7 @@
-https://dinghow.site/2018/11/10/Jottings/
 https://dinghow.site/2018/10/27/1-notmnist-1/
 https://dinghow.site/2018/09/24/Google-ML-note5/
 https://dinghow.site/2018/09/23/Google-ML-note4/
+https://dinghow.site/2018/09/14/For-guitar/
 https://dinghow.site/2018/09/03/Google-ML-note3/
 https://dinghow.site/2018/08/09/as-jar-aar/
 https://dinghow.site/2018/08/07/semester-summary/
@@ -14,3 +14,4 @@ https://dinghow.site/2017/08/28/Chinese-class/
 https://dinghow.site/2017/06/28/note-for-cocos2dx/
 https://dinghow.site/2017/04/11/heap-stack-stackframe/
 https://dinghow.site/2017/04/10/note-for-photography/
+https://dinghow.site/2016/09/14/Jottings/
