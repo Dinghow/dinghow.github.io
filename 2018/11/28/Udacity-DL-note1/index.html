@@ -217,7 +217,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <p>经验规则给出，$W\sim Uniform(-\frac{1}{\sqrt{N}},\frac{1}{\sqrt{N}})$ ，Uniform为均匀分布。</p>
 <p>Bengio组的Xavier在2010年推出了一个更合适的范围，能够使得隐层Sigmoid系函数获得最好的激活范围。<a href="http://deeplearning.cs.cmu.edu/pdfs/1111/AISTATS2010_Glorot.pdf" target="_blank" rel="external">[Glorot10]</a></p>
 <p>对于Log-Sigmoid：   </p>
-<p>$[-4<em>\frac{\sqrt{6}}{\sqrt{LayerInput+LayerOut}},4</em>\frac{\sqrt{6}}{\sqrt{LayerInput+LayerOut}}]$</p>
+<p>$$[-4<em>\frac{\sqrt{6}}{\sqrt{LayerInput+LayerOut}},4</em>\frac{\sqrt{6}}{\sqrt{LayerInput+LayerOut}}]$$</p>
 <p>对于Tanh-Sigmoid：</p>
 <p>$[\frac{\sqrt{6}}{\sqrt{LayerInput+LayerOut}},\frac{\sqrt{6}}{\sqrt{LayerInput+LayerOut}}]$</p>
 <h3 id="关于预训练"><a href="#关于预训练" class="headerlink" title="关于预训练"></a>关于预训练</h3><p>目前关于Pre-Training的最好的理解是，它可以让模型分配到一个很好的初始搜索空间，按照<a href="http://machinelearning.wustl.edu/mlpapers/paper_files/AISTATS09_ErhanMBBV.pdf" target="_blank" rel="external">[Erhan09, Sec 4.2]</a>中说法：</p>
