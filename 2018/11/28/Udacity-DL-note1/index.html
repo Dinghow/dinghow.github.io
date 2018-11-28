@@ -44,7 +44,7 @@
 	<header id="header-bg-1" style="background-image: url( / );">	
 
 	
-		<div id="cd-logo"><a href="/"><img src="/imgs/logo.png" alt="Logo"></a></div>
+		<div id="cd-logo"><a href="/"><img src="/img/loader.gif" data-original="/imgs/logo.png" alt="Logo"></a></div>
 	
 	
 	<!-- motto or description -->
@@ -229,7 +229,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <h3 id="关于全连接层"><a href="#关于全连接层" class="headerlink" title="关于全连接层"></a>关于全连接层</h3><p>全连接层的每一个结点都与上一层的所有结点相连，用来把前边提取到的特征综合起来。由于其全相连的特性，一般全连接层的参数也是最多的。</p>
 <p>全连接层(fully connected layers,FC),在整个卷积神经网络中起到”分类器”作用。如果说卷积层、池化层和激活函数层等操作是将原始数据映射到隐层特征空间的话，全连接层则起到”将学到的分布式特征表示”映射到样本标记空间的作用。 </p>
 <h3 id="关于池化"><a href="#关于池化" class="headerlink" title="关于池化"></a>关于池化</h3><p>为了描述大的图像，一个很自然的想法就是对不同位置的特征进行聚合统计，例如，人们可以计算图像一个区域上的某个特定特征的平均值 (或最大值)。这些概要统计特征不仅具有低得多的维度 (相比使用所有提取得到的特征)，同时还会改善结果(不容易过拟合)。这种聚合的操作就叫做池化 (pooling)，有时也称为平均池化或者最大池化 (取决于计算池化的方法)。</p>
-<p><img src="http://ufldl.stanford.edu/wiki/images/0/08/Pooling_schematic.gif" alt=""></p>
+<p><img src="/img/loader.gif" data-original="http://ufldl.stanford.edu/wiki/images/0/08/Pooling_schematic.gif" alt=""></p>
 <h1 id="1-杂谈"><a href="#1-杂谈" class="headerlink" title="1.  杂谈"></a>1.  杂谈</h1><ul>
 <li>神经网络的许多工作是在八九十年代完成的</li>
 <li>二十一世纪头十年，机器学习领域几乎不涉及到神经网络</li>
@@ -242,7 +242,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 </ul>
 <h1 id="2-分类"><a href="#2-分类" class="headerlink" title="2. 分类"></a>2. 分类</h1><ul>
 <li><p>线性模型参数的计算</p>
-<img src="/2018/11/28/Udacity-DL-note1/dl-8.png" alt="img1" title="img1">
+<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-8.png" alt="img1" title="img1">
 <p>线性模型 $Y = WX + B$</p>
 <p>Y的维度位10*1，故B的维度也是10*1，而输入的X是28*28的矩阵，通过WX要转换为10*1的维度，故W的维度位28*28*10</p>
 </li>
@@ -253,13 +253,13 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 </ul>
 </li>
 <li><p>多项式逻辑回归分类法</p>
-<img src="/2018/11/28/Udacity-DL-note1/dl-1.png" alt="img2" title="img2">
+<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-1.png" alt="img2" title="img2">
 </li>
 <li><p>独热编码</p>
 </li>
 </ul>
 <p>交叉熵(Cross-Entropy)：</p>
-<img src="/2018/11/28/Udacity-DL-note1/dl-2.png" alt="img3" title="img3">
+<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-2.png" alt="img3" title="img3">
 <ul>
 <li><p>模型性能评估：</p>
 <ul>
@@ -292,21 +292,21 @@ x += v # integrate position
 <li><p>SGD中的超参数：</p>
 </li>
 </ul>
-<img src="/2018/11/28/Udacity-DL-note1/dl-3.png" alt="img4" title="img4">
+<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-3.png" alt="img4" title="img4">
 </li>
 </ul>
-<h1 id="3-深度神经网络"><a href="#3-深度神经网络" class="headerlink" title="3. 深度神经网络"></a>3. 深度神经网络</h1><h4 id="隐藏层"><a href="#隐藏层" class="headerlink" title="隐藏层"></a>隐藏层</h4><img src="/2018/11/28/Udacity-DL-note1/dl-4.png" alt="img5" title="img5">
+<h1 id="3-深度神经网络"><a href="#3-深度神经网络" class="headerlink" title="3. 深度神经网络"></a>3. 深度神经网络</h1><h4 id="隐藏层"><a href="#隐藏层" class="headerlink" title="隐藏层"></a>隐藏层</h4><img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-4.png" alt="img5" title="img5">
 <p><strong>注意</strong>： 以上描述的是一个“两层”神经网络</p>
 <ol>
 <li>第一层由一组 X 的权重和偏差组成并通过 ReLU 函数激活。 这一层的输出会提供给下一层，但是在神经网络的外部不可见，因此被称为<em>隐藏层</em>。</li>
 <li>第二层由隐藏层的权重和偏差组成，隐藏层的输入即为第一层的输出，然后由 softmax 函数来生成概率。</li>
 </ol>
-<h4 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h4><img src="/2018/11/28/Udacity-DL-note1/dl-5.png" alt="img6" title="img6">
+<h4 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h4><img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-5.png" alt="img6" title="img6">
 <h4 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h4><blockquote>
 <p><strong>正则化</strong>方法是在训练数据不够多时，或者over training时，常常会导致过拟合（overfitting）。这时向原始模型引入额外信息，以便防止过拟合和提高模型泛<strong>化</strong>性能的一类方法的统称。</p>
 </blockquote>
-<h4 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h4><img src="/2018/11/28/Udacity-DL-note1/dl-6.png" alt="img6" title="img6">
-<img src="/2018/11/28/Udacity-DL-note1/dl-7.png" alt="img7" title="img7">
+<h4 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h4><img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-6.png" alt="img6" title="img6">
+<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-7.png" alt="img7" title="img7">
 <p>通过随机选择舍弃掉相同量的激活值（并对保留值进行放大），使得神经网络不再能依赖于任何给定的激活值，因而能更好地防止overfitting</p>
 
 					
@@ -452,21 +452,6 @@ x += v # integrate position
 			<br>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
 		</div>
 	</div>
-	//引用了jquery百度的 cdn 源，也可替换其他的
-	<script type="text/javascript" src="https://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-	 //也可替换其他的lazyload源
-	<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery-lazyload/1.9.5/jquery.lazyload.min.js"></script>
-    <script type="text/javascript">
-      $(function() {  
-      //对所有 img 标签进行懒加载        
-          $("img").lazyload({
-          //设置占位图，我这里选用了一个 loading 的加载动画
-            placeholder:"/img/loader.gif",
-            //加载效果
-              effect:"fadeIn"
-            });
-          });
-    </script>
 </footer>
 		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
 
@@ -891,6 +876,6 @@ x += v # integrate position
   		<a href="javascript:;" class="fa fa-arrow-up"></a>
 	</div>
 
-	</body>
+	<script>!function(o){var i=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function c(t,e){var n=new Image,o=t.getAttribute("data-original");n.onload=function(){t.src=o,e&&e()},n.src=o}function n(){for(var t=0;t<i.length;t++)e=i[t],void 0,0<=(n=e.getBoundingClientRect()).top&&0<=n.left&&n.top<=(o.innerHeight||document.documentElement.clientHeight)&&c(i[t],function(){i.splice(t,t)});var e,n;console.log("trigger")}n(),o.addEventListener("scroll",function(){var t,e;t=n,e=o,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
 	</html>
 

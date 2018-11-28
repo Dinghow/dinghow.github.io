@@ -44,7 +44,7 @@
 	<header id="header-bg-1" style="background-image: url( / );">	
 
 	
-		<div id="cd-logo"><a href="/"><img src="/imgs/logo.png" alt="Logo"></a></div>
+		<div id="cd-logo"><a href="/"><img src="/img/loader.gif" data-original="/imgs/logo.png" alt="Logo"></a></div>
 	
 	
 	<!-- motto or description -->
@@ -211,7 +211,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 					
 						<p>上学期初略地了解了一下堆栈知识，还以为暂时够用了，没想到这学期assignment2遇到了内存管理专项训练，才发现漏洞百出，知之甚少。这几天查阅了大量的相关资料，为了确保我确实是学到了，整理凝练一下，防止日后要用时又要重复查阅。</p>
 <h2 id="一、首先是堆栈的概念"><a href="#一、首先是堆栈的概念" class="headerlink" title="一、首先是堆栈的概念"></a><strong>一、首先是堆栈的概念</strong></h2><p>C/C++编译的程序内存占用方式大致如下图：</p>
-<img src="/2017/04/11/heap-stack-stackframe/1.png" alt="This is an example image" title="This is an example image">
+<img src="/img/loader.gif" data-original="/2017/04/11/heap-stack-stackframe/1.png" alt="This is an example image" title="This is an example image">
 <h4 id="数据结构："><a href="#数据结构：" class="headerlink" title="数据结构："></a>数据结构：</h4><h5 id="1-栈区（stack）"><a href="#1-栈区（stack）" class="headerlink" title="1.栈区（stack）"></a>1.栈区（stack）</h5><p>由编译器自动分配释放，存放函数的参数值，局部变量的值等。其操作方式类似于中的栈，其地址有高地址向低地址延伸，即栈底的地址最高，而栈顶是浮动的，具体出入栈情况后面再总结。</p>
 <h5 id="2-堆区（heap）"><a href="#2-堆区（heap）" class="headerlink" title="2.堆区（heap）"></a>2.堆区（heap）</h5><p>一般由程序员分配释放， 若程序员不释放，程序结束时可能由OS回收。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表。常见的在堆上申请内存的方式有malloc,calloc.realloc,new等，堆的地址是由低地址向高地址增长。</p>
 <pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span> <span class="token comment" spellcheck="true">// 这是在栈中的</span>
@@ -224,17 +224,17 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <h5 id="2-ebp与esp"><a href="#2-ebp与esp" class="headerlink" title="2.ebp与esp"></a>2.ebp与esp</h5><p>是两个寄存器，ebp指向当前栈帧的底部，esp指向当前栈帧的顶部，需要注意，底部地址高而顶部地址低。每一个函数栈帧的形成正是通过系统操作这两个寄存器来完成的。</p>
 <h5 id="3-过程详解"><a href="#3-过程详解" class="headerlink" title="3.过程详解"></a>3.过程详解</h5><p>下面我们就来看一下栈帧形成的具体过程：</p>
 <p>选用这次作业第一题的代码，经过优化后如下：</p>
-<img src="/2017/04/11/heap-stack-stackframe/2.png" alt="This is an example image" title="This is an example image">
+<img src="/img/loader.gif" data-original="/2017/04/11/heap-stack-stackframe/2.png" alt="This is an example image" title="This is an example image">
 <p>为了让这个栈看起来更符合物理定律┌(。Д。)┐一些，我决定将上上图的倒过来：</p>
-<img src="/2017/04/11/heap-stack-stackframe/3.png" alt="This is an example image" title="This is an example image">
+<img src="/img/loader.gif" data-original="/2017/04/11/heap-stack-stackframe/3.png" alt="This is an example image" title="This is an example image">
 <p>首先是main函数栈帧，因为main中只有foo函数，所以main的栈帧中没有参数入栈，ebp指向目前栈帧（main栈帧）底部，esp通过执行esp-4向低地址处移动，腾出空间，放下下一个指令的地址（如果下一个函数有返回就是其返回地址，如果没有就是下一条语句的地址）每一次入栈，都会有esp-的活动，以腾出空间。</p>
-<img src="/2017/04/11/heap-stack-stackframe/4.png" alt="This is an example image" title="This is an example image">
+<img src="/img/loader.gif" data-original="/2017/04/11/heap-stack-stackframe/4.png" alt="This is an example image" title="This is an example image">
 <p>随后执行</p>
 <p><code>push ebp</code>//即将当前（main）函数的ebp入栈，目的是进入下一个栈帧前留一个上一栈帧的栈底地址，这样才有路找回来。</p>
 <p><code>mov ebp,esp</code>//将ebp挪到esp的位置，开始构建下一个栈帧了（上图已经跳过了这一步骤）。</p>
 <p>现在我们进入了foo函数的栈帧，而首先入栈的是函数的参数，需要注意的是，在C与C++中，参数的入栈顺序是从右向左的，即是d-c-b-a，参数入栈完毕后即是局部变量入栈，局部变量入栈的顺序就是按照语句的自然顺序了，即e-f。</p>
 <p>按照这个构想，如上图所示，地址的大小应该是<code>d\&gt;c\&gt;b\&gt;a\&gt;e\&gt;f</code>的，我们执行以下代码看一看：</p>
-<img src="/2017/04/11/heap-stack-stackframe/5.png" alt="This is an example image" title="This is an example image">
+<img src="/img/loader.gif" data-original="/2017/04/11/heap-stack-stackframe/5.png" alt="This is an example image" title="This is an example image">
 <p>结果符合预期，不过有一点，我们发现a和e的地址在g++ -32bit-release的编译环境下相差了14个字节，我十分好奇这14个字节的储存内容，同样查阅了网络上的资料,杨小卫先生的文章：</p>
 <blockquote>
 <p><em><a href="http://blog.csdn.net/tdgx2004/article/details/5985531" target="_blank" rel="external">http://blog.csdn.net/tdgx2004/article/details/5985531</a></em></p>
@@ -391,21 +391,6 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 			<br>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
 		</div>
 	</div>
-	//引用了jquery百度的 cdn 源，也可替换其他的
-	<script type="text/javascript" src="https://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-	 //也可替换其他的lazyload源
-	<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery-lazyload/1.9.5/jquery.lazyload.min.js"></script>
-    <script type="text/javascript">
-      $(function() {  
-      //对所有 img 标签进行懒加载        
-          $("img").lazyload({
-          //设置占位图，我这里选用了一个 loading 的加载动画
-            placeholder:"/img/loader.gif",
-            //加载效果
-              effect:"fadeIn"
-            });
-          });
-    </script>
 </footer>
 		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
 
@@ -830,6 +815,6 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   		<a href="javascript:;" class="fa fa-arrow-up"></a>
 	</div>
 
-	</body>
+	<script>!function(o){var i=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function c(t,e){var n=new Image,o=t.getAttribute("data-original");n.onload=function(){t.src=o,e&&e()},n.src=o}function n(){for(var t=0;t<i.length;t++)e=i[t],void 0,0<=(n=e.getBoundingClientRect()).top&&0<=n.left&&n.top<=(o.innerHeight||document.documentElement.clientHeight)&&c(i[t],function(){i.splice(t,t)});var e,n;console.log("trigger")}n(),o.addEventListener("scroll",function(){var t,e;t=n,e=o,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
 	</html>
 

@@ -44,7 +44,7 @@
 	<header id="header-bg-1" style="background-image: url( / );">	
 
 	
-		<div id="cd-logo"><a href="/"><img src="/imgs/logo.png" alt="Logo"></a></div>
+		<div id="cd-logo"><a href="/"><img src="/img/loader.gif" data-original="/imgs/logo.png" alt="Logo"></a></div>
 	
 	
 	<!-- motto or description -->
@@ -228,9 +228,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <li>始终从同一分布中抽取样本</li>
 </ul>
 <h3 id="6-验证"><a href="#6-验证" class="headerlink" title="6.验证"></a>6.验证</h3><p>为了防止对测试集的过拟合，将数据集分为三个子集（新增一个验证集）</p>
-<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-2.jpg" alt=""></p>
+<p><img src="/img/loader.gif" data-original="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-2.jpg" alt=""></p>
 <h3 id="7-表示法"><a href="#7-表示法" class="headerlink" title="7.表示法"></a>7.表示法</h3><h4 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h4><p>定义：将原始数据转化为特征矢量</p>
-<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-3.jpg" alt=""></p>
+<p><img src="/img/loader.gif" data-original="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-3.jpg" alt=""></p>
 <p>对于一些无法直接转化为数字的数据（如字符串），通过映射，独热编码转化：</p>
 <ul>
 <li><p>首先，为您要表示的所有特征的字符串值定义一个<strong>词汇表</strong></p>
@@ -422,21 +422,6 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 			<br>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
 		</div>
 	</div>
-	//引用了jquery百度的 cdn 源，也可替换其他的
-	<script type="text/javascript" src="https://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-	 //也可替换其他的lazyload源
-	<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery-lazyload/1.9.5/jquery.lazyload.min.js"></script>
-    <script type="text/javascript">
-      $(function() {  
-      //对所有 img 标签进行懒加载        
-          $("img").lazyload({
-          //设置占位图，我这里选用了一个 loading 的加载动画
-            placeholder:"/img/loader.gif",
-            //加载效果
-              effect:"fadeIn"
-            });
-          });
-    </script>
 </footer>
 		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
 
@@ -861,6 +846,6 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   		<a href="javascript:;" class="fa fa-arrow-up"></a>
 	</div>
 
-	</body>
+	<script>!function(o){var i=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function c(t,e){var n=new Image,o=t.getAttribute("data-original");n.onload=function(){t.src=o,e&&e()},n.src=o}function n(){for(var t=0;t<i.length;t++)e=i[t],void 0,0<=(n=e.getBoundingClientRect()).top&&0<=n.left&&n.top<=(o.innerHeight||document.documentElement.clientHeight)&&c(i[t],function(){i.splice(t,t)});var e,n;console.log("trigger")}n(),o.addEventListener("scroll",function(){var t,e;t=n,e=o,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
 	</html>
 

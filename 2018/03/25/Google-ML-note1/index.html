@@ -44,7 +44,7 @@
 	<header id="header-bg-1" style="background-image: url( / );">	
 
 	
-		<div id="cd-logo"><a href="/"><img src="/imgs/logo.png" alt="Logo"></a></div>
+		<div id="cd-logo"><a href="/"><img src="/img/loader.gif" data-original="/imgs/logo.png" alt="Logo"></a></div>
 	
 	
 	<!-- motto or description -->
@@ -254,7 +254,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 </ul>
 <h3 id="2-深入了解机器学习"><a href="#2-深入了解机器学习" class="headerlink" title="2.深入了解机器学习"></a>2.深入了解机器学习</h3><h4 id="训练与损失："><a href="#训练与损失：" class="headerlink" title="训练与损失："></a>训练与损失：</h4><h5 id="损失-Loss"><a href="#损失-Loss" class="headerlink" title="损失 (Loss)"></a>损失 (Loss)</h5><p>一种衡量指标，用于衡量模型的<a href="https://developers.google.cn/machine-learning/crash-course/glossary#prediction" target="_blank" rel="external"><strong>预测</strong></a>偏离其<a href="https://developers.google.cn/machine-learning/crash-course/glossary#label" target="_blank" rel="external"><strong>标签</strong></a>的程度。或者更悲观地说是衡量模型有多差。要确定此值，模型必须定义损失函数。例如，线性回归模型通常将<a href="https://developers.google.cn/machine-learning/crash-course/glossary#MSE" target="_blank" rel="external"><strong>均方误差</strong></a>用于损失函数，而逻辑回归模型则使用<a href="https://developers.google.cn/machine-learning/crash-course/glossary#Log_Loss" target="_blank" rel="external"><strong>对数损失函数</strong></a>。</p>
 <p>均方误差（MSE）：</p>
-<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/1.png" alt=""></p>
+<p><img src="/img/loader.gif" data-original="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/1.png" alt=""></p>
 <h3 id="3-降低损失"><a href="#3-降低损失" class="headerlink" title="3.降低损失"></a>3.降低损失</h3><p>在求解机器学习算法的模型参数，即无约束优化问题时，梯度下降（Gradient Descent）是最常采用的方法之一，另一种常用的方法是最小二乘法。在求解损失函数的最小值时，可以通过梯度下降法来一步步的迭代求解，得到最小化的损失函数和模型参数值。</p>
 <p> 梯度下降算法中，下一点位置 = 梯度x学习速率（步长）</p>
 <blockquote>
@@ -268,7 +268,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 </ul>
 <p>(period:只是用来动态显示损失度量)</p>
 </blockquote>
-<h4 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h4><p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-1.jpg" alt=""></p>
+<h4 id="迭代方法"><a href="#迭代方法" class="headerlink" title="迭代方法"></a>迭代方法</h4><p><img src="/img/loader.gif" data-original="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-1.jpg" alt=""></p>
 <h3 id="4-使用TF基础"><a href="#4-使用TF基础" class="headerlink" title="4.使用TF基础"></a>4.使用TF基础</h3><p>合成特征：一种<a href="https://developers.google.cn/machine-learning/crash-course/glossary#feature" target="_blank" rel="external"><strong>特征</strong></a>，不在输入特征之列，而是从一个或多个输入特征衍生而来</p>
 
 					
@@ -414,21 +414,6 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 			<br>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
 		</div>
 	</div>
-	//引用了jquery百度的 cdn 源，也可替换其他的
-	<script type="text/javascript" src="https://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-	 //也可替换其他的lazyload源
-	<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery-lazyload/1.9.5/jquery.lazyload.min.js"></script>
-    <script type="text/javascript">
-      $(function() {  
-      //对所有 img 标签进行懒加载        
-          $("img").lazyload({
-          //设置占位图，我这里选用了一个 loading 的加载动画
-            placeholder:"/img/loader.gif",
-            //加载效果
-              effect:"fadeIn"
-            });
-          });
-    </script>
 </footer>
 		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
 
@@ -853,6 +838,6 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   		<a href="javascript:;" class="fa fa-arrow-up"></a>
 	</div>
 
-	</body>
+	<script>!function(o){var i=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function c(t,e){var n=new Image,o=t.getAttribute("data-original");n.onload=function(){t.src=o,e&&e()},n.src=o}function n(){for(var t=0;t<i.length;t++)e=i[t],void 0,0<=(n=e.getBoundingClientRect()).top&&0<=n.left&&n.top<=(o.innerHeight||document.documentElement.clientHeight)&&c(i[t],function(){i.splice(t,t)});var e,n;console.log("trigger")}n(),o.addEventListener("scroll",function(){var t,e;t=n,e=o,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
 	</html>
 

@@ -44,7 +44,7 @@
 	<header id="header-bg-1" style="background-image: url( / );">	
 
 	
-		<div id="cd-logo"><a href="/"><img src="/imgs/logo.png" alt="Logo"></a></div>
+		<div id="cd-logo"><a href="/"><img src="/img/loader.gif" data-original="/imgs/logo.png" alt="Logo"></a></div>
 	
 	
 	<!-- motto or description -->
@@ -242,17 +242,17 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <p>神经网络(neural network)：一种模型，灵感来源于脑部结构，由多个层构成（至少有一个是<a href="https://developers.google.cn/machine-learning/crash-course/glossary#hidden_layer" target="_blank" rel="external"><strong>隐藏层</strong></a>），每个层都包含简单相连的单元或<a href="https://developers.google.cn/machine-learning/crash-course/glossary#neuron" target="_blank" rel="external"><strong>神经元</strong></a>（具有非线性关系）。</p>
 <p>隐藏层(hidden layer)：<a href="https://developers.google.cn/machine-learning/crash-course/glossary#neural_network" target="_blank" rel="external"><strong>神经网络</strong></a>中的合成层，介于<a href="https://developers.google.cn/machine-learning/crash-course/glossary#input_layer" target="_blank" rel="external"><strong>输入层</strong></a>（即特征）和<a href="https://developers.google.cn/machine-learning/crash-course/glossary#output_layer" target="_blank" rel="external"><strong>输出层</strong></a>（即预测）之间。神经网络包含一个或多个隐藏层。</p>
 </blockquote>
-<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-7.png" alt=""></p>
+<p><img src="/img/loader.gif" data-original="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-7.png" alt=""></p>
 <h4 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h4><p>这样添加隐藏层后，线性函数与线性函数的组合依然是线性的，所以我们通过添加激活函数（非线性转化层）来使模型可以处理非线性问题。</p>
-<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-8.png" alt=""></p>
+<p><img src="/img/loader.gif" data-original="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-8.png" alt=""></p>
 <blockquote>
 <p>激活函数 (activation function)：一种函数（例如 <a href="https://developers.google.cn/machine-learning/crash-course/glossary#ReLU" target="_blank" rel="external"><strong>ReLU</strong></a> 或 <a href="https://developers.google.cn/machine-learning/crash-course/glossary#sigmoid_function" target="_blank" rel="external"><strong>S 型</strong></a>函数），用于对上一层的所有输入求加权和，然后生成一个输出值（通常为非线性值），并将其传递给下一层。</p>
-<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-9.png" alt=""></p>
+<p><img src="/img/loader.gif" data-original="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/google-9.png" alt=""></p>
 <p>ReLU函数：修正线性单元(Rectified Linear Unit)，规则为：F(x)=max(0,x)</p>
 </blockquote>
 <p>激活函数的引入，在非线性上堆叠非线性，使得模型可以处理更为复杂的输出预测</p>
 <p>实际上所有的函数都可以作为激活函数，我们假设激活函数 $\sigma$ ，网络中节点的值为 $v$ :</p>
-<p><img src="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/17.png" alt=""></p>
+<p><img src="/img/loader.gif" data-original="https://github.com/Dinghow/MyRoadToMachineLearning/raw/master/note/img/17.png" alt=""></p>
 <h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><p>神经网络包括：</p>
 <ul>
 <li>一组节点$v$，类似于神经元，位于层中。</li>
@@ -404,21 +404,6 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 			<br>Hosted by <a href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>
 		</div>
 	</div>
-	//引用了jquery百度的 cdn 源，也可替换其他的
-	<script type="text/javascript" src="https://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-	 //也可替换其他的lazyload源
-	<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery-lazyload/1.9.5/jquery.lazyload.min.js"></script>
-    <script type="text/javascript">
-      $(function() {  
-      //对所有 img 标签进行懒加载        
-          $("img").lazyload({
-          //设置占位图，我这里选用了一个 loading 的加载动画
-            placeholder:"/img/loader.gif",
-            //加载效果
-              effect:"fadeIn"
-            });
-          });
-    </script>
 </footer>
 		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
 
@@ -843,6 +828,6 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   		<a href="javascript:;" class="fa fa-arrow-up"></a>
 	</div>
 
-	</body>
+	<script>!function(o){var i=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function c(t,e){var n=new Image,o=t.getAttribute("data-original");n.onload=function(){t.src=o,e&&e()},n.src=o}function n(){for(var t=0;t<i.length;t++)e=i[t],void 0,0<=(n=e.getBoundingClientRect()).top&&0<=n.left&&n.top<=(o.innerHeight||document.documentElement.clientHeight)&&c(i[t],function(){i.splice(t,t)});var e,n;console.log("trigger")}n(),o.addEventListener("scroll",function(){var t,e;t=n,e=o,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
 	</html>
 
