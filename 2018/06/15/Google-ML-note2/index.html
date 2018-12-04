@@ -333,11 +333,11 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 	<script type="text/javascript">
 		(function(d,s) {
 			function async_load(){
-				var j, e = d.getElementsByTagName(s)[0];
+				var j, e = document.getElementsByTagName(s)[0];
 	
 				if (typeof LivereTower === 'function') { return; }
 		
-				j = d.createElement(s);
+				j = document.createElement(s);
 				j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
 				j.async = true;
 			}
