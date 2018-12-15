@@ -10,7 +10,7 @@
 		
 
 <head>
-	<title>tag: 数据结构</title>
+	<title>Udacity深度学习课程笔记part2：卷积神经网络</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI" />
@@ -57,7 +57,7 @@
 		
 		
 			
-			<p class=page-name>Tag</p>
+			<p class=page-name>Current post&nbsp;:&nbsp;《Udacity深度学习课程笔记part2：卷积神经网络》</p>
 			
 		
 	
@@ -150,79 +150,267 @@
 		<!-- content srart -->
 <div class="am-g am-g-fixed blog-fixed blog-content">
 	<div class="am-u-md-8 am-u-sm-12">
-		<div class="archive">
 
-			<div class="blog-text-center">
-				
-					<i class="fa fa-book">数据结构</i>
-				
-			</div>  
+		<!-- show math formula -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
 
-			
 
-							
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
 				
-				
-				
+
+
+				<h1 class="am-article-title blog-text-center">
 					
+					
+	
+		<a href="/2018/12/16/Udacity-DL-note2/" itemprop="url">		
+			Udacity深度学习课程笔记part2：卷积神经网络		
+		</a>
+	
 
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2018/12/16/Udacity-DL-note2/" itemprop="url">
+	<time datetime="2018-12-15T19:53:00.000Z" itemprop="datePublished">
+  		2018-12-16
+  </time>
+</a>    
+&nbsp;
+					</span>
 					
-					<!--<a href="/archives/2018" class="archive-year">2018</a>-->
-				
-								
-				
-					  
-					<div class="archive-year">
-						<a href="/archives/2018/01">
-							2018-01
-						</a>
-					</div>				
-				  
-				
-				<div class="archive-item">
-					<div class="archive-post-title">									
-						<a href="/2018/01/18/winner-tree-loser-tree/" itemprop="url">胜者树与败者树</a>
-					</div>
-					<div class="archive-post-time">
-						<a href="/2018/01/18/winner-tree-loser-tree/" itemprop="url">01-18</a>
-					</div>
-				</div>		        							
-							
-				
-				
-				
-					
+					<span>						
 						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#机器学习" title="机器学习" rel="9">机器学习</a>&nbsp;
+							
+								<a href="#深度学习" title="深度学习" rel="4">深度学习</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
 					
+						<!-- Go to www.addthis.com/dashboard to customize your tools --> 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b683f13817fa82e">
+</script>
+					
+					
+						<h2 id="3-卷积神经网络"><a href="#3-卷积神经网络" class="headerlink" title="3. 卷积神经网络"></a>3. 卷积神经网络</h2><h3 id="灰度图"><a href="#灰度图" class="headerlink" title="灰度图"></a>灰度图</h3><p>使用灰度图的原因是避免颜色对分类造成影响</p>
+<h3 id="统计不变性-Statistical-Invariants"><a href="#统计不变性-Statistical-Invariants" class="headerlink" title="统计不变性(Statistical Invariants)"></a>统计不变性(Statistical Invariants)</h3><img src="/img/loader.gif" data-original="/2018/12/16/Udacity-DL-note2/dl-9.png" alt="img9" title="img9">
+<p>当两种输入可以获得同样的信息（如猫的位置与分类并没有关系），则应该共享权重，并利用这些输入来训练对应的同一权重</p>
+<blockquote>
+<p><strong>参数共享(Parameter Sharing)</strong></p>
+<p>应用参数共享可以大量减少参数数量，参数共享基于一个假设：如果图像中的一点（x1, y1）包含的特征很重要，那么它应该和图像中的另一点（x2, y2）一样重要。换种说法，我们把同一深度的平面叫做<strong>深度切片(depth slice)</strong>（(e.g. a volume of size [55x55x96] has 96 depth slices, each of size [55x55])），那么同一个切片应该共享同一组权重和偏置。我们仍然可以使用梯度下降的方法来学习这些权值，只需要对原始算法做一些小的改动， 这里<strong>共享权值的梯度是所有共享参数的梯度的总和</strong>。</p>
+<p>我们不禁会问为什么要权重共享呢？一方面，重复单元能够对特征进行识别，而不考虑它在可视域中的位置。另一方面，权值共享使得我们能更有效的进行特征抽取，因为它极大的减少了需要学习的自由变量的个数。通过控制模型的规模，卷积网络对视觉问题可以具有很好的泛化能力。</p>
+</blockquote>
+<h3 id="卷积网络基本概念"><a href="#卷积网络基本概念" class="headerlink" title="卷积网络基本概念"></a>卷积网络基本概念</h3><img src="/img/loader.gif" data-original="/2018/12/16/Udacity-DL-note2/dl-10.png" alt="img10" title="img10">
+<img src="/img/loader.gif" data-original="/2018/12/16/Udacity-DL-note2/dl-11.png" alt="img11" title="img11">
+<p>通过卷积操作逐步挤压空间维度，增大深度，通过深度信息来表达复杂的语义，如下图将3个特征图映射到了K个输出深度。</p>
+<p>使用k个filter来进行卷积，输出深度就为k，fliter的通道数必须和特征图的通道数相等，下列图(From CS231n)就解释了这个过程：</p>
+<img src="/img/loader.gif" data-original="/2018/12/16/Udacity-DL-note2/dl-14.png" alt="img14" title="img14">
+<blockquote>
+<p><strong>DIP（数字图像处理）相关：</strong></p>
+<p>时域上的卷积对应频域相乘。图像与卷积核进行卷积，相当于频域信息进行筛选。（图像中的边缘和轮廓属于是高频信息，图像中某区域强度的综合考量属于低频信息）</p>
+</blockquote>
+<img src="/img/loader.gif" data-original="/2018/12/16/Udacity-DL-note2/dl-12.png" alt="img12" title="img12">
+<blockquote>
+<p><strong>空间排列（Spatial arrangement）</strong></p>
+<p>一个输出单元的大小有以下三个量控制：<strong>depth</strong>, <strong>stride</strong> 和 <strong>zero-padding</strong>。</p>
+<ul>
+<li><strong>深度(depth)</strong> : 顾名思义，它控制输出单元的深度，也就是filter的个数，连接同一块区域的神经元个数。又名：<strong>depth column</strong></li>
+<li><strong>步幅(stride)</strong>：它控制在同一深度的相邻两个隐含单元，与他们相连接的输入区域的距离。如果步幅很小（比如 stride = 1）的话，相邻隐含单元的输入区域的重叠部分会很多; 步幅很大则重叠区域变少。</li>
+<li><strong>补零(zero-padding)</strong> ： 我们可以通过在输入单元周围补零来改变输入单元整体大小，从而控制输出单元的空间大小。</li>
+</ul>
+</blockquote>
+<h3 id="高阶的卷积网络设计"><a href="#高阶的卷积网络设计" class="headerlink" title="高阶的卷积网络设计"></a>高阶的卷积网络设计</h3><h4 id="1-池化-Pooling"><a href="#1-池化-Pooling" class="headerlink" title="1. 池化(Pooling)"></a>1. 池化(Pooling)</h4><p>池化的方法：</p>
+<ul>
+<li>Max Pooling</li>
+<li>Average Pooling</li>
+</ul>
+<p>池化的意义：</p>
+<ul>
+<li>减少参数，通过对 Feature Map 降维，有效减少后续层需要的参数</li>
+<li>增强网络的抗扰动作用</li>
+</ul>
+<p>池化的缺点：</p>
+<ul>
+<li>引入了另外更多的超参数，如池化区域尺寸(pooling size)、池化步幅(pooling stride)</li>
+</ul>
+<p>常见的卷积网络设计：</p>
+<img src="/img/loader.gif" data-original="/2018/12/16/Udacity-DL-note2/dl-13.png" alt="img13" title="img13">
+<h4 id="2-1-1卷积"><a href="#2-1-1卷积" class="headerlink" title="2. 1*1卷积"></a>2. 1*1卷积</h4><p>使用1*1卷积主要有两个作用：</p>
+<ul>
+<li>降/升维：通过k个1*1的filter去做卷积，可将图片转化为k维（均只指最高维）</li>
+<li>加入非线性</li>
+</ul>
+<h4 id="3-Inception结构"><a href="#3-Inception结构" class="headerlink" title="3. Inception结构"></a>3. Inception结构</h4><img src="/img/loader.gif" data-original="/2018/12/16/Udacity-DL-note2/dl-15.png" alt="img15" title="img15">
+<p>使用多种结构的卷积核并将卷积结果进行复合</p>
 
 					
-					<!--<a href="/archives/2017" class="archive-year">2017</a>-->
-				
-								
-				
-					  
-					<div class="archive-year">
-						<a href="/archives/2017/04">
-							2017-04
-						</a>
-					</div>				
-				  
-				
-				<div class="archive-item">
-					<div class="archive-post-title">									
-						<a href="/2017/04/11/heap-stack-stackframe/" itemprop="url">堆、栈、栈帧学习笔记</a>
-					</div>
-					<div class="archive-post-time">
-						<a href="/2017/04/11/heap-stack-stackframe/" itemprop="url">04-11</a>
-					</div>
-				</div>		        							
-			
-				
-			    
-		</div>
-	</div>
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2028/06/11/Jottings/" title="Jottings">
+      		&laquo; Pre post
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/11/28/Udacity-DL-note1/" title="Udacity深度学习课程笔记part1：基础概念，分类，深度神经网络">
+			Next post &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		Load comment
+		<!--加载评论-->
+	</button>
 </div>
 
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '84416ca9519a022222a9',
+		clientSecret: 'ebdca7c7833ee21a7c5ce8dd27da57397bdc1e10',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Blog-Comment',
+		owner: 'Dinghow',
+		admin: 'Dinghow',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+					<strong>Catalog</strong>
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-卷积神经网络"><span class="post-toc-text">3. 卷积神经网络</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#灰度图"><span class="post-toc-text">灰度图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#统计不变性-Statistical-Invariants"><span class="post-toc-text">统计不变性(Statistical Invariants)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#卷积网络基本概念"><span class="post-toc-text">卷积网络基本概念</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#高阶的卷积网络设计"><span class="post-toc-text">高阶的卷积网络设计</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-池化-Pooling"><span class="post-toc-text">1. 池化(Pooling)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-1-1卷积"><span class="post-toc-text">2. 1*1卷积</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-Inception结构"><span class="post-toc-text">3. Inception结构</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</aside>
+	
+
+	</div>
+</div>
 		</div>
 		</main>
 		
@@ -294,6 +482,11 @@
 	}
 </style>
 
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
 
 
 
@@ -635,6 +828,8 @@
 
 
 
+
+	<script type="text/javascript" src="/js/toc.js"></script>
 
 
 <script type="text/javascript" src="/js/main.js"></script>
