@@ -10,7 +10,7 @@
 		
 
 <head>
-	<title>nni-example</title>
+	<title>A glance of AutoML part2: A Image Classify example with NNI</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI" />
@@ -57,7 +57,7 @@
 		
 		
 			
-			<p class=page-name>Current post&nbsp;:&nbsp;《nni-example》</p>
+			<p class=page-name>Current post&nbsp;:&nbsp;《A glance of AutoML part2: A Image Classify example with NNI》</p>
 			
 		
 	
@@ -173,7 +173,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 					
 	
 		<a href="/2019/02/14/nni-example/" itemprop="url">		
-			nni-example		
+			A glance of AutoML part2: A Image Classify example with NNI		
 		</a>
 	
 
@@ -183,7 +183,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 					<span>
 						<i class="fa fa-clock-o"></i> 
 						<a href="/2019/02/14/nni-example/" itemprop="url">
-	<time datetime="2019-02-14T15:50:44.000Z" itemprop="datePublished">
+	<time datetime="2019-02-14T10:00:00.000Z" itemprop="datePublished">
   		2019-02-14
   </time>
 </a>    
@@ -191,6 +191,13 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 					</span>
 					
 					<span>						
+						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#机器学习" title="机器学习" rel="11">机器学习</a>&nbsp;
+							
+								<a href="#深度学习" title="深度学习" rel="6">深度学习</a>&nbsp;
+													 											
 						
 					</span>
 				</p>
@@ -204,7 +211,221 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 </script>
 					
 					
-						
+						<p>After a quick start of the <a href="https://github.com/Microsoft/nni" target="_blank" rel="external">Neural Network Intelligence</a> (NNI) , I try using NNI in my own deep learning project. Recently, I’m buried in prostate cancer detection, one of its steps is to do image classfication to get the class of cancer, and I added NNI to help the configuration of hyper-parameters. </p>
+<blockquote>
+<p>(Reference) minist with nni: <a href="https://github.com/Microsoft/nni/tree/master/examples/trials/mnist" target="_blank" rel="external">https://github.com/Microsoft/nni/tree/master/examples/trials/mnist</a></p>
+</blockquote>
+<h2 id="1-Data-preprocessing"><a href="#1-Data-preprocessing" class="headerlink" title="1. Data preprocessing"></a>1. Data preprocessing</h2><p>The image data comes from <a href="https://prostatex.grand-challenge.org/" target="_blank" rel="external">Prostate X</a>, the data provide two class: having cancer or not.</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">from</span> __future__ <span class="token keyword">import</span> print_function
+<span class="token keyword">from</span> keras<span class="token punctuation">.</span>datasets <span class="token keyword">import</span> cifar10
+<span class="token keyword">from</span> keras<span class="token punctuation">.</span>preprocessing<span class="token punctuation">.</span>image <span class="token keyword">import</span> ImageDataGenerator
+<span class="token keyword">from</span> keras<span class="token punctuation">.</span>utils <span class="token keyword">import</span> np_utils
+<span class="token keyword">from</span> keras<span class="token punctuation">.</span>callbacks <span class="token keyword">import</span> ReduceLROnPlateau<span class="token punctuation">,</span> CSVLogger<span class="token punctuation">,</span> EarlyStopping
+
+<span class="token keyword">import</span> resnet
+<span class="token keyword">import</span> os
+<span class="token keyword">from</span> glob <span class="token keyword">import</span> glob
+<span class="token keyword">import</span> csv
+<span class="token keyword">import</span> cv2
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+
+<span class="token comment" spellcheck="true"># Change to your own corresponding file path</span>
+ADC_PATH<span class="token operator">=</span><span class="token string">'CAM-Data/Prostatex-ADC/'</span>
+csv_file<span class="token operator">=</span><span class="token string">'CAM-Data/ProstateX-Findings-Train.csv'</span>
+true_files<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+false_files<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+csvFile <span class="token operator">=</span> open<span class="token punctuation">(</span>csv_file<span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span>
+reader <span class="token operator">=</span> csv<span class="token punctuation">.</span>reader<span class="token punctuation">(</span>csvFile<span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> item <span class="token keyword">in</span> reader<span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true">#print(item)</span>
+    <span class="token keyword">if</span> reader<span class="token punctuation">.</span>line_num <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">:</span>
+        <span class="token keyword">continue</span>
+    pre_name<span class="token operator">=</span>item<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">+</span><span class="token string">'-Finding'</span><span class="token operator">+</span>item<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    <span class="token comment" spellcheck="true">#print(pre_name)</span>
+    <span class="token keyword">if</span> item<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string">'TRUE'</span><span class="token punctuation">:</span>
+        true_file<span class="token operator">=</span>glob<span class="token punctuation">(</span>ADC_PATH<span class="token operator">+</span>pre_name<span class="token operator">+</span><span class="token string">'*_ADC0.bmp'</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#print(ADC_PATH+pre_name+'-ep2d_diff_tra_DYNDIST_ADC0.bmp')</span>
+        <span class="token comment" spellcheck="true">#print (true_file)</span>
+        <span class="token keyword">for</span> tfile <span class="token keyword">in</span> true_file<span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># print("Yes")</span>
+            true_files<span class="token punctuation">.</span>append<span class="token punctuation">(</span>tfile<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        false_file<span class="token operator">=</span>glob<span class="token punctuation">(</span>ADC_PATH<span class="token operator">+</span>pre_name<span class="token operator">+</span><span class="token string">'*_ADC0.bmp'</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#print (false_file)</span>
+        <span class="token keyword">for</span> ffile <span class="token keyword">in</span> false_file<span class="token punctuation">:</span>
+            false_files<span class="token punctuation">.</span>append<span class="token punctuation">(</span>ffile<span class="token punctuation">)</span>
+
+
+<span class="token comment" spellcheck="true"># Generate the network input data</span>
+
+pixel_size<span class="token operator">=</span><span class="token number">64</span>
+true_data<span class="token operator">=</span>np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span>len<span class="token punctuation">(</span>true_files<span class="token punctuation">)</span><span class="token punctuation">,</span>pixel_size<span class="token punctuation">,</span>pixel_size<span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+false_data<span class="token operator">=</span>np<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span><span class="token punctuation">(</span>len<span class="token punctuation">(</span>false_files<span class="token punctuation">)</span><span class="token punctuation">,</span>pixel_size<span class="token punctuation">,</span>pixel_size<span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+
+<span class="token keyword">for</span> t <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>true_files<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    true_data<span class="token punctuation">[</span>t<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span>cv2<span class="token punctuation">.</span>resize<span class="token punctuation">(</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span>true_files<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span>pixel_size<span class="token punctuation">,</span>pixel_size<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    true_data<span class="token punctuation">[</span>t<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>cv2<span class="token punctuation">.</span>resize<span class="token punctuation">(</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span>true_files<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span>pixel_size<span class="token punctuation">,</span>pixel_size<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    true_data<span class="token punctuation">[</span>t<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">=</span>cv2<span class="token punctuation">.</span>resize<span class="token punctuation">(</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span>true_files<span class="token punctuation">[</span>t<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span>pixel_size<span class="token punctuation">,</span>pixel_size<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> f <span class="token keyword">in</span> range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>false_files<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    false_data<span class="token punctuation">[</span>f<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">=</span>cv2<span class="token punctuation">.</span>resize<span class="token punctuation">(</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span>false_files<span class="token punctuation">[</span>f<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span>pixel_size<span class="token punctuation">,</span>pixel_size<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    false_data<span class="token punctuation">[</span>f<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span>cv2<span class="token punctuation">.</span>resize<span class="token punctuation">(</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span>false_files<span class="token punctuation">[</span>f<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span>pixel_size<span class="token punctuation">,</span>pixel_size<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    false_data<span class="token punctuation">[</span>f<span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token operator">=</span>cv2<span class="token punctuation">.</span>resize<span class="token punctuation">(</span>cv2<span class="token punctuation">.</span>imread<span class="token punctuation">(</span>false_files<span class="token punctuation">[</span>f<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span>pixel_size<span class="token punctuation">,</span>pixel_size<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># Load the data</span>
+data<span class="token operator">=</span>np<span class="token punctuation">.</span>vstack<span class="token punctuation">(</span><span class="token punctuation">(</span>true_data<span class="token punctuation">,</span>false_data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+true_label<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+false_label<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+label<span class="token operator">=</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>true_label<span class="token operator">*</span>len<span class="token punctuation">(</span>true_data<span class="token punctuation">)</span><span class="token operator">+</span>false_label<span class="token operator">*</span>len<span class="token punctuation">(</span>false_data<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true"># Shuffle the data</span>
+<span class="token keyword">def</span> <span class="token function">unison_shuffled_copies</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span>rl<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">assert</span> len<span class="token punctuation">(</span>a<span class="token punctuation">)</span> <span class="token operator">==</span> len<span class="token punctuation">(</span>b<span class="token punctuation">)</span>
+    r<span class="token operator">=</span>range<span class="token punctuation">(</span>len<span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    p <span class="token operator">=</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>permutation<span class="token punctuation">(</span>len<span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> a<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">,</span> b<span class="token punctuation">[</span>p<span class="token punctuation">]</span>
+
+data<span class="token punctuation">,</span>label<span class="token operator">=</span>unison_shuffled_copies<span class="token punctuation">(</span>data<span class="token punctuation">,</span>label<span class="token punctuation">,</span><span class="token number">0.2</span><span class="token punctuation">)</span>
+
+splitpoint <span class="token operator">=</span> int<span class="token punctuation">(</span>round<span class="token punctuation">(</span>len<span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0.8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> x_val<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span>splitpoint<span class="token punctuation">]</span><span class="token punctuation">,</span> data<span class="token punctuation">[</span>splitpoint<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">(</span>y_train<span class="token punctuation">,</span> y_val<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">(</span>label<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span>splitpoint<span class="token punctuation">]</span><span class="token punctuation">,</span> label<span class="token punctuation">[</span>splitpoint<span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="2-Configure-Resnet-with-NNI"><a href="#2-Configure-Resnet-with-NNI" class="headerlink" title="2. Configure Resnet with NNI"></a>2. Configure Resnet with NNI</h2><p>I use resnet to do this job, there are five hyper-parameters to configure:</p>
+<ul>
+<li>learning_rate_patience</li>
+<li>min_learning_rate</li>
+<li>batch_size</li>
+<li>min_delta (used for the judgement of early stopping)</li>
+<li>early_stopping_patience</li>
+</ul>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">:</span>
+
+    <span class="token comment" spellcheck="true">#lr_reducer = ReduceLROnPlateau(factor=np.sqrt(0.1), cooldown=0, patience=5, min_lr=0.5e-6)</span>
+    lr_reducer <span class="token operator">=</span> ReduceLROnPlateau<span class="token punctuation">(</span>factor<span class="token operator">=</span>np<span class="token punctuation">.</span>sqrt<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">,</span> cooldown<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> patience<span class="token operator">=</span>params<span class="token punctuation">[</span><span class="token string">'learning_rate_patience'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> min_lr<span class="token operator">=</span> params<span class="token punctuation">[</span><span class="token string">'min_learning_rate'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">#early_stopper = EarlyStopping(min_delta=0.001, patience=15)</span>
+    early_stopper <span class="token operator">=</span> EarlyStopping<span class="token punctuation">(</span>min_delta<span class="token operator">=</span>params<span class="token punctuation">[</span><span class="token string">'min_delta'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> patience<span class="token operator">=</span>params<span class="token punctuation">[</span><span class="token string">'early_stopping_patience'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true"># csv_logger = CSVLogger('resnet18_cifar10.csv')</span>
+
+    batch_size <span class="token operator">=</span> params<span class="token punctuation">[</span><span class="token string">'batch_size'</span><span class="token punctuation">]</span>
+    nb_classes <span class="token operator">=</span> <span class="token number">2</span>
+    nb_epoch <span class="token operator">=</span> <span class="token number">50</span>
+    data_augmentation <span class="token operator">=</span> <span class="token boolean">False</span>
+
+    <span class="token comment" spellcheck="true"># input image dimensions</span>
+    img_rows<span class="token punctuation">,</span> img_cols <span class="token operator">=</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">64</span>
+    <span class="token comment" spellcheck="true"># The CIFAR10 images are RGB.</span>
+    img_channels <span class="token operator">=</span> <span class="token number">3</span>
+
+
+
+    model <span class="token operator">=</span> resnet<span class="token punctuation">.</span>ResnetBuilder<span class="token punctuation">.</span>build_resnet_18<span class="token punctuation">(</span><span class="token punctuation">(</span>img_channels<span class="token punctuation">,</span> img_rows<span class="token punctuation">,</span> img_cols<span class="token punctuation">)</span><span class="token punctuation">,</span> nb_classes<span class="token punctuation">)</span>
+    model<span class="token punctuation">.</span>compile<span class="token punctuation">(</span>loss<span class="token operator">=</span><span class="token string">'categorical_crossentropy'</span><span class="token punctuation">,</span>
+                  optimizer<span class="token operator">=</span><span class="token string">'adam'</span><span class="token punctuation">,</span>
+                  metrics<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'accuracy'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    model<span class="token punctuation">.</span>summary<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> <span class="token operator">not</span> data_augmentation<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Not using data augmentation.'</span><span class="token punctuation">)</span>
+        hist <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span>
+                  batch_size<span class="token operator">=</span>batch_size<span class="token punctuation">,</span>
+                  nb_epoch<span class="token operator">=</span>nb_epoch<span class="token punctuation">,</span>
+                  validation_data<span class="token operator">=</span><span class="token punctuation">(</span>x_val<span class="token punctuation">,</span> y_val<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                  shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>
+                  callbacks<span class="token operator">=</span><span class="token punctuation">[</span>lr_reducer<span class="token punctuation">,</span> early_stopper<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        nni<span class="token punctuation">.</span>report_final_result<span class="token punctuation">(</span>hist<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'val_acc'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Using real-time data augmentation.'</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true"># This will do preprocessing and realtime data augmentation:</span>
+        datagen <span class="token operator">=</span> ImageDataGenerator<span class="token punctuation">(</span>
+            featurewise_center<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># set input mean to 0 over the dataset</span>
+            samplewise_center<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># set each sample mean to 0</span>
+            featurewise_std_normalization<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># divide inputs by std of the dataset</span>
+            samplewise_std_normalization<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># divide each input by its std</span>
+            zca_whitening<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># apply ZCA whitening</span>
+            rotation_range<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># randomly rotate images in the range (degrees, 0 to 180)</span>
+            width_shift_range<span class="token operator">=</span><span class="token number">0.1</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># randomly shift images horizontally (fraction of total width)</span>
+            height_shift_range<span class="token operator">=</span><span class="token number">0.1</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># randomly shift images vertically (fraction of total height)</span>
+            horizontal_flip<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span>  <span class="token comment" spellcheck="true"># randomly flip images</span>
+            vertical_flip<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># randomly flip images</span>
+
+        <span class="token comment" spellcheck="true"># Compute quantities required for featurewise normalization</span>
+        <span class="token comment" spellcheck="true"># (std, mean, and principal components if ZCA whitening is applied).</span>
+        datagen<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">)</span>
+
+        <span class="token comment" spellcheck="true"># Fit the model on the batches generated by datagen.flow().</span>
+        hist <span class="token operator">=</span> model<span class="token punctuation">.</span>fit_generator<span class="token punctuation">(</span>datagen<span class="token punctuation">.</span>flow<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> Y_train<span class="token punctuation">,</span> batch_size<span class="token operator">=</span>batch_size<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                            steps_per_epoch<span class="token operator">=</span>X_train<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">//</span> batch_size<span class="token punctuation">,</span>
+                            validation_data<span class="token operator">=</span><span class="token punctuation">(</span>X_test<span class="token punctuation">,</span> Y_test<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                            epochs<span class="token operator">=</span>nb_epoch<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> max_q_size<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span>
+                            callbacks<span class="token operator">=</span><span class="token punctuation">[</span>lr_reducer<span class="token punctuation">,</span> early_stopper<span class="token punctuation">,</span> csv_logger<span class="token punctuation">]</span><span class="token punctuation">)</span>
+        nni<span class="token punctuation">.</span>report_final_result<span class="token punctuation">(</span>hist<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'val_acc'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Remember to add <code>nni.report_final_result(hist.history[&#39;val_acc&#39;][-1])</code>  to get the metrics, I’ve not found a method for keras to record metrics for nni in real time, so I don’t add intermediate metrics.</p>
+<p>Use <code>nni.get_next_parameter()</code> to get a combination of hyper-parameters by nni.</p>
+<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># get parameters form tuner</span>
+        tuner_params <span class="token operator">=</span> nni<span class="token punctuation">.</span>get_next_parameter<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        main<span class="token punctuation">(</span>tuner_params<span class="token punctuation">)</span>
+    <span class="token keyword">except</span> Exception <span class="token keyword">as</span> exception<span class="token punctuation">:</span>
+        logger<span class="token punctuation">.</span>exception<span class="token punctuation">(</span>exception<span class="token punctuation">)</span>
+        <span class="token keyword">raise</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="3-Configure-NNI"><a href="#3-Configure-NNI" class="headerlink" title="3. Configure NNI"></a>3. Configure NNI</h2><h3 id="3-1-Search-space-defination"><a href="#3-1-Search-space-defination" class="headerlink" title="3.1 Search space defination"></a>3.1 Search space defination</h3><p>Define the search space information in a json file <code>search_space.json</code>, the detail of search space can be viewed <a href="https://github.com/Microsoft/nni/blob/master/docs/SearchSpaceSpec.md" target="_blank" rel="external">here</a>.</p>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"min_learning_rate"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"_type"</span><span class="token operator">:</span><span class="token string">"choice"</span><span class="token punctuation">,</span><span class="token property">"_value"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token number">0.5e-6</span><span class="token punctuation">,</span> <span class="token number">0.5e-5</span><span class="token punctuation">,</span> <span class="token number">0.5e-4</span><span class="token punctuation">,</span> <span class="token number">0.5e-3</span><span class="token punctuation">,</span> <span class="token number">0.5e-2</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"learning_rate_patience"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"_type"</span><span class="token operator">:</span><span class="token string">"choice"</span><span class="token punctuation">,</span><span class="token property">"_value"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"min_delta"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"_type"</span><span class="token operator">:</span><span class="token string">"choice"</span><span class="token punctuation">,</span><span class="token property">"_value"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token number">0.0001</span><span class="token punctuation">,</span> <span class="token number">0.001</span><span class="token punctuation">,</span> <span class="token number">0.01</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"early_stopping_patience"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"_type"</span><span class="token operator">:</span><span class="token string">"choice"</span><span class="token punctuation">,</span><span class="token property">"_value"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"batch_size"</span><span class="token operator">:</span><span class="token punctuation">{</span><span class="token property">"_type"</span><span class="token operator">:</span><span class="token string">"choice"</span><span class="token punctuation">,</span><span class="token property">"_value"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-2-Config-file"><a href="#3-2-Config-file" class="headerlink" title="3.2 Config file"></a>3.2 Config file</h3><p>Define the config information in <code>config.yml</code>, this is the boot configuration for NNI. </p>
+<pre class="line-numbers language-yml"><code class="language-yml">authorName: Dinghow
+experimentName: image_classfiy
+trialConcurrency: 1
+maxExecDuration: 1h
+maxTrialNum: 10
+#choice: local, remote, pai
+trainingServicePlatform: local
+searchSpacePath: search_space.json
+#choice: true, false
+useAnnotation: false
+tuner:
+  #choice: TPE, Random, Anneal, Evolution, BatchTuner
+  #SMAC (SMAC should be installed through nnictl)
+  builtinTunerName: TPE
+  classArgs:
+    #choice: maximize, minimize
+    optimize_mode: maximize
+trial:
+  command: python CAM_GRAD.py
+  codeDir: .
+  gpuNum: 0
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-3-Run-NNI"><a href="#3-3-Run-NNI" class="headerlink" title="3.3 Run NNI"></a>3.3 Run NNI</h3><p><code>nnictl create --config config.yml</code> </p>
+<h2 id="4-Training-result"><a href="#4-Training-result" class="headerlink" title="4. Training result"></a>4. Training result</h2><p>Open the WebUI url:</p>
+<p><img src="/img/loader.gif" data-original="https://ws1.sinaimg.cn/large/006tKfTcgy1g0793euji4j313s0u0dvf.jpg" alt=""></p>
+<p><img src="/img/loader.gif" data-original="https://ws3.sinaimg.cn/large/006tKfTcgy1g0793hp5vuj31wo0q0wgi.jpg" alt=""></p>
+<p><img src="/img/loader.gif" data-original="https://ws2.sinaimg.cn/large/006tKfTcgy1g0793hce3nj31wq0qgwl9.jpg" alt=""></p>
+<p>I just trained 50 epochs, the best metrics is 0.742424, and there are two combination of parameters can get this metric.</p>
+<pre><code>min_learning_rate:0.000005
+learning_rate_patience:5
+min_delta:0.0001
+early_stopping_patience:15
+batch_size:32
+</code></pre><pre><code>min_learning_rate:0.000005
+learning_rate_patience:10
+min_delta:0.0001
+early_stopping_patience:5
+batch_size:16
+</code></pre><p>As for a try of AutoML, I used limited data and don’t train enough epochs, I think the augumentation of data and increasement of data can perform better.</p>
+
 					
 				</div>
 			</div>
@@ -214,7 +435,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
     
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2019/02/13/nni-experience/" title="The experience with NNI">
+		<a class="pull-right" href="/2019/02/13/nni-experience/" title="A glance of AutoML part1: The experience with NNI">
 			Next post &raquo;
 		</a>
 		</li>
@@ -335,6 +556,15 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
 -->
 
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+					<strong>Catalog</strong>
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-Data-preprocessing"><span class="post-toc-text">1. Data preprocessing</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-Configure-Resnet-with-NNI"><span class="post-toc-text">2. Configure Resnet with NNI</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-Configure-NNI"><span class="post-toc-text">3. Configure NNI</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-Search-space-defination"><span class="post-toc-text">3.1 Search space defination</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-Config-file"><span class="post-toc-text">3.2 Config file</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-Run-NNI"><span class="post-toc-text">3.3 Run NNI</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-Training-result"><span class="post-toc-text">4. Training result</span></a></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</aside>
 	
 
 	</div>
