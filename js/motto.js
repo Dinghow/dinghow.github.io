@@ -750,7 +750,6 @@ mingyan.push("{'index':681,'content':'好的时光是哪一段并无太大意义
 mingyan.push("{'index':569,'content':'世界无论如何混乱肮脏，坚定的理想主义者也能胜出。</br> - </br>连岳'}");
 mingyan.push("{'index':1297,'content':'你知道这世界本就是欠缺激情与逻辑的，我们才不甘心平淡，所以我们发疯的姿态才会那么好看。爱你的时候，错的也是对的。爱你的时候，只有我愿意，没有不可以。</br> - </br>郑执'}");
 mingyan.push("{'index':464,'content':'即使以为自己的感情已经干涸得无法给予，也总会有一个时刻一样东西能拨动心灵深处的弦。我们毕竟不是生来就享受孤独的。</br> - </br>加西亚·马尔克斯'}");
-mingyan.push("{'index':431,'content':'我理解的爱情，似乎要有些惊心动魄伤筋动骨的东西。如果没有痛感，而只有快感，那就是成年人的一种两性关系而已。</br> - </br>《1980年代的爱情》'}");
 mingyan.push("{'index':731,'content':'来年陌生的，是昨日最亲的某某。</br> - </br>黄伟文'}");
 mingyan.push("{'index':401,'content':'年华似水匆匆一瞥，多少岁月轻描淡写。</br> - </br>黄磊'}");
 mingyan.push("{'index':359,'content':'爱是想触碰又收回手。</br> - </br>塞林格《破碎故事之心》'}");
@@ -1192,7 +1191,6 @@ mingyan.push("{'index':1162,'content':'说一辈子简单，过一辈子太难�
 mingyan.push("{'index':204,'content':'在那做梦的人的梦中，被梦见的人醒了。</br> - </br>博尔赫斯'}");
 mingyan.push("{'index':1091,'content':'我觉得最大的孤独是：行走在如此密集的人群中却没有一个人可以倾诉。 </br> - </br>俞敏洪'}");
 mingyan.push("{'index':919,'content':'我要在你身上做，春天对樱桃树做的事。</br> - </br>聂鲁达'}");
-mingyan.push("{'index':1119,'content':'三年了。 </br> - </br>一个工作室'}");
 mingyan.push("{'index':744,'content':'任何一种环境或一个人，初次见面就预感到离别的隐痛时，你必定是爱上他了。</br> - </br>《沿着塞纳河到翡冷翠》'}");
 mingyan.push("{'index':555,'content':'得到了再失去，总比从来就没有得到更伤人。</br> - </br>《追风筝的人》'}");
 mingyan.push("{'index':249,'content':'你欢笑，这世界陪你一起欢笑；你哭泣，却只能独自黯然神伤。</br> - </br>埃拉·惠勒·威尔科克斯'}");

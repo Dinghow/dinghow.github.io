@@ -64,7 +64,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		2/25/2019 
+		3/6/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -212,23 +212,23 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 					
 					
 						<h2 id="3-卷积神经网络"><a href="#3-卷积神经网络" class="headerlink" title="3. 卷积神经网络"></a>3. 卷积神经网络</h2><h3 id="灰度图"><a href="#灰度图" class="headerlink" title="灰度图"></a>灰度图</h3><p>使用灰度图的原因是避免颜色对分类造成影响</p>
-<h3 id="统计不变性-Statistical-Invariants"><a href="#统计不变性-Statistical-Invariants" class="headerlink" title="统计不变性(Statistical Invariants)"></a>统计不变性(Statistical Invariants)</h3><img src="/img/loader.gif" data-original="/2018/12/16/Udacity-DL-note2/dl-9.png" alt="img9" title="img9">
+<h3 id="统计不变性-Statistical-Invariants"><a href="#统计不变性-Statistical-Invariants" class="headerlink" title="统计不变性(Statistical Invariants)"></a>统计不变性(Statistical Invariants)</h3><p><img src="/img/loader.gif" data-original="https://ws3.sinaimg.cn/large/006tKfTcly1g0te3i7yhkj31hi0u0kj3.jpg" alt=""></p>
 <p>当两种输入可以获得同样的信息（如猫的位置与分类并没有关系），则应该共享权重，并利用这些输入来训练对应的同一权重</p>
 <blockquote>
 <p><strong>参数共享(Parameter Sharing)</strong></p>
 <p>应用参数共享可以大量减少参数数量，参数共享基于一个假设：如果图像中的一点（x1, y1）包含的特征很重要，那么它应该和图像中的另一点（x2, y2）一样重要。换种说法，我们把同一深度的平面叫做<strong>深度切片(depth slice)</strong>（(e.g. a volume of size [55x55x96] has 96 depth slices, each of size [55x55])），那么同一个切片应该共享同一组权重和偏置。我们仍然可以使用梯度下降的方法来学习这些权值，只需要对原始算法做一些小的改动， 这里<strong>共享权值的梯度是所有共享参数的梯度的总和</strong>。</p>
 <p>我们不禁会问为什么要权重共享呢？一方面，重复单元能够对特征进行识别，而不考虑它在可视域中的位置。另一方面，权值共享使得我们能更有效的进行特征抽取，因为它极大的减少了需要学习的自由变量的个数。通过控制模型的规模，卷积网络对视觉问题可以具有很好的泛化能力。</p>
 </blockquote>
-<h3 id="卷积网络基本概念"><a href="#卷积网络基本概念" class="headerlink" title="卷积网络基本概念"></a>卷积网络基本概念</h3><img src="/img/loader.gif" data-original="/2018/12/16/Udacity-DL-note2/dl-10.png" alt="img10" title="img10">
-<img src="/img/loader.gif" data-original="/2018/12/16/Udacity-DL-note2/dl-11.png" alt="img11" title="img11">
+<h3 id="卷积网络基本概念"><a href="#卷积网络基本概念" class="headerlink" title="卷积网络基本概念"></a>卷积网络基本概念</h3><p><img src="/img/loader.gif" data-original="https://ws1.sinaimg.cn/large/006tKfTcly1g0te3hi11jj31hb0u04hs.jpg" alt=""></p>
+<p><img src="/img/loader.gif" data-original="https://ws4.sinaimg.cn/large/006tKfTcly1g0te3gevw8j31hg0u0ni4.jpg" alt=""></p>
 <p>通过卷积操作逐步挤压空间维度，增大深度，通过深度信息来表达复杂的语义，如下图将3个特征图映射到了K个输出深度。</p>
 <p>使用k个filter来进行卷积，输出深度就为k，fliter的通道数必须和特征图的通道数相等，下列图(From CS231n)就解释了这个过程：</p>
-<img src="/img/loader.gif" data-original="/2018/12/16/Udacity-DL-note2/dl-14.png" alt="img14" title="img14">
+<p><img src="/img/loader.gif" data-original="https://ws2.sinaimg.cn/large/006tKfTcly1g0te3exlclj30q10jdtau.jpg" alt=""></p>
 <blockquote>
 <p><strong>DIP（数字图像处理）相关：</strong></p>
 <p>时域上的卷积对应频域相乘。图像与卷积核进行卷积，相当于频域信息进行筛选。（图像中的边缘和轮廓属于是高频信息，图像中某区域强度的综合考量属于低频信息）</p>
 </blockquote>
-<img src="/img/loader.gif" data-original="/2018/12/16/Udacity-DL-note2/dl-12.png" alt="img12" title="img12">
+<p><img src="/img/loader.gif" data-original="https://ws2.sinaimg.cn/large/006tKfTcly1g0te3fwwwjj31j10u0h71.jpg" alt=""></p>
 <blockquote>
 <p><strong>空间排列（Spatial arrangement）</strong></p>
 <p>一个输出单元的大小有以下三个量控制：<strong>depth</strong>, <strong>stride</strong> 和 <strong>zero-padding</strong>。</p>
@@ -253,13 +253,13 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <li>引入了另外更多的超参数，如池化区域尺寸(pooling size)、池化步幅(pooling stride)</li>
 </ul>
 <p>常见的卷积网络设计：</p>
-<img src="/img/loader.gif" data-original="/2018/12/16/Udacity-DL-note2/dl-13.png" alt="img13" title="img13">
+<p><img src="/img/loader.gif" data-original="https://ws4.sinaimg.cn/large/006tKfTcly1g0te3fd4zuj317f0mt7kl.jpg" alt=""></p>
 <h4 id="2-1-1卷积"><a href="#2-1-1卷积" class="headerlink" title="2. 1*1卷积"></a>2. 1*1卷积</h4><p>使用1*1卷积主要有两个作用：</p>
 <ul>
 <li>降/升维：通过k个1*1的filter去做卷积，可将图片转化为k维（均只指最高维）</li>
 <li>加入非线性</li>
 </ul>
-<h4 id="3-Inception结构"><a href="#3-Inception结构" class="headerlink" title="3. Inception结构"></a>3. Inception结构</h4><img src="/img/loader.gif" data-original="/2018/12/16/Udacity-DL-note2/dl-15.png" alt="img15" title="img15">
+<h4 id="3-Inception结构"><a href="#3-Inception结构" class="headerlink" title="3. Inception结构"></a>3. Inception结构</h4><p><img src="/img/loader.gif" data-original="https://ws4.sinaimg.cn/large/006tKfTcly1g0te3emtxaj312s0nrk3f.jpg" alt=""></p>
 <p>使用多种结构的卷积核并将卷积结果进行复合</p>
 
 					

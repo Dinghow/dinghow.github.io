@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://dinghow.site/2018/12/16/Udacity-DL-note2/</loc>
+    <lastmod>2019-03-06T13:43:36.104Z</lastmod>
+  </url>  <url>
     <loc>https://dinghow.site/2019/02/14/nni-example/</loc>
     <lastmod>2019-02-15T13:14:17.238Z</lastmod>
   </url>  <url>
@@ -15,9 +18,6 @@
   </url>  <url>
     <loc>https://dinghow.site/2018/11/28/Udacity-DL-note1/</loc>
     <lastmod>2018-12-18T17:39:59.564Z</lastmod>
-  </url>  <url>
-    <loc>https://dinghow.site/2018/12/16/Udacity-DL-note2/</loc>
-    <lastmod>2018-12-15T19:58:20.779Z</lastmod>
   </url>  <url>
     <loc>https://dinghow.site/2018/10/28/1-notmnist-2/</loc>
     <lastmod>2018-11-28T14:06:03.000Z</lastmod>
