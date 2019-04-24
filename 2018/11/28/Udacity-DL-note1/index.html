@@ -64,7 +64,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		4/15/2019 
+		4/24/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -242,7 +242,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 </ul>
 <h3 id="1-2-分类"><a href="#1-2-分类" class="headerlink" title="1.2 分类"></a>1.2 分类</h3><ul>
 <li><p>线性模型参数的计算</p>
-<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-8.png" alt="img1" title="img1">
+<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-8.jpg" alt="img1" title="img1">
 <p>线性模型 $Y = WX + B$</p>
 <p>Y的维度位10*1，故B的维度也是10*1，而输入的X是28*28的矩阵，通过WX要转换为10*1的维度，故W的维度位28*28*10</p>
 </li>
@@ -253,13 +253,13 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 </ul>
 </li>
 <li><p>多项式逻辑回归分类法</p>
-<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-1.png" alt="img2" title="img2">
+<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-1.jpg" alt="img2" title="img2">
 </li>
 <li><p>独热编码</p>
 </li>
 </ul>
 <p>交叉熵(Cross-Entropy)：</p>
-<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-2.png" alt="img3" title="img3">
+<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-2.jpg" alt="img3" title="img3">
 <ul>
 <li><p>模型性能评估：</p>
 <ul>
@@ -292,21 +292,21 @@ x += v # integrate position
 <li><p>SGD中的超参数：</p>
 </li>
 </ul>
-<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-3.png" alt="img4" title="img4">
+<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-3.jpg" alt="img4" title="img4">
 </li>
 </ul>
-<h1 id="2-深度神经网络"><a href="#2-深度神经网络" class="headerlink" title="2. 深度神经网络"></a>2. 深度神经网络</h1><h4 id="隐藏层"><a href="#隐藏层" class="headerlink" title="隐藏层"></a>隐藏层</h4><img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-4.png" alt="img5" title="img5">
+<h1 id="2-深度神经网络"><a href="#2-深度神经网络" class="headerlink" title="2. 深度神经网络"></a>2. 深度神经网络</h1><h4 id="隐藏层"><a href="#隐藏层" class="headerlink" title="隐藏层"></a>隐藏层</h4><img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-4.jpg" alt="img5" title="img5">
 <p><strong>注意</strong>： 以上描述的是一个“两层”神经网络</p>
 <ol>
 <li>第一层由一组 X 的权重和偏差组成并通过 ReLU 函数激活。 这一层的输出会提供给下一层，但是在神经网络的外部不可见，因此被称为<em>隐藏层</em>。</li>
 <li>第二层由隐藏层的权重和偏差组成，隐藏层的输入即为第一层的输出，然后由 softmax 函数来生成概率。</li>
 </ol>
-<h4 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h4><img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-5.png" alt="img6" title="img6">
+<h4 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h4><img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-5.jpg" alt="img6" title="img6">
 <h4 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h4><blockquote>
 <p><strong>正则化</strong>方法是在训练数据不够多时，或者over training时，常常会导致过拟合（overfitting）。这时向原始模型引入额外信息，以便防止过拟合和提高模型泛<strong>化</strong>性能的一类方法的统称。</p>
 </blockquote>
-<h4 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h4><img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-6.png" alt="img6" title="img6">
-<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-7.png" alt="img7" title="img7">
+<h4 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h4><img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-6.jpg" alt="img6" title="img6">
+<img src="/img/loader.gif" data-original="/2018/11/28/Udacity-DL-note1/dl-7.jpg" alt="img7" title="img7">
 <p>通过随机选择舍弃掉相同量的激活值（并对保留值进行放大），使得神经网络不再能依赖于任何给定的激活值，因而能更好地防止overfitting</p>
 
 					

@@ -64,7 +64,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		4/15/2019 
+		4/24/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -216,17 +216,17 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 </blockquote>
 <p>*.jar与*.aar的文件均是以ZIP文件格式以基础，我们可以将文件后缀名改为.zip并解压查看文件结构：</p>
 <p>jar：</p>
-<img src="/img/loader.gif" data-original="/2018/08/09/as-jar-aar/as_5.png" alt="This is an example image" title="This is an example image">
+<img src="/img/loader.gif" data-original="/2018/08/09/as-jar-aar/as_5.jpg" alt="This is an example image" title="This is an example image">
 <p>aar：</p>
-<img src="/img/loader.gif" data-original="/2018/08/09/as-jar-aar/as_6.png" alt="This is an example image" title="This is an example image">
+<img src="/img/loader.gif" data-original="/2018/08/09/as-jar-aar/as_6.jpg" alt="This is an example image" title="This is an example image">
 <h2 id="2-Module的导入"><a href="#2-Module的导入" class="headerlink" title="2. Module的导入"></a>2. Module的导入</h2><ul>
 <li>直接导入现有的Module: File ➡ New ➡ Import Module</li>
 <li>新建Module: File ➡ New ➡ New Module, 选择Android Library,在Android视图下对新添加的Module添加你所需要加的Activity和资源文件等：</li>
 </ul>
-<img src="/img/loader.gif" data-original="/2018/08/09/as-jar-aar/as_1.png" alt="This is an example image" title="This is an example image">
+<img src="/img/loader.gif" data-original="/2018/08/09/as-jar-aar/as_1.jpg" alt="This is an example image" title="This is an example image">
 <h2 id="3-jar的打包"><a href="#3-jar的打包" class="headerlink" title="3. jar的打包"></a>3. jar的打包</h2><p>对于需要导入的jar包，将其添加到Project视图的libs文件夹下，并添加依赖：</p>
 <p>File ➡ Project Structure ➡ 选择对应module的dependencies ➡ 点击+号 ➡ Jar dependency ➡ 选择对应*.jar文件，确认</p>
-<img src="/img/loader.gif" data-original="/2018/08/09/as-jar-aar/as_2.png" alt="This is an example image" title="This is an example image">
+<img src="/img/loader.gif" data-original="/2018/08/09/as-jar-aar/as_2.jpg" alt="This is an example image" title="This is an example image">
 <p>随后在该Module的build.gradle文件中添加以下代码：</p>
 <pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token comment" spellcheck="true">//task to delete the old jar</span>
 task <span class="token function">deleteOldJar</span><span class="token punctuation">(</span>type<span class="token punctuation">:</span> Delete<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -245,7 +245,7 @@ exportJar<span class="token operator">.</span><span class="token function">depen
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其中from的目录为原jar包的位置，选中该Module，build ➡ Make Module xxx后可以在<code>build/intermediates/bundles/default/</code>，如果没有bundles目录，可以在<code>buile/intermediates/packaged-classes</code>中找到jar包，设置目录为该位置即可</p>
 <p>添加完后更新gradle，在右侧Gradle菜单中打开该Module ➡ other ➡ exportJar，双击执行，运行完后在release可以找到生成的jar包</p>
-<img src="/img/loader.gif" data-original="/2018/08/09/as-jar-aar/as_3.png" alt="This is an example image" title="This is an example image">
+<img src="/img/loader.gif" data-original="/2018/08/09/as-jar-aar/as_3.jpg" alt="This is an example image" title="This is an example image">
 <p>需要注意的是这样生成的jar包只包含源代码的.class文件，并没有包含资源文件，若要包含资源文件的话，build.gradle中添加的代码修改如下：</p>
 <pre class="line-numbers language-groovy"><code class="language-groovy"><span class="token comment" spellcheck="true">//task to delete the old jar</span>
 task <span class="token function">deleteOldJar</span><span class="token punctuation">(</span>type<span class="token punctuation">:</span> Delete<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -263,7 +263,7 @@ task <span class="token function">exportJar</span><span class="token punctuation
 exportJar<span class="token operator">.</span><span class="token function">dependsOn</span><span class="token punctuation">(</span>deleteOldJar<span class="token punctuation">,</span> build<span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="4-aar的打包"><a href="#4-aar的打包" class="headerlink" title="4. aar的打包"></a>4. aar的打包</h2><p>使用Android Studio可以直接打包aar，相较于jar打包更方便，而且也能够包含资源文件，其实在上一步的Make Module后，在<code>build/outputs/aar</code>目录下就可以找到aar包了</p>
-<img src="/img/loader.gif" data-original="/2018/08/09/as-jar-aar/as_4.png" alt="This is an example image" title="This is an example image">
+<img src="/img/loader.gif" data-original="/2018/08/09/as-jar-aar/as_4.jpg" alt="This is an example image" title="This is an example image">
 					
 				</div>
 			</div>

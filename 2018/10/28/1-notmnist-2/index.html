@@ -64,7 +64,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		4/15/2019 
+		4/24/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -236,7 +236,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
           overlap<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> duplicates<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
     <span class="token keyword">return</span> overlap
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<img src="/img/loader.gif" data-original="/2018/10/28/1-notmnist-2/1.png" alt="img1" title="img1">
+<img src="/img/loader.gif" data-original="/2018/10/28/1-notmnist-2/1.jpg" alt="img1" title="img1">
 <p>We can see the number of overlapping images between sets.</p>
 <h3 id="5-2-Sanitize-the-validation-and-test-set"><a href="#5-2-Sanitize-the-validation-and-test-set" class="headerlink" title="5.2 Sanitize the validation and test set"></a>5.2 Sanitize the validation and test set</h3><p>I just deleted the dulicated image in dataset1 </p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">overlap_kick_off</span><span class="token punctuation">(</span>dataset1<span class="token punctuation">,</span> dataset2<span class="token punctuation">,</span> labels1<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -251,7 +251,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
     <span class="token keyword">return</span> np<span class="token punctuation">.</span>delete<span class="token punctuation">(</span>dataset1<span class="token punctuation">,</span> overlap<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>delete<span class="token punctuation">(</span>labels1<span class="token punctuation">,</span> overlap<span class="token punctuation">,</span> None<span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>We can see the shape of the sets:</p>
-<img src="/img/loader.gif" data-original="/2018/10/28/1-notmnist-2/2.png" alt="img2" title="img2">
+<img src="/img/loader.gif" data-original="/2018/10/28/1-notmnist-2/2.jpg" alt="img2" title="img2">
 <p>Remember to save the sanitized data.</p>
 <h2 id="6-Problem-6"><a href="#6-Problem-6" class="headerlink" title="6. Problem 6"></a>6. Problem 6</h2><blockquote>
 <p>Let’s get an idea of what an off-the-shelf classifier can give you on this data. It’s always good to check that there is something to learn, and that it’s a problem that is not so trivial that a canned solution solves it.</p>
@@ -294,7 +294,7 @@ history <span class="token operator">=</span> model<span class="token punctuatio
                    validation_data <span class="token operator">=</span> <span class="token punctuation">[</span>X_val<span class="token punctuation">,</span> Y_val<span class="token punctuation">]</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>We can see the train process:</p>
-<img src="/img/loader.gif" data-original="/2018/10/28/1-notmnist-2/3.png" alt="img3" title="img3">
+<img src="/img/loader.gif" data-original="/2018/10/28/1-notmnist-2/3.jpg" alt="img3" title="img3">
 <p>Then we test our model, the accuracy looks good.</p>
 <pre class="line-numbers language-python"><code class="language-python"><span class="token comment" spellcheck="true"># Evaluate the model</span>
 score <span class="token operator">=</span> model<span class="token punctuation">.</span>evaluate<span class="token punctuation">(</span>X_test<span class="token punctuation">,</span> Y_test<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>

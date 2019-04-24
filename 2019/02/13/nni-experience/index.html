@@ -64,7 +64,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		4/15/2019 
+		4/24/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -219,7 +219,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <p>(From Wikipedia) <strong>Automated machine learning</strong> (<strong>AutoML</strong>) is the process of automating the end-to-end process of applying <a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank" rel="external">machine learning</a> to real-world problems. In a typical machine learning application, practitioners must apply the appropriate <a href="https://en.wikipedia.org/wiki/Data_pre-processing" target="_blank" rel="external">data pre-processing</a>, <a href="https://en.wikipedia.org/wiki/Feature_engineering" target="_blank" rel="external">feature engineering</a>, <a href="https://en.wikipedia.org/wiki/Feature_extraction" target="_blank" rel="external">feature extraction</a>, and <a href="https://en.wikipedia.org/wiki/Feature_selection" target="_blank" rel="external">feature selection</a> methods that make the dataset amenable for machine learning. Following those preprocessing steps, practitioners must then perform <a href="https://en.wikipedia.org/wiki/Algorithm_selection" target="_blank" rel="external">algorithm selection</a> and <a href="https://en.wikipedia.org/wiki/Hyperparameter_optimization" target="_blank" rel="external">hyperparameter optimization</a> to maximize the predictive performance of their final machine learning model. As many of these steps are often beyond the abilities of non-experts, AutoML was proposed as an <a href="https://en.wikipedia.org/wiki/Artificial_intelligence" target="_blank" rel="external">artificial intelligence</a>-based solution to the ever-growing challenge of applying machine learning.<a href="https://en.wikipedia.org/wiki/Automated_machine_learning#cite_note-autoweka1-1" target="_blank" rel="external">[1]</a><a href="https://en.wikipedia.org/wiki/Automated_machine_learning#cite_note-AutoML2014ICML-2" target="_blank" rel="external">[2]</a> Automating the end-to-end process of applying machine learning offers the advantages of producing simpler solutions, faster creation of those solutions, and models that often outperform models that were designed by hand.</p>
 </blockquote>
 <p>This is a general defination of AutoML:</p>
-<p><img src="/img/loader.gif" data-original="https://ws3.sinaimg.cn/large/006tKfTcgy1g06fog8hfaj30qm08gaaq.jpg" alt=""></p>
+<img src="/img/loader.gif" data-original="/2019/02/13/nni-experience/1_low.jpg" alt="img1" title="img1">
 <h2 id="3-Installation-amp-usage"><a href="#3-Installation-amp-usage" class="headerlink" title="3. Installation &amp; usage"></a>3. Installation &amp; usage</h2><p>The installation of NNI is succinct, you just need to follow the doc in github. BTW, I’ve configured an anaconda enviroment ( I think anaconda is recommended for a machine learning worker), so I created a new python environment for NNI.</p>
 <pre class="line-numbers language-bash"><code class="language-bash">conda create -n nni python<span class="token operator">=</span>3.6 //python <span class="token operator">>=</span> 3.5 
 <span class="token function">source</span> activate nni
@@ -259,7 +259,7 @@ You can use these commands to get more information about the experiment
 8. nnictl --help                 get help information about nnictl
 -----------------------------------------------------------------------
 </code></pre><p>A nice feature of NNI is the Web UI, access the url to see the detail information of the experiment.</p>
-<p><img src="/img/loader.gif" data-original="https://ws4.sinaimg.cn/large/006tKfTcgy1g06x1il2a4j31iw0u0n8l.jpg" alt=""></p>
+<img src="/img/loader.gif" data-original="/2019/02/13/nni-experience/2_low.jpg" alt="img2" title="img2">
 <h3 id="Issue"><a href="#Issue" class="headerlink" title="Issue"></a>Issue</h3><p>When I run my own experiment, I got the output “Restful server start failed”, like <a href="https://github.com/Microsoft/nni/issues/432" target="_blank" rel="external">issue #432</a></p>
 <p>, but the port is free and the node is installed correctly,  I just restarted my PC and solved this issue.</p>
 <h2 id="4-Summary"><a href="#4-Summary" class="headerlink" title="4. Summary"></a>4. Summary</h2><p>There are some features impressed me a lot:</p>
