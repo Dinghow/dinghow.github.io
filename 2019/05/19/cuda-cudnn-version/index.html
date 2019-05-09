@@ -10,7 +10,7 @@
 		
 
 <head>
-	<title>tag: cocos2dx</title>
+	<title>多版本CUDA与cuDNN管理</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI" />
@@ -57,7 +57,7 @@
 		
 		
 			
-			<p class=page-name>Tag</p>
+			<p class=page-name>Current post&nbsp;:&nbsp;《多版本CUDA与cuDNN管理》</p>
 			
 		
 	
@@ -150,50 +150,250 @@
 		<!-- content srart -->
 <div class="am-g am-g-fixed blog-fixed blog-content">
 	<div class="am-u-md-8 am-u-sm-12">
-		<div class="archive">
 
-			<div class="blog-text-center">
+		<!-- show math formula -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
 				
-					<i class="fa fa-book">cocos2dx</i>
-				
-			</div>  
 
-			
 
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/05/19/cuda-cudnn-version/" itemprop="url">		
+			多版本CUDA与cuDNN管理		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/05/19/cuda-cudnn-version/" itemprop="url">
+	<time datetime="2019-05-19T02:00:00.000Z" itemprop="datePublished">
+  		2019-05-19
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
 							
-				
-				
-				
+								<a href="#机器学习" title="机器学习" rel="12">机器学习</a>&nbsp;
+							
+								<a href="#深度学习" title="深度学习" rel="7">深度学习</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
 					
+						<!-- Go to www.addthis.com/dashboard to customize your tools --> 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b683f13817fa82e">
+</script>
+					
+					
+						<p>最近在跑几个SLAM的框架， 因为有GUI所以就没用nvidia-docker，又回到了坑爹的环境工程时间，而且工作站其他需求也经常用到不同版本的CUDA, cuDNN，为了方便小伙伴们一起愉快地在工作站玩耍，记录一下如何便捷地切换不同版本的CUDA与cuDNN。</p>
+<h2 id="1-CUDA版本切换"><a href="#1-CUDA版本切换" class="headerlink" title="1. CUDA版本切换"></a>1. CUDA版本切换</h2><p>首先下载不同版本的CUDA，显卡驱动那块我就省了，找到一个向下兼容的高版本驱动就可以，安装CUDA时就只需要安装CUDA Toolkit了，注意不要重复安装驱动</p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>在你对应终端的环境变量文件下加入一下内容，我的是传统的bash，<code>～/.bashrc</code>，如果你是zsh或者其他玩意儿请自行修改：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">export</span> CUDA_HOME<span class="token operator">=</span>/usr/local/cuda
+<span class="token function">export</span> PATH<span class="token operator">=</span><span class="token variable">$PATH</span><span class="token keyword">:</span><span class="token variable">$CUDA_HOME</span>/bin
+<span class="token function">export</span> LD_LIBRARY_PATH<span class="token operator">=</span>/usr/local/cuda/lib64
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>请注意目录是cuda，我们后面会用软连接的方式来切换版本，这里设置成连接目标就可以省的环境变量改来改去。</p>
+<p>重启终端或直接执行<code>source ~/.bashrc</code> 更新环境变量</p>
+<h3 id="CUDA版本切换"><a href="#CUDA版本切换" class="headerlink" title="CUDA版本切换"></a>CUDA版本切换</h3><p>不同版本的cuda安装后，在本地<code>/uer/local</code>目录下，如我装了8.0和9.0，就会有两个目录<code>cuda-8.0</code>, <code>cuda-9.0</code> ，我们通过软连接到自己想用的版本到 <code>cuda</code>，就可以直接完成CUDA版本的修改，注意更改时先删除之前的软连接：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> /usr/local/
+
+<span class="token function">sudo</span> <span class="token function">rm</span> -rf cuda
+<span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/cuda-9.0 /usr/local/cuda <span class="token comment" spellcheck="true">#连接你自己要用的CUDA版本</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="2-cuDNN版本切换"><a href="#2-cuDNN版本切换" class="headerlink" title="2. cuDNN版本切换"></a>2. cuDNN版本切换</h2><p>去官网自己下不同版本的cuDNN，然后解压，为了方便替换工作我直接整合写了一个shell脚本，你可以和解压后的cudn文件夹放在同一级目录下，然后修改里面的cudnn动态库版本为你的具体版本，然后<code>sudo bash install_cudnn.sh</code></p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token comment" spellcheck="true">#!install_cudnn.sh</span>
+<span class="token function">rm</span> -rf /usr/local/cuda/include/cudnn.h
+<span class="token function">rm</span> -rf /usr/local/cuda/lib64/libcudnn*
+
+<span class="token function">cd</span> cuda
+
+<span class="token function">cp</span> include/cudnn.h /usr/local/cuda/include/
+<span class="token function">cp</span> lib64/lib* /usr/local/cuda/lib64/
+
+<span class="token function">cd</span> /usr/local/cuda/lib64/
+
+<span class="token function">chmod</span> +r libcudnn.so.5.1.10
+<span class="token function">ln</span> -sf libcudnn.so.5.1.10 libcudnn.so.5
+<span class="token function">ln</span> -sf libcudnn.so.5 libcudnn.so
+ldconfig
+
+<span class="token function">cat</span> /usr/local/cuda/include/cudnn.h <span class="token operator">|</span> <span class="token function">grep</span> CUDNN_MAJOR -A 2
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>即可完成替换</p>
+<h2 id="3-附：Tensorflow-CUDA-cuDNN版本对应"><a href="#3-附：Tensorflow-CUDA-cuDNN版本对应" class="headerlink" title="3. 附：Tensorflow, CUDA, cuDNN版本对应"></a>3. 附：Tensorflow, CUDA, cuDNN版本对应</h2><p><a href="https://www.tensorflow.org/install/source" target="_blank" rel="external">https://www.tensorflow.org/install/source</a></p>
+<img src="/img/loader.gif" data-original="/2019/05/19/cuda-cudnn-version/1.jpg" alt="img1" title="img1">
+<p>Pytorch基本上从CUDA7-CUDA9均有支持，最新版目前也支持CUDA10，可以自行去官网查看</p>
 
 					
-					<!--<a href="/archives/2017" class="archive-year">2017</a>-->
-				
-								
-				
-					  
-					<div class="archive-year">
-						<a href="/archives/2017/06">
-							2017-06
-						</a>
-					</div>				
-				  
-				
-				<div class="archive-item">
-					<div class="archive-post-title">									
-						<a href="/2017/06/28/note-for-cocos2dx/" itemprop="url">cocos2dx-3.10期末项目踩坑记录</a>
-					</div>
-					<div class="archive-post-time">
-						<a href="/2017/06/28/note-for-cocos2dx/" itemprop="url">06-28</a>
-					</div>
-				</div>		        							
-			
-				
-			    
-		</div>
-	</div>
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/02/14/nni-example/" title="A Glance of AutoML part2: A Image Classify example with NNI">
+			Next post &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		Load comment
+		<!--加载评论-->
+	</button>
 </div>
 
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '84416ca9519a022222a9',
+		clientSecret: 'ebdca7c7833ee21a7c5ce8dd27da57397bdc1e10',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Blog-Comment',
+		owner: 'Dinghow',
+		admin: 'Dinghow',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+					<strong>Catalog</strong>
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-CUDA版本切换"><span class="post-toc-text">1. CUDA版本切换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#环境变量"><span class="post-toc-text">环境变量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CUDA版本切换"><span class="post-toc-text">CUDA版本切换</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-cuDNN版本切换"><span class="post-toc-text">2. cuDNN版本切换</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-附：Tensorflow-CUDA-cuDNN版本对应"><span class="post-toc-text">3. 附：Tensorflow, CUDA, cuDNN版本对应</span></a></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</aside>
+	
+
+	</div>
+</div>
 		</div>
 		</main>
 		
@@ -264,6 +464,11 @@
 	}
 </style>
 
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
 
 
 
@@ -605,6 +810,8 @@
 
 
 
+
+	<script type="text/javascript" src="/js/toc.js"></script>
 
 
 <script type="text/javascript" src="/js/main.js"></script>

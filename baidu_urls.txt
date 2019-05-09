@@ -1,3 +1,4 @@
+https://dinghow.site/2019/05/19/cuda-cudnn-version/
 https://dinghow.site/2019/02/14/nni-example/
 https://dinghow.site/2019/02/13/nni-experience/
 https://dinghow.site/2018/12/16/Udacity-DL-note2/
