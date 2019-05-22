@@ -17,11 +17,11 @@ mingyan.push("{'index':1212,'content':'道路虽然拥挤，却是寂寞的，�
 mingyan.push("{'index':563,'content':'如果我不想被悲伤和怀疑打倒，就非得好好吃饭不可。</br> - </br>方悄悄'}");
 mingyan.push("{'index':1291,'content':'每个人都是孤独发光的星体，至亲、爱人、朋友，构成了我们的星系。星辰会陨落，轨道会迁移，或许再也见不到你。我会记得，你的光芒温暖过我的眼睛。而我，也曾闪耀在你的夜空里。 </br> - </br>路明'}");
 mingyan.push("{'index':855,'content':'我觉得世界上所有事情都在你没有准备好的时候，就开始；在你准备好的时候，就结束了。</br> - </br>《年华似水》'}");
-mingyan.push("{'index':1068,'content':'天青色等烟雨，而我在等你。</br> - </br>方文山'}");
+mingyan.push("{'index':1068,'content':'我不害怕计算机，我害怕没有计算机。</br> - </br>Isaac Asimov'}");
 mingyan.push("{'index':435,'content':'不能一直踮着脚爱一个人，重心不稳，撑不了太久的。</br> - </br>佚名'}");
 mingyan.push("{'index':342,'content':'没有深夜痛哭过的人，不足以谈人生。</br> - </br>高秉涵'}");
 mingyan.push("{'index':918,'content':'毁掉我们的不是我们所憎恨的东西，而恰恰是我们所热爱的东西。</br> - </br>尼尔·波兹曼'}");
-mingyan.push("{'index':1258,'content':'信任这种东西有时候挺奇怪的，就是那种你在我背后开了一枪，我依然觉得是枪走了火的感觉。</br> - </br>暖小团'}");
+mingyan.push("{'index':1258,'content':'信任这种东西有时候挺奇怪的，就是那种你在我背后开了一枪，我依然觉得是枪走了火的感觉。</br> - </br>佚名'}");
 mingyan.push("{'index':889,'content':'原来生命从头到尾都是一场浪费，你需要判断的仅仅在于，这次浪费是否是“美好”的。后来，当我每做一件事情的时候，我便问自己，你认为它是美好的吗？如果是，那就去做吧，从这里出发，我们去抵抗命运，享受生活。</br> - </br>吴晓波'}");
 mingyan.push("{'index':449,'content':'世上只有一种真正的英雄主义，那就是认清生活的真相后依然热爱生活。</br> - </br>罗曼·罗兰'}");
 mingyan.push("{'index':1164,'content':'有时候我们认为生活背叛了我们，但是很久以后我们才发现，其实是我们自己背叛了自己。 </br> - </br>《西伯利亚的理发师》'}");
@@ -41,7 +41,7 @@ mingyan.push("{'index':1251,'content':'失去一个人最伤悲的是，那个�
 mingyan.push("{'index':468,'content':'和很多人告别时，我都会说后会无期，我总觉得有期只是约好了一个久远的时间，而无期也许就会是下一分钟相见。</br> - </br>韩寒'}");
 mingyan.push("{'index':623,'content':'有时候当一个渺小的人，他不知道自己渺小，他就能做大事。</br> - </br>《奔腾年代》'}");
 mingyan.push("{'index':1064,'content':'这个世界上，从来就没有最好的，只有最合适的。比如云朵和天空，微风和草地，比如我眼中的你，以及，你眼中的我。 </br> - </br>烟波人长安《我有个恋爱想和你谈下》'}");
-mingyan.push("{'index':303,'content':'我亦只有一个一生，不能慷慨赠与我不爱的人。</br> - </br>网络'}");
+mingyan.push("{'index':303,'content':'计算机天生就是用来解决以前没有过的问题的。</br> - </br>Bill Gates'}");
 mingyan.push("{'index':176,'content':'孤独有时是最好的交际。</br> - </br>约翰·弥尔顿'}");
 mingyan.push("{'index':221,'content':'时空日日过，何曾停留过，猛回头，时光难再回。</br> - </br>麒麟法师'}");
 mingyan.push("{'index':277,'content':'如果没有老师，学校会是世界上最美好的地方。</br> - </br>《我们都是坏孩子》'}");
@@ -56,7 +56,7 @@ mingyan.push("{'index':955,'content':'知足，知爱，才能知生命的朴质
 mingyan.push("{'index':755,'content':'这世界只有一种乡愁，是你不在身边的时候。 </br> - </br>my little airport'}");
 mingyan.push("{'index':329,'content':'人如果总逃避的话，眼神会先于生命失去光彩的。</br> - </br>《尽管如此，也要活下去》'}");
 mingyan.push("{'index':1201,'content':'我生活在妙不可言的等待中，等待随便哪种未来。 </br> - </br>安德烈·纪德'}");
-mingyan.push("{'index':1138,'content':'爱是一念之差，最幸福的不过是，你曾温柔呼唤，而我恰好有过应答。 </br> - </br>朝小诚'}");
+mingyan.push("{'index':1138,'content':'物理是宇宙的操作系统。 </br> - </br>Steven R Garman'}");
 mingyan.push("{'index':562,'content':'小小羚羊过山冈，九根马尾渡江。想想大地上一石一鸟都不可乱放。有人喊过一嗓。</br> - </br>张子选《藏北三行诗》'}");
 mingyan.push("{'index':644,'content':'什么都不是爱的对手，除了爱。</br> - </br>王小波'}");
 mingyan.push("{'index':582,'content':'你呀，你别再关心灵魂了，那是神明的事。你所能做的，是些小事情，诸如热爱时间，思念母亲，静悄悄地做人，像早晨一样清白。</br> - </br>《我是你流浪过的一个地方》'}");
@@ -68,10 +68,10 @@ mingyan.push("{'index':1220,'content':'今年的我们已与去年不同，我�
 mingyan.push("{'index':39,'content':'兄弟曾离去，似在公元前。今日归故里，不知是何年。</br> - </br>老树画画'}");
 mingyan.push("{'index':689,'content':'愿你比别人更不怕一个人独处，愿日后谈起时你会被自己感动。</br> - </br>刘同《你的孤独，虽败犹荣》'}");
 mingyan.push("{'index':1079,'content':'这个世界上最痛苦的离别方式是，从你们分开的那一刻开始，你没有办法再次走进他的生活，他却仍在你的生活中无处不在。 </br> - </br>王宇昆'}");
-mingyan.push("{'index':1065,'content':'我是个平常的人，我不能盼望在人海中值得你一转眼的注意。 </br> - </br>《爱的灵感》'}");
+mingyan.push("{'index':1065,'content':'I visualize a time when we will be to robots what dogs are to humans, and I’m rooting for the machines.</br> - </br>Claude Shannon'}");
 mingyan.push("{'index':90,'content':'风雨雷电，日月星辰，他们一定只是为了赶来迎接你的到来。</br> - </br>一言'}");
 mingyan.push("{'index':1343,'content':'人总有想哭的欲望，读什么故事、听什么歌、看什么电影，只是在找一个借口。 </br> - </br>苏更生'}");
-mingyan.push("{'index':739,'content':'恋爱的纪念物，从来就不是那些你送给我的手表和项链，甚至也不是那些甜蜜的短信和合照。恋爱最珍贵的纪念物，是你留在我身上的，如同河川留给地形的，那些你对我造成的改变。</br> - </br>蔡康永'}");
+mingyan.push("{'index':739,'content':'The key to artificial intelligence has always been the representation.</br> - </br>Jeff Hawkins'}");
 mingyan.push("{'index':590,'content':'不要忘记人生是要战斗到死。</br> - </br>芥川龙之介'}");
 mingyan.push("{'index':1038,'content':'一个人做的梦，就只能是个梦；一群人怀着同一个梦想，便是真实。 </br> - </br>约翰·列侬'}");
 mingyan.push("{'index':69,'content':'今年没几个梦了，每个都必须做好。</br> - </br>史航'}");
@@ -80,7 +80,7 @@ mingyan.push("{'index':166,'content':'我今晨坐在窗前，世界如一个路
 mingyan.push("{'index':965,'content':'大部分人在二三十岁就已经死去了，因为过了这个年龄，他们只是自己的影子，此后的余生则是在模仿自己中度过，更机械，更装腔作势地重复他们在有生之年的所作所为，所思所想，所爱所恨。 </br> - </br>罗曼·罗兰'}");
 mingyan.push("{'index':87,'content':'大脑的速度一定是超时间的，所以做梦才可以梦到一生。</br> - </br>察察'}");
 mingyan.push("{'index':1254,'content':'在我看来，一个人仿佛是一个包得紧紧的蓓蕾。一个人所读的书或所做的事，在大多数情况下，对他毫无作用。然而，有些事情对一个人来说确实具有一种特殊意义，这些具有特殊意义的事情使得蓓蕾绽开一片花瓣，花瓣一片片接连开放，最后便开成一朵鲜花。</br> - </br>毛姆'}");
-mingyan.push("{'index':682,'content':'我喜爱你忽然捂住我喋喋不休的口，教我沉默。</br> - </br>张定浩'}");
+mingyan.push("{'index':682,'content':'It's going to be interesting to see how society deals with artificial intelligence, but it will definitely be cool. </br> - </br>Colin Angle'}");
 mingyan.push("{'index':733,'content':'九月里，平淡无聊，一切都好，只缺烦恼。</br> - </br>王菲《浮躁》'}");
 mingyan.push("{'index':292,'content':'红尘滚滚，我们这种小人物也就靠着爱过让自己光辉伟岸了。</br> - </br>张晓晗《刺青》'}");
 mingyan.push("{'index':54,'content':'不管黑猪白猪，都是猪。不管笨猪蠢猪，在一起就不孤独。</br> - </br>韩寒'}");
@@ -104,7 +104,7 @@ mingyan.push("{'index':109,'content':'世间所有的相遇，都是久别重逢
 mingyan.push("{'index':667,'content':'如果你自己没有改变，那么你在任何地方都是痛苦的。如果你没有什么地方要去，那么你就到达了。</br> - </br>《去印度学倒立》'}");
 mingyan.push("{'index':436,'content':'生活和电影不一样，生活难多了。</br> - </br>《天堂电影院》'}");
 mingyan.push("{'index':524,'content':'我这半世未算赶，何妨迷路看风光。</br> - </br>黄伟文'}");
-mingyan.push("{'index':1373,'content':'时光驯服一切，我与往事之间，像回声，再怎么千回百转，终究消失在山谷。 </br> - </br>七堇年'}");
+mingyan.push("{'index':1373,'content':'时光驯服一切，我与往事之间，像回声，再怎么千回百转，终究消失在山谷。 </br> - </br>佚名'}");
 mingyan.push("{'index':790,'content':'我一直以为最糟糕的情况是你离开我，其实最令我难过的，是你不快乐。</br> - </br>《怪物旅社》'}");
 mingyan.push("{'index':1072,'content':'一个远行的人要寻找什么呢？可能他自己也不知道，他只是寻找，张望，直到最后，寻找成了他的命运。就像我在你身上，寻找我的命运，那不能把握没法参透的一部分，就是我们的真爱。 </br> - </br>田艺苗《旅人》'}");
 mingyan.push("{'index':613,'content':'你是什么人便会遇上什么人；你是什么人便会选择什么人。总是挂在嘴上的人生，就是你的人生，人总是很容易被自己说出的话所催眠。我多怕你总是挂在嘴上的许多抱怨，将会成为你所有的人生。 </br> - </br>竹久梦二'}");
@@ -140,14 +140,14 @@ mingyan.push("{'index':1194,'content':'我们曾如此渴望命运的波澜，�
 mingyan.push("{'index':609,'content':'不介意孤独，比爱你舒服。</br> - </br>林夕'}");
 mingyan.push("{'index':218,'content':'对于苹果来说，被大口吃掉才是最重要的。</br> - </br>郭小寒'}");
 mingyan.push("{'index':70,'content':'远行前，请随我在纷乱的岁月，再羁留一会儿吧。</br> - </br>钟鸣'}");
-mingyan.push("{'index':1069,'content':'跟爱过的人，如果对方已不再爱，即便你还有情，也要永远保持一个合适的距离。这是一种对已然逝去之爱的尊重，也是你们之间，最好的结局。 </br> - </br>《不婚女王》'}");
+mingyan.push("{'index':1069,'content':'A year spent in artificial intelligence is enough to make one believe in God. </br> - </br>Alan Perlis'}");
 mingyan.push("{'index':1018,'content':'你那么擅长安慰他人，一定度过了很多自己安慰自己的日子吧。 </br> - </br>陈亚豪'}");
 mingyan.push("{'index':421,'content':'你知道雪为什么是白色的吗？因为它忘记了自己曾经的颜色。</br> - </br>《叛逆的鲁鲁修》'}");
 mingyan.push("{'index':1324,'content':'作为一个平凡人，无论多辛苦的事，对外人都是不足道的。所以爱人啊，要有爱人，也要成为被爱的人。要创造魔法，要让微不足道变得重若千钧，要让细枝末节变成缠盘硕枝。 </br> - </br>大斯'}");
 mingyan.push("{'index':776,'content':'到死之前，我们都是需要发育的孩子，从未长大，也从未停止生长。就算改变不了这个世界，这个世界也别想将我们改变。</br> - </br>大冰'}");
 mingyan.push("{'index':793,'content':'不要愁老之将至，你老了一定很可爱。而且，假如你老了十岁，我当然也同样老了十岁，世界也老了十岁，上帝也老了十岁，一切都是一样。 </br> - </br>朱生豪'}");
 mingyan.push("{'index':427,'content':'春天还没有来，我怎么能先你老去。</br> - </br>剃度尘欢'}");
-mingyan.push("{'index':1312,'content':'很多人觉得“爱”是比“喜欢”严重的事，不能轻易说出口。但我就是要说，我爱你。如果不能让你动心，起码吓吓你，让你无法忘记。 </br> - </br>乌冬'}");
+mingyan.push("{'index':1312,'content':'By far, the greatest danger of Artificial Intelligence is that people conclude too early that they understand it. </br> - </br>Eliezer Yudkowsky'}");
 mingyan.push("{'index':926,'content':'你若咬定了人只活一次，便更没有随波逐流的理由。</br> - </br>帕蒂·史密斯'}");
 mingyan.push("{'index':796,'content':'如果全世界都对你恶语相加，我就对你说上一世情话。</br> - </br>马頔《傲寒》'}");
 mingyan.push("{'index':635,'content':'我何尝不想设计自己的命运，但仅凭这点任性，是撑不过余生的。</br> - </br>陶立夏'}");
@@ -180,7 +180,7 @@ mingyan.push("{'index':404,'content':'哪里会有人喜欢孤独，不过是不
 mingyan.push("{'index':299,'content':'海明威说，这是个美好的世界，值得我们为之奋斗。我同意后半句。</br> - </br>《七宗罪》'}");
 mingyan.push("{'index':495,'content':'是谁把空中明月，捻得如钩？待我来抟钩作镜，看永久团圆，能否？</br> - </br>刘大白'}");
 mingyan.push("{'index':224,'content':'我们的小缺点让我们找到对的人。</br> - </br>《心灵捕手》'}");
-mingyan.push("{'index':534,'content':'听到一些事，明明不相干的，也会在心中拐好几个弯，想到你。</br> - </br>张爱玲'}");
+mingyan.push("{'index':534,'content':'Forget artificial intelligence - in the brave new world of big data, it's artificial idiocy we should be looking out for.</br> - </br>Tom Chatfield'}");
 mingyan.push("{'index':129,'content':'但愿爱像割过的草地一样会重新长出来。应该以别样的方式生长，好比小孩子换牙，好比头发，好比指甲。它应该按自己的意愿生长。</br> - </br>赫塔·米勒'}");
 mingyan.push("{'index':1017,'content':'我为自己分分秒秒地疏漏万物向时间致歉。我为将新欢视为初恋向旧爱致歉。 </br> - </br>辛波斯卡《在一颗小星星下》'}");
 mingyan.push("{'index':738,'content':'越是低谷的时候，越能看出一个人的本质。最差的结果无非是失败，有人等着失败，有人骂着失败，有人尽了力仍然失败。在这样的环境里，心态就是每个人自身的光，你颓唐就是颓唐，你顽强就是顽强。 </br> - </br>刘同'}");
@@ -216,14 +216,12 @@ mingyan.push("{'index':140,'content':'旧年山中知雪重，新春世间觉情
 mingyan.push("{'index':390,'content':'旅行是消除无知和仇恨的最好方法。</br> - </br>马克·吐温'}");
 mingyan.push("{'index':1277,'content':'我们人生中最艰巨的任务就是自我分析、试图领悟我们的人性并化解其中的一切纷争。 </br> - </br>罗伯特·麦基《故事》'}");
 mingyan.push("{'index':1316,'content':'树在。山在。大地在。岁月在。我在。你还要怎样更好的世界?  </br> - </br>《我在》'}");
-mingyan.push("{'index':52,'content':'长假结束，万物复苏。今日宜开张。</br> - </br>小饭'}");
 mingyan.push("{'index':545,'content':'我发现一个人在放弃给别人留下好印象的负担之后，原来心里会如此踏实。一个人不必再讨人欢喜，就可以像我此刻这样，停止受累。</br> - </br>严歌苓'}");
 mingyan.push("{'index':56,'content':'秋日渐短，木马来袭，请翼装飞行，勿电话会议。</br> - </br>蔡蕾'}");
 mingyan.push("{'index':256,'content':'我在人生道路上迷失了方向。</br> - </br>《火影忍者》'}");
 mingyan.push("{'index':193,'content':'不乱于心，不困于情，不畏将来，不念过往，如此，安好。</br> - </br>丰子恺'}");
 mingyan.push("{'index':369,'content':'我并不是每次吃完饭就看电视，有时我边吃边看电视，生活中有些改变会增加乐趣。</br> - </br>《加菲猫》'}");
 mingyan.push("{'index':319,'content':'这世界不只有眼前的苟且，还有诗与远方。</br> - </br>高晓松'}");
-mingyan.push("{'index':53,'content':'再见，再次见到。嘿，朋友，我们又见面了。</br> - </br>小饭'}");
 mingyan.push("{'index':209,'content':'爱是这么短，遗忘是这么长。</br> - </br>巴勃鲁•聂鲁达'}");
 mingyan.push("{'index':63,'content':'如果你想让人们羡慕你，那么你就应表现出一副为你的悲哀和羞惭感到自豪的样子。</br> - </br>列夫·舍斯托夫'}");
 mingyan.push("{'index':1375,'content':'自学者和学生的区别，不在于知识的广度，而在于生命力和自信心的差异。 </br> - </br>米兰·昆德拉'}");
@@ -257,7 +255,7 @@ mingyan.push("{'index':1332,'content':'喜欢坐火车，喜欢一站一站的�
 mingyan.push("{'index':433,'content':'我只希望，祈祷，我的心境不要再粗糙下去，荒芜下去，这就是我的最大愿望。 </br> - </br>周作人'}");
 mingyan.push("{'index':927,'content':'世界上的任何东西，都能轻而易举地背叛你，哪怕是一片阿司匹林也可以在你生龙活虎的日子里默默过期，在你头疼欲裂的时候失去作用。唯独记忆太过忠诚。</br> - </br>张晓晗'}");
 mingyan.push("{'index':460,'content':'每当我找不到存在的意义，每当我迷失在黑夜里，夜空中最亮的星，请照亮我前行。</br> - </br>逃跑计划《夜空中最亮的星》'}");
-mingyan.push("{'index':696,'content':'喜欢就会评论，但爱就是转发。</br> - </br>方慧'}");
+mingyan.push("{'index':696,'content':'Some people call this artificial intelligence, but the reality is this technology will enhance us. So instead of artificial intelligence, I think we'll augment our intelligence. </br> - </br>Ginni Rometty '}");
 mingyan.push("{'index':661,'content':'别人给的从来不叫安全感，勉强算是廉价的依赖。安全感基于独立，你赞扬一棵树迎风挺拔，却忘了它年复一年形单影只的孤苦。</br> - </br>乔小囧'}");
 mingyan.push("{'index':579,'content':'像一朵向日葵，在夜里默默地坚持，一直爱着你，用我自己的方式。</br> - </br>蓝又时《孤单心事》'}");
 mingyan.push("{'index':914,'content':'有些人快乐地施与，这快乐就是他们的回报。有些人痛苦地施与，这痛苦就是他们的洗礼。 </br> - </br>纪伯伦《先知》'}");
@@ -321,9 +319,7 @@ mingyan.push("{'index':674,'content':'旅行的意义就在于，它允许我错
 mingyan.push("{'index':372,'content':'时间一天天过去，好像什么都没变，但当你某天回首，却发现一切怎么都不同了。</br> - </br>《生活大爆炸》'}");
 mingyan.push("{'index':462,'content':'如果我们不争取，如果我们不配拥有未来，我们就得永远活在现状。或者更糟，得活在过去。我想爱的用意大概就在这里，爱是争取未来的方式。 </br> - </br>格里高利·大卫·罗伯兹'}");
 mingyan.push("{'index':693,'content':'时间是熟睡的脸，说着梦的语言。我小心地翻译着一字一句，原来它说，重复地说，是爱你让我的时间停留，停留。</br> - </br>陈绮贞《时间的歌》'}");
-mingyan.push("{'index':22,'content':'爱是：看到你就开心，跟你睡在一起就满足。</br> - </br>小饭'}");
 mingyan.push("{'index':247,'content':'从前的日色变得慢。车，马，邮件都慢。一生只够爱一个人。</br> - </br>木心'}");
-mingyan.push("{'index':1287,'content':'感情这个东西，你爱我，我就更爱你。你讨厌我，我就自觉别过头去。 </br> - </br>小饭'}");
 mingyan.push("{'index':766,'content':'为了一个不知能否实现的愿望，人有时会豁出一辈子的。笑其愚蠢的人，毕竟只是人生中的过客而已。</br> - </br>芥川龙之介'}");
 mingyan.push("{'index':702,'content':'多活十年又如何。你最多能比别人多活80或90岁那十年。不能多活20岁这十年。</br> - </br>三坨土'}");
 mingyan.push("{'index':916,'content':'任何不能杀了我的，只会令我更强。</br> - </br>尼采'}");
@@ -331,7 +327,6 @@ mingyan.push("{'index':416,'content':'明白在情爱的范畴中是决无韬略
 mingyan.push("{'index':959,'content':'那些无足轻重的人，那些听任自己变得无足轻重的人，在世界上没有位置。</br> - </br>《河湾》'}");
 mingyan.push("{'index':1313,'content':'世界就像个巨大的马戏团，它让你兴奋，却让我惶恐，因为我知道散场永远是——有限温存，无限辛酸。 </br> - </br>卓别林'}");
 mingyan.push("{'index':352,'content':'我爱你，爱了整整一个曾经。</br> - </br>佚名'}");
-mingyan.push("{'index':508,'content':'告白的力量非常强大，那个勇气会左右对方的心理。喜欢的心理得胜过怕被拒绝而害怕的心理，才能叫做告白。</br> - </br>《恋爱操作团》'}");
 mingyan.push("{'index':680,'content':'所谓成功，就是按你自己喜欢的方式，过你的一生。 </br> - </br>佚名'}");
 mingyan.push("{'index':469,'content':'一粒麦子不落在地里死了，仍旧是一粒麦子；若是死了，就结出许多粒子来。</br> - </br>《圣经》'}");
 mingyan.push("{'index':726,'content':'希望死后的墓志铭可以有底气刻上：一生努力，一生被爱。想要的都拥有，得不到的都释怀。</br> - </br>八月长安'}");
@@ -340,7 +335,6 @@ mingyan.push("{'index':1339,'content':'希望我们都是只争朝夕，计较�
 mingyan.push("{'index':867,'content':'每个人的心里，有多么长的一个清单，这些清单里写着多少美好的事，可是，它们总是被推迟，被搁置，在时间的阁楼上腐烂。为什么勇气的问题总是被误以为是时间的问题，而那些沉重、抑郁的、不得已的，总是被叫做生活本身。</br> - </br>《被搁置的生活》'}");
 mingyan.push("{'index':631,'content':'今夜我不关心人类，我只想你。</br> - </br>海子'}");
 mingyan.push("{'index':1176,'content':'此刻，我多想拥抱你，可惜时光之里山南水北，可惜你我中间人来人往。 </br> - </br>鸢喜'}");
-mingyan.push("{'index':364,'content':'真的，单单你的名字就够我爱一世了。</br> - </br>王小波'}");
 mingyan.push("{'index':72,'content':'五楼那只蓝胖子居然还没来表白？为什么！ </br> - </br>张冠仁'}");
 mingyan.push("{'index':158,'content':'人的眼睛所看到的事情，不是唯一的。因为有时候你一辈子记住的事，不是眼睛看到的事。</br> - </br>吴明益'}");
 mingyan.push("{'index':625,'content':'按自己希望的方式生活不叫自私，要求別人按照自己希望的方式生活才叫自私。 </br> - </br>鲁斯·伦德尔'}");
@@ -360,7 +354,6 @@ mingyan.push("{'index':76,'content':'人生就是不断地放下，但痛心的�
 mingyan.push("{'index':308,'content':'我们生来就是孤独。</br> - </br>李志《梵高先生》'}");
 mingyan.push("{'index':620,'content':'小孩儿说话大人不要插嘴。</br> - </br>蔡蕾'}");
 mingyan.push("{'index':281,'content':'与你年轻时的面貌相比，我更爱你现在备受摧残的容颜。</br> - </br>杜拉斯《情人》'}");
-mingyan.push("{'index':875,'content':'我要和你在一起，直到我不爱你。宝贝，人和人一场游戏。</br> - </br>李志'}");
 mingyan.push("{'index':792,'content':'如果别人让你感到不满或者不快，或者他们的行为不如意，你需要理解，不是每个人都像你这样，受到了良好的教育。</br> - </br>菲茨杰拉德'}");
 mingyan.push("{'index':446,'content':'钱没了可以挣回来，今天过了就再也没有了。</br> - </br>《无人区》'}");
 mingyan.push("{'index':1111,'content':'说谎和沉默可以说是现在人类社会里日渐蔓延的两大罪恶。事实上，我们经常说谎，动不动就沉默不语。</br> - </br>村上春树《且听风吟》'}");
@@ -442,7 +435,6 @@ mingyan.push("{'index':511,'content':'情到深处人孤独。</br> - </br>《�
 mingyan.push("{'index':1153,'content':'对异地恋的人来说，失去联系就是人口失踪，就是世界末日，就是一切可以想到的最坏的事。</br> - </br>方慧'}");
 mingyan.push("{'index':556,'content':'但愿我可以没成长，完全凭直觉觅对象，模糊地迷恋你一场。</br> - </br>张国荣《有心人》'}");
 mingyan.push("{'index':770,'content':'我喜欢你，我不难过；我希望你也喜欢我，我才难过。 </br> - </br>八月长安'}");
-mingyan.push("{'index':685,'content':'只怕爱情的箴言听太多，用脑筋多于用情。经验是钥匙而不是枷锁。每一次恋爱都好像没受伤过，像孩子天真地享受花火，想做什么就做。</br> - </br>林夕'}");
 mingyan.push("{'index':186,'content':'我本不该在世界上生活，我第一次打开小方盒，鸟就飞了，飞向阴暗的火焰，我第一次打开。</br> - </br>顾城'}");
 mingyan.push("{'index':273,'content':'寂寞，多半是假寂寞。</br> - </br>木心'}");
 mingyan.push("{'index':1076,'content':'其实活着还真是件美好的事，不在于风景多美多壮观，而是在于遇见了谁，被温暖了一下，然后希望有一天自己也成为一个小太阳，去温暖别人。</br> - </br>三毛'}");
@@ -560,7 +552,6 @@ mingyan.push("{'index':930,'content':'痛苦这东西，天生应该用来藏在
 mingyan.push("{'index':1047,'content':'当所有等待都变成曾经，我会说好多精彩的故事给你听。</br> - </br>《远行》'}");
 mingyan.push("{'index':1187,'content':'诀别诗烈酒入喉，生死与共情意重，再聚首。</br> - </br>陈坤'}");
 mingyan.push("{'index':1126,'content':'我觉得我爱了你了，从此以后，不管什么时候我都不能对你无动于衷。</br> - </br>王小波'}");
-mingyan.push("{'index':521,'content':'恋爱有时真的很随机，早点晚点多爱点少爱点勇敢点怂点，一念之差就是另一个不同的人生。</br> - </br>赵小姐失眠中'}");
 mingyan.push("{'index':196,'content':'二十丽姝，请来吻我，衰草枯杨，青春易过。</br> - </br>莎士比亚'}");
 mingyan.push("{'index':564,'content':'人不只有一种颜色，有很多种颜色，真正的颜色，自己的颜色，谁也不知道。多姿多彩就行，请多姿多彩地活下去吧。</br> - </br>《意外的幸运签》'}");
 mingyan.push("{'index':507,'content':'陆上的人喜欢寻根究底，虚度很多的光阴。冬天忧虑夏天的迟来，夏天担心冬天的将至。所以你们不停到处去追求一个遥不可及、四季如夏的地方——我并不羡慕。</br> - </br>《海上钢琴师》'}");
@@ -631,8 +622,6 @@ mingyan.push("{'index':1140,'content':'梦想破碎是没有声音的，它只�
 mingyan.push("{'index':1134,'content':'总有一些人，他们伤害过你，把你推入万劫不复，可真正面对面，是依旧恨不起来的。他们是命里的劫，也是恩赐。 </br> - </br>自由极光'}");
 mingyan.push("{'index':821,'content':'偶尔我们就像黄昏和黎明，在某些时刻是如此相似，但中间却隔了一整个黑夜。 </br> - </br>里则林'}");
 mingyan.push("{'index':604,'content':'此生，是为了发现自己而来。此生，是为了与自己相见而来。 </br> - </br>河井宽次郎'}");
-mingyan.push("{'index':267,'content':'如果我用他的原子笔，一直写他的名字，把水写干了，他就会爱上我。</br> - </br>《蓝色大门》'}");
-mingyan.push("{'index':141,'content':'心也甘情也愿，才叫不浪费生命。</br> - </br>小饭'}");
 mingyan.push("{'index':1082,'content':'当我忘了你的时候，我就忘了我自己。 </br> - </br>《呼啸山庄》'}");
 mingyan.push("{'index':348,'content':'生而为人，我很抱歉。</br> - </br>《被嫌弃的松子的一生》'}");
 mingyan.push("{'index':750,'content':'人总是在接近幸福时倍感幸福，在幸福进行时却患得患失。</br> - </br>张爱玲'}");
@@ -666,7 +655,6 @@ mingyan.push("{'index':1149,'content':'时间飞逝，人生百味杂陈，无�
 mingyan.push("{'index':266,'content':'年轻的时候，我也曾经以为自己是风。可是最后遍体鳞伤，我才知道我们原来都只是草。</br> - </br>《艋舺》'}");
 mingyan.push("{'index':118,'content':'我就是我。如果必须以头撞墙来真实待己，那么我愿意。</br> - </br>马龙·白兰度'}");
 mingyan.push("{'index':648,'content':'如果有一天海枯石烂，有一匹斑马向我奔来，轻柔的呼吸将我召唤，给我无边的温暖。</br> - </br>简·迷离 《结冰的女孩儿》'}");
-mingyan.push("{'index':692,'content':'男女之间，最难的不是情爱的发生，不是熊熊烈火的燃起，而是能将这烈火隐忍成清明的星光，照耀各自一生或繁华或寂寥的长夜。</br> - </br>张定浩'}");
 mingyan.push("{'index':1109,'content':'不管以什么名义，毁灭个性的做法就是专制。 </br> - </br>约翰·斯图尔特·穆勒'}");
 mingyan.push("{'index':1144,'content':'感情最沉重的一步：我仍愿意听，你却不愿讲。 </br> - </br>咸贵人'}");
 mingyan.push("{'index':732,'content':'有些人恐惧父母离去，或者江郎才尽还有衰老。我比较恐惧的是怕以后会埋怨自己，就是在力所能及时没有努力做一件事，当没有机会再去做时，会责备年轻的自己。 </br> - </br>李娜'}");
@@ -699,7 +687,6 @@ mingyan.push("{'index':47,'content':'有人翩翩求记住，有人起舞求忘�
 mingyan.push("{'index':340,'content':'25岁的我，也许什么也没有，但命运就在我手中。</br> - </br>马克·塞雷纳'}");
 mingyan.push("{'index':1159,'content':'当我陈列出你的缺点，却发现自己，已成为一座想念的博物馆。 </br> - </br>吴青峰'}");
 mingyan.push("{'index':439,'content':'万千心语，谁知其详？唯尔寂静，轻声永传。</br> - </br>《寂静之声》'}");
-mingyan.push("{'index':144,'content':'爱可以抵御风雪，爱可以挽救一切。「一个」工作室祝天下有情人终成眷属！'}");
 mingyan.push("{'index':1088,'content':'跟你注定要斗一辈子的那个敌人，是你自己。 </br> - </br>马徐骏'}");
 mingyan.push("{'index':1061,'content':'战士不会去煽情战争，他们只是战斗。致敬消防战士们。 </br> - </br>韩寒'}");
 mingyan.push("{'index':258,'content':'爱情像鲜花，它总不开放，欲望像野草，疯狂地生长。</br> - </br>许巍《在别处》'}");
@@ -757,7 +744,6 @@ mingyan.push("{'index':1125,'content':'满以为这些年我们终于跑赢了�
 mingyan.push("{'index':1122,'content':'我们无法做到完美，所以我评价一个人就看他在做不可能完成的事情时，失败得有多精彩。 </br> - </br>威廉·福克纳'}");
 mingyan.push("{'index':66,'content':'人生一大憾事是其始也至善，一日不如一日，至其终则坏无可坏。</br> - </br>马克·吐温'}");
 mingyan.push("{'index':135,'content':'没有“生活”，从来只有“忍耐”。</br> - </br>贺伊曼'}");
-mingyan.push("{'index':15,'content':'如果快乐是一种发明，它很容易被一再发明。</br> - </br>小饭'}");
 mingyan.push("{'index':592,'content':'我觉得中国需要一些非常彪悍的个性的人，彪悍到可以独立的与这个时代共舞，参与到里面，改变它，影响它。而不是穿上盔甲，说我是独立的，眼睁睁看着所有的事情覆水难收。</br> - </br>贾樟柯'}");
 mingyan.push("{'index':59,'content':'他不在了，不再存在，进入他根本不知道的乌有乡。正如他当初的恐惧。</br> - </br>菲利普·罗斯'}");
 mingyan.push("{'index':1019,'content':'说过很多潇洒的话，做过很多打脸的事。 </br> - </br>许灵子'}");
@@ -795,7 +781,6 @@ mingyan.push("{'index':381,'content':'我们周年纪念只是为了提醒大家
 mingyan.push("{'index':1028,'content':'有很多事 ，不用解释，时间会让我懂事；傻瓜才在年轻时候不做傻事，羡慕别人有故事。 </br> - </br>邵夷贝'}");
 mingyan.push("{'index':306,'content':'大学就像养老院，而且事实上，更多人死在了大学里。</br> - </br>鲍勃·迪伦'}");
 mingyan.push("{'index':845,'content':'需要很多力量，很多傲气，或者很多爱，才能相信人的行动是有价值的，相信生命胜过死亡。</br> - </br>西蒙娜·德·波伏娃'}");
-mingyan.push("{'index':31,'content':'人世间，不离骚。</br> - </br>小饭'}");
 mingyan.push("{'index':949,'content':'心，生来就是要碎的。</br> - </br>王尔德'}");
 mingyan.push("{'index':318,'content':'300击。</br> - </br>韩寒'}");
 mingyan.push("{'index':198,'content':'冬天以后，我们就都要张开双手，让风吹过童年的无忧。</br> - </br>《Michelle的第一天》'}");
@@ -832,8 +817,6 @@ mingyan.push("{'index':95,'content':'我把我整个的灵魂都给你，连同�
 mingyan.push("{'index':941,'content':'把微笑放在，眼泪干枯了的地方。 </br> - </br>小沙弥'}");
 mingyan.push("{'index':448,'content':'人啊，根据重新振作的方法，大概可以分为两种：一种是看着比自己卑微的东西，找寻垫底的借以自慰；另一种是看着比自己伟大的东西，狠狠地踢醒毫无气度的自己。</br> - </br>《银魂》'}");
 mingyan.push("{'index':457,'content':'人充满劳绩，但还诗意地安居于这块大地之上。</br> - </br>荷尔德林'}");
-mingyan.push("{'index':191,'content':'爱上一匹野马，可我的家里没有草原。</br> - </br>宋冬野《董小姐》'}");
-mingyan.push("{'index':14,'content':'是狼是人，日久见心。</br> - </br>小饭'}");
 mingyan.push("{'index':1160,'content':'真正的爱，就是两份孤独，相护，相抚，喜相逢。</br> - </br>聂华苓'}");
 mingyan.push("{'index':901,'content':'我愿意深深地扎入生活，吮尽生活的骨髓，过得扎实，简单，把一切不属于生活的内容剔除得干净利落，把生活逼到绝处，简单最基本的形式，简单，简单，再简单。 </br> - </br>《瓦尔登湖》'}");
 mingyan.push("{'index':42,'content':'走开，让一个单身胖子悲伤一会儿。</br> - </br>张冠仁'}");
@@ -843,7 +826,6 @@ mingyan.push("{'index':1202,'content':'爱的反义词不是恨，是厌倦 。�
 mingyan.push("{'index':665,'content':'人一老，对于自己是不是被别人多余最为敏感，他们整天都在看儿女们甚至孙儿孙女们的脸色，看看自己在他们生活里的定位错了没有，错了就是多余。没有比发现自己多余更凄惨的事。</br> - </br>严歌苓《陆犯焉识》'}");
 mingyan.push("{'index':1217,'content':'暧昧的美妙在于彼此试探、相互猜忌、想前进又后退了几步，在情意中兜转，但它的坏处是，最后你不是输给了爱不爱，而是败在了狠不狠。 </br> - </br>苏更生'}");
 mingyan.push("{'index':882,'content':'切记不要与自身的平凡为敌，也没有必要把自己变得不像自己。</br> - </br>许钧'}");
-mingyan.push("{'index':470,'content':'你好，2014。</br> - </br>「一个」工作室'}");
 mingyan.push("{'index':1181,'content':'灵魂只能独行，陪伴不是把别人拉到你的生活轨迹上，或者强行进入别人的世界找到一个位置，陪伴是一种心灵的在场，就好像我不用问候一声，也知道你一定随时会回应我的召唤。</br> - </br>大将军郭'}");
 mingyan.push("{'index':599,'content':'我有太多的方向，以至于总是习惯回头看，看见我只有一个出发的地方，这就是我去哪里都不怕错的理由了。</br> - </br>陈绮贞'}");
 mingyan.push("{'index':321,'content':'忠诚的意义在于我们不应该忘记爱过的每一个人。</br> - </br>《忠犬八公》'}");
@@ -859,7 +841,6 @@ mingyan.push("{'index':1056,'content':'两个人之间最好的感觉就是，�
 mingyan.push("{'index':156,'content':'你一天只吃3顿饭，睡1张床，要那么多钱干嘛？</br> - </br>温格'}");
 mingyan.push("{'index':357,'content':'这个城市有八百万个故事在上演，这只是其中一个。</br> - </br>《裸露城市》'}");
 mingyan.push("{'index':254,'content':'这是一个很悲伤的故事。</br> - </br>走走《孟加拉虎》'}");
-mingyan.push("{'index':27,'content':'想拥有更爱这个世界的能力。天冷了，请各位注意保暖。</br> - </br>《一个》全体'}");
 mingyan.push("{'index':282,'content':'我喜欢这种暴风雨前短暂的平静。</br> - </br>《这个杀手不太冷》'}");
 mingyan.push("{'index':327,'content':'每个人都有失恋的时候，而每一次我失恋，我都会去跑步。</br> - </br>《重庆森林》'}");
 mingyan.push("{'index':136,'content':'我们是夏天的爱人，冬天只是一个童话。</br> - </br>顾城'}");
@@ -915,7 +896,6 @@ mingyan.push("{'index':262,'content':'眼泪的存在，是为了证明悲伤不
 mingyan.push("{'index':335,'content':'活着就意味必须要做点什么，请好好努力。</br> - </br>村上春树《地下》'}");
 mingyan.push("{'index':17,'content':'有比孤独更紧迫的事，云存储的使用空间到期了。</br> - </br>蔡蕾'}");
 mingyan.push("{'index':1327,'content':'努力改变不了命运，苦难也不会变成财富，真正能改变命运的是你的状态。同样的粗茶淡饭起早摸黑，有人如饮毒酒也有人奋起直追。你的努力不能决定未来，但可以决定当下你是充满朝气和期望的侠客。你要知道，命运从不是未来的那个结果，而是此时此刻。 </br> - </br>姬霄'}");
-mingyan.push("{'index':120,'content':'谁陪你一起长大，谁就是你的朋友。</br> - </br>小饭【往期精选】'}");
 mingyan.push("{'index':493,'content':'信仰是沉重的负担，你知道吗？就像一个躲在黑暗中的爱人，无论你怎样呼唤，她都不会出现。</br> - </br>《第七封印》'}");
 mingyan.push("{'index':950,'content':'象棋比生活好。在这个世界上，根本没有全身而退这种事情。</br> - </br>《一切破碎，一切成灰》'}");
 mingyan.push("{'index':1118,'content':'我知道你眼中的我不是我自己。 </br> - </br>《冒险乐园》'}");
@@ -1195,7 +1175,6 @@ mingyan.push("{'index':744,'content':'任何一种环境或一个人，初次见
 mingyan.push("{'index':555,'content':'得到了再失去，总比从来就没有得到更伤人。</br> - </br>《追风筝的人》'}");
 mingyan.push("{'index':249,'content':'你欢笑，这世界陪你一起欢笑；你哭泣，却只能独自黯然神伤。</br> - </br>埃拉·惠勒·威尔科克斯'}");
 mingyan.push("{'index':385,'content':'我常常思考为何鸟儿拥有整片天空，却老是停留在一个地方。然后我问了自己同样的问题。</br> - </br>Harun Yahya'}");
-mingyan.push("{'index':149,'content':'如果你反复被人需要，你基本是一个善良的人。</br> - </br>小饭'}");
 mingyan.push("{'index':619,'content':'我们听过无数的道理，却仍旧过不好这一生。</br> - </br>《后会无期》'}");
 mingyan.push("{'index':110,'content':'每个人都是自己的神，爱你者的神，你所支配的世界里的神。</br> - </br>《我所理解的生活》'}");
 mingyan.push("{'index':827,'content':'我曾赤诚天真地爱过你，除了伤心难过，一无所得。若干年后我想起，能够说出“我曾赤诚天真地爱过一个人”，这是一生之中，我最为安慰的事情。 </br> - </br>葛婉仪'}");
