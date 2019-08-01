@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://dinghow.site/2017/04/10/sort-algorithms/</loc>
+    <lastmod>2019-08-01T07:38:16.649Z</lastmod>
+  </url>  <url>
+    <loc>https://dinghow.site/2017/04/11/heap-stack-stackframe/</loc>
+    <lastmod>2019-08-01T02:13:51.008Z</lastmod>
+  </url>  <url>
+    <loc>https://dinghow.site/2018/03/25/Google-ML-note1/</loc>
+    <lastmod>2019-08-01T02:13:41.928Z</lastmod>
+  </url>  <url>
     <loc>https://dinghow.site/2019/07/19/For-KyoAni/</loc>
     <lastmod>2019-07-29T01:24:25.837Z</lastmod>
   </url>  <url>
@@ -24,9 +33,6 @@
   </url>  <url>
     <loc>https://dinghow.site/2019/02/14/nni-example/</loc>
     <lastmod>2019-04-24T13:47:24.293Z</lastmod>
-  </url>  <url>
-    <loc>https://dinghow.site/2017/04/11/heap-stack-stackframe/</loc>
-    <lastmod>2019-04-24T13:40:24.065Z</lastmod>
   </url>  <url>
     <loc>https://dinghow.site/2018/04/23/gparted/</loc>
     <lastmod>2019-04-24T13:39:27.878Z</lastmod>
@@ -54,9 +60,6 @@
   </url>  <url>
     <loc>https://dinghow.site/2017/10/19/CheckboxPreference/</loc>
     <lastmod>2018-11-02T17:26:08.000Z</lastmod>
-  </url>  <url>
-    <loc>https://dinghow.site/2018/03/25/Google-ML-note1/</loc>
-    <lastmod>2018-10-07T02:15:14.000Z</lastmod>
   </url>  <url>
     <loc>https://dinghow.site/2018/09/23/Google-ML-note4/</loc>
     <lastmod>2018-09-23T16:44:37.000Z</lastmod>
