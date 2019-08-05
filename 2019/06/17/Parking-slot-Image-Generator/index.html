@@ -248,7 +248,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <h2 id="2-2-Domain-adapation"><a href="#2-2-Domain-adapation" class="headerlink" title="2.2 Domain adapation"></a>2.2 Domain adapation</h2><h3 id="CycleGAN-1"><a href="#CycleGAN-1" class="headerlink" title="CycleGAN[^1]"></a>CycleGAN[^1]</h3><img src="/img/loader.gif" data-original="/2019/06/17/Parking-slot-Image-Generator/CycleGAN-1.png" alt="img2" title="img2">
 <p>CycleGAN is a creative network to solve the unpaired pix2pix domain adapation problem.</p>
 <p>The innovation of CycleGAN is that it enables this migration between the source and target domains without the need for one-to-one mapping between training data.</p>
-<p>The main part is Cycle-consistency loss:<br>$$<br>L<em>{cyc} = E</em>{x\sim P<em>{data(x)}}[||G(F(x))-x||]+E</em>{y\sim P_{data(y)}}[||F(G(y))-y||]<br>$$<br>$x, y$ are the images from $X$ and $Y$ domains , and $F, G$ are the transfer from $X\rightarrow Y$ and $Y\rightarrow X$</p>
+<p>The main part is Cycle-consistency loss:</p>
+<p>$L<em>{cyc} = E</em>{x\sim P<em>{data(x)}}[||G(F(x))-x||]+E</em>{y\sim P_{data(y)}}[||F(G(y))-y||]$</p>
+<p>$x, y$ are the images from $X$ and $Y$ domains , and $F, G$ are the transfer from $X\rightarrow Y$ and $Y\rightarrow X$</p>
 <p>In this method, the image in the source domain is transformed by two steps: </p>
 <ul>
 <li>Map the source image to the target domain</li>
