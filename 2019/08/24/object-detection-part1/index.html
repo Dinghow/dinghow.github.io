@@ -1,0 +1,885 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head>
+	<title>Object Detection Review: R-CNN, Fast R-CNN, Faster R-CNN and YOLO</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="Dinghow">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	
+  <link rel="icon" href="/imgs/favicon.png">
+  
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-1" style="background-image: url( / );">	
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/loader.gif" data-original="/imgs/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto">Dinghow的个人博客</p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class=page-name>Current post&nbsp;:&nbsp;《Object Detection Review: R-CNN, Fast R-CNN, Faster R-CNN and YOLO》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		8/25/2019 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i  class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">	
+           		<a href="/">Home</a>
+      		</li>
+    		
+      		<li class="fa fa-/archives">	
+           		<a href="/archives">Archive</a>
+      		</li>
+    		
+      		<li class="fa fa-/tags">	
+           		<a href="/tags">Tag</a>
+      		</li>
+    		
+      		<li class="fa fa-/about">	
+           		<a href="/about">About</a>
+      		</li>
+    		
+      		<li class="fa fa-/friends">	
+           		<a href="/friends">Friend</a>
+      		</li>
+    		
+    		
+        	
+            	<li class="fa fa-/search"><a href="javascript:;" class="popup-trigger" title="Search">Search</a></li>
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<!-- show math formula -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/08/24/object-detection-part1/" itemprop="url">		
+			Object Detection Review: R-CNN, Fast R-CNN, Faster R-CNN and YOLO		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/08/24/object-detection-part1/" itemprop="url">
+	<time datetime="2019-08-24T10:00:00.000Z" itemprop="datePublished">
+  		2019-08-24
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#机器学习" title="机器学习" rel="14">机器学习</a>&nbsp;
+							
+								<a href="#深度学习" title="深度学习" rel="9">深度学习</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<!-- Go to www.addthis.com/dashboard to customize your tools --> 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b683f13817fa82e">
+</script>
+					
+					
+						<h2 id="1-Abstract"><a href="#1-Abstract" class="headerlink" title="1. Abstract"></a>1. Abstract</h2><p>In this report, firstly, I give an overall review of object detection, then introduce the mainstream deep convolution neural network (DCNN) methods for this topic, including R-CNN[5], Fast R-CNN[4], Faster R-CNN[10] and YOLO[9]. </p>
+<h2 id="2-Overview-of-Object-Detection"><a href="#2-Overview-of-Object-Detection" class="headerlink" title="2. Overview of Object Detection"></a>2. Overview of Object Detection</h2><p>Object detection[2] is a computer technology related to computer vision and image processing that deals with detecting instances of semantic objects of a certain class (such as humans, buildings, or cars) in digital images and videos. Well-researched domains of object detection include face detection and pedestrian detection. The traditional machine learning approaches for objection detection including ViolaJones method based on Harr features, Scale-invariant feature transform (SIFT) and Histogram of oriented gradients (HOG) features. With the fast growth of deep learning, some deep convolution neural network (DCNN) methods were proposed, which performed much better than those traditional ways, these methods can be divided into two groups, the two-stage methods, such as R-CNN and its improvements, and the one-stage methods, such as YOLO and SSD. This report mainly focus on the DCNN methods.</p>
+<h2 id="3-Review-on-Object-Detection-Network"><a href="#3-Review-on-Object-Detection-Network" class="headerlink" title="3. Review on Object Detection Network"></a>3. Review on Object Detection Network</h2><h3 id="3-1-Regions-with-CNN-features-R-CNN"><a href="#3-1-Regions-with-CNN-features-R-CNN" class="headerlink" title="3.1 Regions with CNN features (R-CNN)"></a>3.1 Regions with CNN features (R-CNN)</h3><p>R-CNN[5] is the pionner using DCNN instead of traditional methods for feature extraction on object detection task. The main workflow of R-CNN is propose a number of region of interest (ROI), then using CNN to extract features for support vector machine (SVM) classifier.</p>
+<img src="/img/loader.gif" data-original="/2019/08/24/object-detection-part1/rcnn1.png" alt="rcnn1" title="rcnn1">
+<h4 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h4><ol>
+<li>Take an input image:</li>
+<li>Region proposal: one image generates 1K∼2K candidate areas by selective search algorithm[8].</li>
+<li>Feature extraction: for each region proposal, deep convolutional network is used to extract features. In this paper, they used AlexNet, and pre-trained the model on ImageNet.</li>
+<li>Classification judgment: the features are sent to SVM classifiers of each class to determine whether they belong to this class or not.</li>
+<li>Position refinement: use regressors to fine-tune candidate box positions</li>
+</ol>
+<img src="/img/loader.gif" data-original="/2019/08/24/object-detection-part1/rcnn2.png" alt="rcnn2" title="rcnn2">
+<h4 id="Selective-Search"><a href="#Selective-Search" class="headerlink" title="Selective Search"></a>Selective Search</h4><p>Selective Search[8] is a region proposal algorithm used in object detection. First, segment the input image into 1k∼2k small areas, then group similar regions based on color, texture, size and shape compatibility. The group rules are described as follow.</p>
+<ol>
+<li>Color: select the similar areas based on color histogram</li>
+<li>Texture: select the areas have similar texture, the texture features are represented by gradient histogram.</li>
+<li>Size: Size similarity encourages smaller regions to merge early, which can avoid a big region to merge the smallers one by one.</li>
+<li>Shape: Shape compatibility measures how well two regions fit into each other. If one fits into the other, we would like to merge them in order to fill gaps and if they are not even touching each other they should not be merged.</li>
+</ol>
+<h4 id="Bounding-box-Refinement"><a href="#Bounding-box-Refinement" class="headerlink" title="Bounding-box Refinement"></a>Bounding-box Refinement</h4><p>After region proposal and feature extracting, we need to use them as input feature vector to train a B-box refinement model. Hence its a transform function fitting task, the linear regression model can solve this problem. Suppose $P^i=(P_x^i,P_y^i,P_w^i,P_h^I)$ specifies the pixel coordinates of the center of proposal $P^i$ ’s bounding box together with $P^i$s width and height in pixels, and $G=(G_x,G_y,G_w,G_h)$ specifies the ground truth. We define four transfer function for each properties:<br>$$<br>G^<code>\_x = P\_xd\_x(P)+P\_x
+$$
+$$
+G^</code>_y = P_hd_y(P)+P_y<br>$$<br>$$<br>G^<code>\_w = P\_wexp(d\_w(P))
+$$
+$$
+G^</code>_h = P_hexp(d_h(P))<br>$$</p>
+<p>the object function is:<br>$$<br>w_<em> = \arg\min<em>{w^`\</em></em>}\sum_i^N(t^i_<em> - w^`_</em>Pooling_5(P^i))^2 + \lambda||w^`_<em>||^2<br>$$<br>Where </em> is one of ${x,y,h,w}$, $t$ is the target value calculated from ground truth with transfer function above, $Pooling_5$ is the $pool_5$ feature of $P^i$ in CNN, and $w$ is a vector of learnable model parameters. By the way, the $\lambda||w__*||^2$ is a $L_2$ regularization to avoid overfitting and help the optimization.</p>
+<h3 id="3-2-Spatial-Pyramid-Pooling-Network-SPP-Net"><a href="#3-2-Spatial-Pyramid-Pooling-Network-SPP-Net" class="headerlink" title="3.2 Spatial Pyramid Pooling Network (SPP Net)"></a>3.2 Spatial Pyramid Pooling Network (SPP Net)</h3><p>Before introducing Fast R-CNN, we must learn the spatial pyramid pooling (SPP)[6] structure. For R-CNN, we need to use anisotropic scaling to resize different region proposal, and this process may trouble CNN training since some distorted or incomplete regions. To solve this problem, SPP stucture was proposed, it use three kinds of pooling sizes to extract feature with different scales, and using concatenate to combine them.</p>
+<img src="/img/loader.gif" data-original="/2019/08/24/object-detection-part1/spp1.png" alt="spp1" title="spp1">
+<p>Fig. shows the detail of SPP structure, the feature map was divided into three sizes 1 ∗ 1, 2 ∗ 2, 4 ∗ 4 for pooling process, then get 1 + 4 + 16 = 21 spatial bins.</p>
+<h3 id="3-3-Fast-R-CNN"><a href="#3-3-Fast-R-CNN" class="headerlink" title="3.3 Fast R-CNN"></a>3.3 Fast R-CNN</h3><p>R-CNN requires a lot of computing resource, since it uses CNN to extract features for each ROI. In fact we can draw lessons from shared weight method, due to the spatial image processing feature of CNN, we can compute the feature map only once, then calculate corresponding ROI on feature map in terms of the input image, that is the main algorithm for Fast R-CNN[4]. Fig.4 shows the structure of Fast R-CNN.</p>
+<img src="/img/loader.gif" data-original="/2019/08/24/object-detection-part1/fast-rcnn1.jpg" alt="fast-rcnn1" title="fast-rcnn1">
+<h4 id="ROI-Pooling"><a href="#ROI-Pooling" class="headerlink" title="ROI Pooling"></a>ROI Pooling</h4><p>We noted that Fast R-CNN use the same feature maps for different ROI, since convolution doesn’t change the spatial position of image, we can calculate the ROI position on feature map:<br>$$<br>Left, Top: x^<code>= \lfloor x/S \rfloor + 1
+$$
+$$
+Right, Bottom: x^</code> = \lceil x/S \rceil - 1<br>$$<br>Where $S$ is the sum of strides in CNN.</p>
+<p>To standardize the size of different ROI, we used a special SPP structure. Note that the ROI Pooling only use one size $7*7$ for pooling process.</p>
+<img src="/img/loader.gif" data-original="/2019/08/24/object-detection-part1/roi-pooling.png" alt="roi-pooling" title="roi-pooling">
+<h4 id="Muti-task-Loss"><a href="#Muti-task-Loss" class="headerlink" title="Muti-task Loss"></a>Muti-task Loss</h4><p>Without using SVM for classification, Fast R-CNN set a muti-task network, one branch for classfication using softmax function, the other branch use linear regression for B-Box refinement. $P(P_0,P_1,…,P_k)$ is the classification output (including background), $t^u = (t^u_x,t^u_y,t^u_w,t^u_h)$ is the B-Box refinement output, we define the loss functions $L_{cls}, L_{loc}$ as follow:<br>$$<br>L_{cls}(p,u)=-logp_u<br>$$<br>$$<br>L_{loc}(t^u,v)=\sum_{i\in{x,y,w,h}}smooth_{L_1}(t^u_i-v_i)<br>$$<br>$$<br>smooth_{L_1}(x)= \begin{cases}<br>  0.5x^2&amp;|x|&lt;1\<br>  |x|-0.5 &amp;\mbox{otherwise}<br>  \end{cases}<br>$$</p>
+<p>Where $u$ is the true class, and $v$ is the ground truth for bounding box.</p>
+<p>Thus the final loss is:<br>$$<br>L_{f-rcnn} = L_{cls} + \lambda L_{loc}<br>$$</p>
+<h3 id="3-4-Faster-R-CNN"><a href="#3-4-Faster-R-CNN" class="headerlink" title="3.4 Faster R-CNN"></a>3.4 Faster R-CNN</h3><p>SPPnet and Fast R-CNN have reduced the running time much than R-CNN, but they still use selective search method to get region proposal, can we get the ROI use neural network too? Faster R-CNN[10] said yes, which proposed a region proposal network (RPN) sharing full-image CNN features with the detection network, and nearly cost-free on this part. </p>
+<img src="/img/loader.gif" data-original="/2019/08/24/object-detection-part1/faster-rcnn1.jpg" alt="faster-rcnn1" title="faster-rcnn1">
+<h4 id="Region-Proposal-Network"><a href="#Region-Proposal-Network" class="headerlink" title="Region Proposal Network"></a>Region Proposal Network</h4><p>Firstly, the Region proposal network (RPN) uses a anchor system shown in Fig below , it sets 9 anchors for each position at the W*H feature map came from CNN, each anchor is a rectangle with scales in {8, 16, 32} and aspect ratios in {0.5, 1, 2}. RPN sets two branches, one for classification and the other for anchor refinement.</p>
+<img src="/img/loader.gif" data-original="/2019/08/24/object-detection-part1/RPN.jpg" alt="RPN" title="RPN">
+<p>At firest, RPN do 3∗3 convolution to integrate regional features, for the classification branch, uses 1 ∗ 1 ∗ 18 convolution kernel to reduce the input dimension to (W, H, 18), then reshape it to (2,9∗W ∗H), it’s easy to know that 9∗W ∗H is anchors for each position, and 2 is the class with or without object. Then, RPN uses softmax for classification, and reshape them back to (W, H, 18) for region output. For the anchor refinement branch, uses 1 ∗ 1 ∗ 36 convolution to reduce dimension to (W, H, 4 ∗ 9), obviously it means four box parameters for 9 anchors at each position, it’s same as B-Box refinement model in R-CNN and Fast R-CNN, uses linear regression.</p>
+<h4 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h4><ol>
+<li>Train the RPN network using the model already trained on ImageNet.</li>
+<li>Collect proposals using the RPN network trained in step 1</li>
+<li>Train Fast R-CNN network using the RPN proposals in step 2, in which Fast R-CNN is also initialized on ImageNet.</li>
+<li>Set the learning rate of shared convolution layers as 0, fine tune RPN.</li>
+<li>Use RPN trained in step 4 to collect region proposals.</li>
+<li>Fine tune Fast R-CNN.</li>
+</ol>
+<h3 id="3-5-You-Only-Look-Once-YOLO"><a href="#3-5-You-Only-Look-Once-YOLO" class="headerlink" title="3.5 You Only Look Once (YOLO)"></a>3.5 You Only Look Once (YOLO)</h3><p>You only look once (YOLO)[9] proposed a one-stage model for object detection task, it frames object detection as a regression problem to spatially separated B-Box and associated class probabilities.</p>
+<img src="/img/loader.gif" data-original="/2019/08/24/object-detection-part1/yolo1.jpg" alt="yolo1" title="yolo1">
+<h4 id="Anchor-System"><a href="#Anchor-System" class="headerlink" title="Anchor System"></a>Anchor System</h4><p>YOLO uses a CNN structure based on GoogLeNet, and it sets an anchor system for detection and classification. As the convolution operation can be thought as sliding windows, the CNN output can be corresponded with input image spatially, suppose the CNN divided the image into $S<em>S$ grids, YOLO<br>detects objects use the center grid, and the box size is a property for regression. The classification and detection probabilities:<br>$$<br>Pr(class_i|object)</em>Pr(object)<em>IOU^{truth}_{pred} = Pr(class_i)</em>IOU^{truth}_{pred}<br>$$<br>Where $Pr(object)$ is the probability for object in this windows, $Pr(class_i|object)$ is the class probability taking existing objects as a prior, and IOU is the metric for B-Box predicted.<br>$$<br>IOU(A,B) = \frac{|A\cap B|}{|A\cup B|}<br>$$</p>
+<h4 id="Multi-task-Loss"><a href="#Multi-task-Loss" class="headerlink" title="Multi-task Loss"></a>Multi-task Loss</h4><p>The output of YOLO is a 7∗7∗30 tensor, 7∗7 is the grid size, and 30 is the combination of probabilities, 20 dimensions for classification $Pr(class_i|object)$, 2 dimensions for object existing $Pr(object)$, and 8 dimensions (2 ∗ x, y, w, h) for B-Box.</p>
+<img src="/img/loader.gif" data-original="/2019/08/24/object-detection-part1/yolo2.jpg" alt="yolo2" title="yolo2">
+<p>$$<br>L_{yolo} = \lambda_{coord}\sum_{i=0}^{S^2}\sum_{j=0}^B1_{ij}^{obj}[(x_i-x^<code>\_i)^2+(y\_i-y^</code>_i)^2]+\ \lambda_{coord}\sum_{i=0}^{S^2}\sum_{j=0}^B1_{ij}^{obj}[(\sqrt{w_i}-\sqrt{w^<code>\_i})^2+(\sqrt{h\_i}-\sqrt{h^</code>_i})^2]+\<br>\sum_{i=0}^{S^2}\sum_{j=0}^B1_{ij}^{obj}(C_i-C^<code>\_i)^2+\\
+\lambda\_{noobj}\sum\_{i=0}^{S^2}\sum\_{j=0}^B1\_{ij}^{noobj}(C\_i-C^</code>_i)^2+\<br>\sum_{i=0}^{S^2}1_{ij}^{obj}\sum_{c\in classes}(p_i(c)-p^`_i(c))^2<br>$$</p>
+<p>Where $S*S$ is the grid size, $B$ is the number of boxes for each grid, $1_{ij}^{obj}$ means the $(i,j)$ grid exists objects, $C_i$ is the confidence for existing objects, and $p_i$ is the probability for each classes.</p>
+<h3 id="3-6-Comparison"><a href="#3-6-Comparison" class="headerlink" title="3.6 Comparison"></a>3.6 Comparison</h3><img src="/img/loader.gif" data-original="/2019/08/24/object-detection-part1/comparsion.jpg" alt="compar" title="compar">
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/07/19/For-KyoAni/" title="祈福京阿尼">
+			Next post &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		Load comment
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment gitalk -->
+			<!-- show gitalk comment -->
+
+  <div id="gitalk-container"></div>
+
+
+<!-- gitalk`s css & js -->
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<link rel="stylesheet" href="/css/comment.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+	//thanks O-R
+	//https://github.com/gitalk/gitalk/issues/102#issuecomment-382970552
+	//去除尾部匹配正则数组的字符串  
+	//remove redundant characters
+	String.prototype.trimEnd = function(regStr) {
+		var result = this;
+		if(regStr == undefined || regStr == null || regStr == "") {
+			return result;
+		}
+		var array = regStr.split(',');
+
+		if(array.length > 0) {
+
+			var c = array.shift();
+			var str = this;
+			var i = str.length;
+			var rg = new RegExp(c);
+			var matchArr = str.match(rg);
+
+			if(matchArr != undefined && matchArr != null && matchArr.length > 0) {
+				var matchStr = matchArr[0].replace(/\\/g, "\\\\").replace(/\*/g, "\\*")
+					.replace(/\+/g, "\\+").replace(/\|/g, "\\|")
+					.replace(/\{/g, "\\{").replace(/\}/g, "\\}")
+					.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+					.replace(/\^/g, "\\^").replace(/\$/g, "\\$")
+					.replace(/\[/g, "\\[").replace(/\]/g, "\\]")
+					.replace(/\?/g, "\\?").replace(/\,/g, "\\,")
+					.replace(/\./g, "\\.").replace(/\&/g, "\\&");
+				matchStr = matchStr + '$';
+				result = str.replace(new RegExp(matchStr), "");
+			}
+
+			if(array.length > 0) {
+				return result.trimEnd(array.join())
+			} else {
+				return result;
+			}
+		}
+	};
+
+	//create gitalk
+	var gitalk = new Gitalk({
+		clientID: '84416ca9519a022222a9',
+		clientSecret: 'ebdca7c7833ee21a7c5ce8dd27da57397bdc1e10',
+		//id: window.location.pathname,
+		// id: (window.location.pathname).split("/").pop().substring(0, 49),
+		id: md5(location.href.trimEnd('#.*$,\\?.*$,index.html$')),
+		repo: 'Blog-Comment',
+		owner: 'Dinghow',
+		admin: 'Dinghow',
+		distractionFreeMode: 'true',
+	})
+	gitalk.render('gitalk-container');
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+					<strong>Catalog</strong>
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-Abstract"><span class="post-toc-text">1. Abstract</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-Overview-of-Object-Detection"><span class="post-toc-text">2. Overview of Object Detection</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-Review-on-Object-Detection-Network"><span class="post-toc-text">3. Review on Object Detection Network</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-Regions-with-CNN-features-R-CNN"><span class="post-toc-text">3.1 Regions with CNN features (R-CNN)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Algorithm"><span class="post-toc-text">Algorithm</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Selective-Search"><span class="post-toc-text">Selective Search</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Bounding-box-Refinement"><span class="post-toc-text">Bounding-box Refinement</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-Spatial-Pyramid-Pooling-Network-SPP-Net"><span class="post-toc-text">3.2 Spatial Pyramid Pooling Network (SPP Net)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-Fast-R-CNN"><span class="post-toc-text">3.3 Fast R-CNN</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#ROI-Pooling"><span class="post-toc-text">ROI Pooling</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Muti-task-Loss"><span class="post-toc-text">Muti-task Loss</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-4-Faster-R-CNN"><span class="post-toc-text">3.4 Faster R-CNN</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Region-Proposal-Network"><span class="post-toc-text">Region Proposal Network</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Training"><span class="post-toc-text">Training</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-You-Only-Look-Once-YOLO"><span class="post-toc-text">3.5 You Only Look Once (YOLO)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Anchor-System"><span class="post-toc-text">Anchor System</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Multi-task-Loss"><span class="post-toc-text">Multi-task Loss</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-Comparison"><span class="post-toc-text">3.6 Comparison</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="http://github.com/Dinghow" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+				
+					<a href="mailto:dinghowyang@gmail.com" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+					
+				
+					<a href="https://twitter.com/Dinghow11" title="Twitter" target="_blank"><i class="fa fa-twitter"></i>&nbsp;</a>
+						
+				
+		</div>
+	</div>
+
+	<div  class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2017 - 2019, content by Dinghow. All Rights Reserved.			       	
+			
+			<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span></span>
+            <span id="busuanzi_container_site_uv">UV: <span id="busuanzi_value_site_uv"></span></span>
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="external">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="external">Annie</a> by Sariay & Dinghow.
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+	<div class="popup search-popup local-search-popup">
+    <span class="popup-btn-close">
+      ESC
+    </span>
+    <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+
+        <div class="local-search-header clearfix">
+            <span class="search-icon"></span>
+            <div class="local-search-input-wrapper">
+              <input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+            </div>
+        </div>
+
+        <div id="local-search-result"></div>
+
+      </div>
+    </div>
+</div>
+
+<script src="/js/ziploader.js"></script>
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // get search zip version
+    $.get('/searchVersion.txt?t=' + (+new Date()), function(res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson () {
+      initLoad(['/search.zip'], {
+        loadOptions: {
+          success: function(obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function(e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions:{
+          'json':'application/json'
+        }
+      })
+    }
+
+    // search function;
+    var searchFunc = function(search_id, content_id) {
+      'use strict';
+
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function() {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          // perform local searching
+          datas.forEach(function(data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title ? data.title.trim() : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content ? data.content.trim().replace(/<[^>]+>/g,"") : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function(keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0, position = [], index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+
+            // show search results
+
+            if (isMatch) {
+              // sort index by position of keyword
+
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+
+              // merge hits into slices
+
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+
+                  // move to next position of hit
+
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {
+                  hits: hits,
+                  start: start,
+                  end: end,
+                  searchTextCount: searchTextCountInSlice
+                };
+              }
+
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if(start < 0){
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if(end > content.length){
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+
+              // sort slices in content by search text's count and hits' count
+
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+
+              // select top N slices in content
+
+              var upperBound = parseInt('2');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+
+              // highlight title and content
+
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+
+              var resultItem = '';
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+              } else {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+              }
+
+              slicesOfContent.forEach(function (slice) {
+                resultItem +=  "<p class=\"search-result\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+
+              resultItem += "</li>";
+              resultItems.push({
+                item: resultItem,
+                searchTextCount: searchTextCount,
+                hitCount: hitCount,
+                id: resultItems.length
+              });
+            }
+          })
+        };
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /> no result </div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<ul class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</ul>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+
+      // remove loading animation
+      $('body').css('overflow', '');
+
+      proceedsearch();
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        $('.sb-close').click();
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	<script>!function(o){var i=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function c(t,e){var n=new Image,o=t.getAttribute("data-original");n.onload=function(){t.src=o,e&&e()},n.src=o}function n(){for(var t=0;t<i.length;t++)e=i[t],void 0,0<=(n=e.getBoundingClientRect()).top&&0<=n.left&&n.top<=(o.innerHeight||document.documentElement.clientHeight)&&c(i[t],function(){i.splice(t,t)});var e,n;console.log("trigger")}n(),o.addEventListener("scroll",function(){var t,e;t=n,e=o,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+	</html>
+

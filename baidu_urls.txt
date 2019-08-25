@@ -1,3 +1,4 @@
+https://dinghow.site/2019/08/24/object-detection-part1/
 https://dinghow.site/2019/07/19/For-KyoAni/
 https://dinghow.site/2019/06/17/Parking-slot-Image-Generator/
 https://dinghow.site/2019/05/19/cuda-cudnn-version/
