@@ -1,3 +1,4 @@
+https://dinghow.site/2019/09/23/MIT-18-dot-06/
 https://dinghow.site/2019/08/24/object-detection-part1/
 https://dinghow.site/2019/07/19/For-KyoAni/
 https://dinghow.site/2019/06/17/Parking-slot-Image-Generator/
@@ -24,5 +25,5 @@ https://dinghow.site/2017/10/19/CheckboxPreference/
 https://dinghow.site/2017/08/28/Chinese-class/
 https://dinghow.site/2017/06/28/note-for-cocos2dx/
 https://dinghow.site/2017/04/11/heap-stack-stackframe/
-https://dinghow.site/2017/04/10/note-for-photography/
 https://dinghow.site/2017/04/10/sort-algorithms/
+https://dinghow.site/2017/04/10/note-for-photography/
