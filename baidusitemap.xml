@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://dinghow.site/2019/08/24/object-detection-part1/</loc>
-    <lastmod>2019-09-23T02:34:50.261Z</lastmod>
+    <loc>https://dinghow.site/0201/10/27/a-new-journey/</loc>
+    <lastmod>2019-10-03T07:23:18.465Z</lastmod>
   </url>  <url>
     <loc>https://dinghow.site/2019/06/17/Parking-slot-Image-Generator/</loc>
-    <lastmod>2019-09-23T02:34:33.984Z</lastmod>
+    <lastmod>2019-09-23T02:36:20.124Z</lastmod>
+  </url>  <url>
+    <loc>https://dinghow.site/2019/08/24/object-detection-part1/</loc>
+    <lastmod>2019-09-23T02:36:16.383Z</lastmod>
+  </url>  <url>
+    <loc>https://dinghow.site/2019/05/19/cuda-cudnn-version/</loc>
+    <lastmod>2019-09-23T02:36:12.536Z</lastmod>
   </url>  <url>
     <loc>https://dinghow.site/2019/09/23/MIT-18-dot-06/</loc>
     <lastmod>2019-09-23T02:32:52.419Z</lastmod>
@@ -78,9 +84,6 @@
   </url>  <url>
     <loc>https://dinghow.site/2018/10/27/1-notmnist-1/</loc>
     <lastmod>2019-09-23T01:44:29.820Z</lastmod>
-  </url>  <url>
-    <loc>https://dinghow.site/2019/05/19/cuda-cudnn-version/</loc>
-    <lastmod>2019-09-23T01:44:02.980Z</lastmod>
   </url>  <url>
     <loc>https://dinghow.site/2018/08/09/as-jar-aar/</loc>
     <lastmod>2019-04-24T13:37:19.484Z</lastmod>
