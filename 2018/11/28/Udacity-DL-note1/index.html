@@ -64,7 +64,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		11/15/2019 
+		11/20/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -194,9 +194,9 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 						
 							<i class="fa fa-tags"></i>
 							
-								<a href="#Machine Learning" title="Machine Learning" rel="14">Machine Learning</a>&nbsp;
+								<a href="#Machine Learning" title="Machine Learning" rel="15">Machine Learning</a>&nbsp;
 							
-								<a href="#Deep Learning" title="Deep Learning" rel="9">Deep Learning</a>&nbsp;
+								<a href="#Deep Learning" title="Deep Learning" rel="10">Deep Learning</a>&nbsp;
 													 											
 						
 					</span>
@@ -211,7 +211,14 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 </script>
 					
 					
-						<p>因为之前已经有过Google那套ML的笔记，所以很多重复的部分就没有再写了，算是做了一些DL上的补充吧，其实严格意义上来说，Google那个课程应该算DL的入门课程，机器学习的很多非神经网络的算法：K-means、决策树这些都没有讲。Whatever，希望对你也有一些帮助～</p>
+						<blockquote>
+<h3 id="系列笔记索引："><a href="#系列笔记索引：" class="headerlink" title="系列笔记索引："></a>系列笔记索引：</h3><p><a href="https://classroom.udacity.com/courses/ud730" target="_blank" rel="external">官方课程</a></p>
+<p><a href="https://github.com/Dinghow/Udacity_Deep_Learning/" target="_blank" rel="external">Github仓库</a></p>
+<p><a href="https://dinghow.site/2018/11/28/Udacity-DL-note1/">Part1：基础概念，分类，深度神经网络</a></p>
+<p><a href="https://dinghow.site/2018/12/16/Udacity-DL-note2/">Part2：卷积神经网络</a></p>
+<p><a href="https://dinghow.site/2019/11/20/Udacity-DL-note3/">Part3：文本和序列的深度模型</a></p>
+</blockquote>
+<p>因为之前已经有过Google那套ML的笔记，所以很多重复的部分就没有再写了，算是做了一些DL上的补充吧，其实严格意义上来说，Google那个课程应该算DL的入门课程，机器学习的很多非神经网络的算法：K-means、决策树这些都没有讲。Whatever，希望对你也有一些帮助～</p>
 <h1 id="0-杂记"><a href="#0-杂记" class="headerlink" title="0. 杂记"></a>0. 杂记</h1><h3 id="关于吸引盆-basin-of-attraction"><a href="#关于吸引盆-basin-of-attraction" class="headerlink" title="关于吸引盆(basin of attraction)"></a>关于吸引盆(basin of attraction)</h3><p>多层神经网络的初始化隐层不能简单置0的原因，因为0很容易陷进一个非常浅的吸引盆，意味着局部最小值非常大：</p>
 <p>因而，如何避免一开始就吸到一个倒霉的超浅的盆中呢，答案是权值初始化。为了统一初始化方案，通常将输入缩放到[−1,1][−1,1]</p>
 <p>经验规则给出，$W\sim Uniform(-\frac{1}{\sqrt{N}},\frac{1}{\sqrt{N}})$ ，Uniform为均匀分布。</p>
@@ -450,7 +457,7 @@ x += v # integrate position
 			<nav class="post-toc-wrap" id="post-toc">
 					<strong>Catalog</strong>
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0-杂记"><span class="post-toc-text">0. 杂记</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于吸引盆-basin-of-attraction"><span class="post-toc-text">关于吸引盆(basin of attraction)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于预训练"><span class="post-toc-text">关于预训练</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于全连接层"><span class="post-toc-text">关于全连接层</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于池化"><span class="post-toc-text">关于池化</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-深度学习基础概念"><span class="post-toc-text">1. 深度学习基础概念</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-杂谈"><span class="post-toc-text">1.1  杂谈</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-分类"><span class="post-toc-text">1.2 分类</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-深度神经网络"><span class="post-toc-text">2. 深度神经网络</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#隐藏层"><span class="post-toc-text">隐藏层</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#反向传播"><span class="post-toc-text">反向传播</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#正则化"><span class="post-toc-text">正则化</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Dropout"><span class="post-toc-text">Dropout</span></a></li></ol></li></ol></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#系列笔记索引："><span class="post-toc-text">系列笔记索引：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#0-杂记"><span class="post-toc-text">0. 杂记</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于吸引盆-basin-of-attraction"><span class="post-toc-text">关于吸引盆(basin of attraction)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于预训练"><span class="post-toc-text">关于预训练</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于全连接层"><span class="post-toc-text">关于全连接层</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于池化"><span class="post-toc-text">关于池化</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-深度学习基础概念"><span class="post-toc-text">1. 深度学习基础概念</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-1-杂谈"><span class="post-toc-text">1.1  杂谈</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-2-分类"><span class="post-toc-text">1.2 分类</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-深度神经网络"><span class="post-toc-text">2. 深度神经网络</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#隐藏层"><span class="post-toc-text">隐藏层</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#反向传播"><span class="post-toc-text">反向传播</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#正则化"><span class="post-toc-text">正则化</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Dropout"><span class="post-toc-text">Dropout</span></a></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</aside>
