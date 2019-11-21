@@ -64,7 +64,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		11/20/2019 
+		11/21/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -218,7 +218,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <p><a href="https://dinghow.site/2018/12/16/Udacity-DL-note2/">Part2：卷积神经网络</a></p>
 <p><a href="https://dinghow.site/2019/11/20/Udacity-DL-note3/">Part3：文本和序列的深度模型</a></p>
 </blockquote>
-<p>囧，突然发现这个坑已经咕咕了快一年了（好吧，其实就差十多天），终于在我利用磕盐间歇的摸鱼时间填上了，总归来讲，Udacity的这一套deep learning教程是非常适合入门初学者的，手绘的示意图非常形象，也被tensorflow的repo收录在了教学目录下，祝大家在深度学习的大坑下都能发现乐趣，发现ideas，并取得自己的收获。</p>
+<p>囧，突然发现这个坑已经咕咕了快一年了（好吧，其实离一年就差十多天），终于在我利用磕盐间歇的摸鱼时间填上了，总归来讲，Udacity的这一套deep learning教程是非常适合入门初学者的，手绘的示意图非常形象，也被tensorflow的repo收录在了教学目录下，祝大家在深度学习的大坑下都能发现乐趣，发现自己的ideas，并取得收获。</p>
 <h2 id="4-文本和序列深度模型"><a href="#4-文本和序列深度模型" class="headerlink" title="4. 文本和序列深度模型"></a>4. 文本和序列深度模型</h2><h3 id="嵌入"><a href="#嵌入" class="headerlink" title="嵌入"></a>嵌入</h3><ul>
 <li>文本嵌入模型的一大问题在于很多可以用来判断语句主题的关键词汇（如retinopathy）出现频率很低，而 Ah, Oh之类的语气词出现频率却较高</li>
 <li>第二个问题在于对于同义词之间关系的学习，以方便共享权重</li>
@@ -227,7 +227,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <img src="/img/loader.gif" data-original="/2019/11/20/Udacity-DL-note3/dl-16.jpg" alt="img16" title="img16">
 <h3 id="Word2Vec"><a href="#Word2Vec" class="headerlink" title="Word2Vec"></a>Word2Vec</h3><img src="/img/loader.gif" data-original="/2019/11/20/Udacity-DL-note3/dl-17.jpg" alt="img17" title="img17">
 <p>中间词的Vec ($V_{Fox}$)来预测Window内的上下文，使用对数回归模型，训练的目的就是通过对一个预料库进行训练后，能够对词进行有效的embedding</p>
-<p>而计算Vec之间的相似度是使用cos相似而非L2距离，这是因为Vec的长度与意思并无明显关系，所以采用角度来避免长度的影响</p>
+<p>而计算Vec之间的相似度是使用cos相似而非L2距离，这是因为Vec的长度与意思并无明显关系，所以采用余弦相似度来避免长度的影响</p>
 <img src="/img/loader.gif" data-original="/2019/11/20/Udacity-DL-note3/dl-18.jpg" alt="img18" title="img18">
 <p>完整的Word2Vec模型:</p>
 <img src="/img/loader.gif" data-original="/2019/11/20/Udacity-DL-note3/dl-19.jpg" alt="img19" title="img19">
@@ -250,7 +250,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 <li>梯度爆炸：采用梯度剪裁 (gradient clipping)，当梯度增大到某个阈值时调低步长</li>
 <li>梯度消失：在RNN结构下，使用长短时记忆结构来解决这一问题</li>
 </ul>
-<p>LSTM主要包含三个门控结构，输入门 (write)，输出门 (forget)，遗忘门 (forget)</p>
+<p>LSTM主要包含三个门控结构，输入门 (write)，输出门 (read)，遗忘门 (forget)</p>
 <img src="/img/loader.gif" data-original="/2019/11/20/Udacity-DL-note3/dl-21.jpg" alt="img21" title="img21">
 <img src="/img/loader.gif" data-original="/2019/11/20/Udacity-DL-note3/dl-22.jpg" alt="img22" title="img22">
 <p>门控函数的实现是利用sigmoid激活使得变量值在[0, 1]之间，同时保证连续可导，而对于输入变量的处理还使用了tanh进行激活，范围在[-1, 1]之间，关于0对称，且在0附近梯度大，方便梯度下降，下图为LSTM详细结构，左侧为输入们，中间为遗忘门，右侧为输出门</p>
