@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://dinghow.site/2019/08/24/object-detection-part1/</loc>
+    
+    <lastmod>2019-12-30T14:28:50.617Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://dinghow.site/2019/11/20/Udacity-DL-note3/</loc>
     
     <lastmod>2019-11-21T02:44:10.329Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>https://dinghow.site/2019/06/17/Parking-slot-Image-Generator/</loc>
     
     <lastmod>2019-09-23T02:36:20.124Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dinghow.site/2019/08/24/object-detection-part1/</loc>
-    
-    <lastmod>2019-09-23T02:36:16.383Z</lastmod>
     
   </url>
   
