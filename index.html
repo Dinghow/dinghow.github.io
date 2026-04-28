@@ -22,7 +22,8 @@
         <div id="toptitle">
         <h1>Dinghao YANG &nbsp; 杨丁豪</h1></div>
         <h3>Senior System Engineer, NVIDIA</h3>
-        <br>Hangzhou, China
+        <i>Training infrastructure for Physical AI</i>
+        <br><br>Hangzhou, China
         <br>
         <br> Email:  
         <a href="mailto:dinghaoy@nvidia.com"> dinghaoy@nvidia.com</a>;
@@ -45,16 +46,18 @@
 
 
   <h2>Biography</h2>
-  <p> I am a senior system engineer at NVIDIA, focusing on the training algorithm exploration and framework development for GenAI models, e.g., LLM, Diffusion model. I'm lucky to work with <a href="https://www.linkedin.com/in/jiaxin-cao-2166081b3/" target="_blank">Jiaxin Cao</a>, <a href="https://scholar.google.com/citations?user=gSB8_64AAAAJ&hl=en" target="_blank">Junjie Bai</a> and many other talented geeks. Before that, I worked at <a href="https://www.lepton.ai/" target="_blank">Lepton AI</a>, and the <a href="https://www.alibabacloud.com/en/product/machine-learning" target="_blank">Machine Learning Platform for AI</a>, Alibaba Cloud, majored in the development of LLM inference framework (I used to be a core developer for the <a href="https://www.alibabacloud.com/help/en/pai/user-guide/what-is-bladellm/" target="_blank">inference engine</a> of Qwen series). I received the M.S degree from <a href="https://www.ece.pku.edu.cn/" target="_blank">the School of Electronic and Computer Engineering</a>, Peking University, in 2023, and the B.E. degree from <a href="https://sse.tongji.edu.cn/" target="_blank">the School of Software Engineerning</a>, Tongji University, in 2020. I used to be a research intern at  <a href="https://www.sensetime.com/cn/technology-detail?categoryId=44" target="_blank">Data and Computing Platform</a>, SenseTime Research, during 2020-2022, supervised by <a href="https://scholar.google.com/citations?user=WljXYoYAAAAJ&hl=en&oi=sra" target="_blank">Bin Wang</a> and <a href="https://liweijia.github.io/" target="_blank">Weijia Li</a>.</p>
-  <p>My research interests include GenAI Infra, 3D Vision, Physical AI, and World Foundation Model.</p>
+  <p> I am a senior system engineer at NVIDIA, currently leading the infrastructure for the Diffusion RL stack within <a href="https://github.com/nvidia-cosmos/cosmos-rl" target="_blank">Cosmos-RL</a> &mdash; a unified RL framework for foundation models spanning LLM, VLM, Diffusion, and VLA. I'm lucky to work with <a href="https://www.linkedin.com/in/jiaxin-cao-2166081b3/" target="_blank">Jiaxin Cao</a>, <a href="https://scholar.google.com/citations?user=gSB8_64AAAAJ&hl=en" target="_blank">Junjie Bai</a> and many other talented geeks. Before NVIDIA, I worked at <a href="https://www.lepton.ai/" target="_blank">Lepton AI</a> (acquired by NVIDIA in 2025), where I contributed to the development of Lepton's LLM inference engine. Earlier, I was a core developer of <a href="https://www.alibabacloud.com/help/en/pai/user-guide/what-is-bladellm/" target="_blank">BladeLLM</a> &mdash; the inference engine of <a href="https://www.alibabacloud.com/en/product/machine-learning" target="_blank">Alibaba Cloud's Machine Learning Platform for AI</a> powering the Qwen series.</p>
+  
+  <p> I received the M.S degree from <a href="https://www.ece.pku.edu.cn/" target="_blank">the School of Electronic and Computer Engineering</a>, Peking University, in 2023, and the B.E. degree from <a href="https://sse.tongji.edu.cn/" target="_blank">the School of Software Engineering</a>, Tongji University, in 2020.</p>
+  <p>My interests include GenAI Infra, 3D Vision, Physical AI, and World Foundation Model.</p>
   <!-- <p>You can find my Curriculum Vitae <a href="./files/CV_DinghaoYang.pdf">here</a> (may not be updated in time).</p> -->
 
-  <p><b>✨ NOTE</b>: <i>We are looking forward to having elegant researchers and engineers join us. If you want to diving in the algorithm/infrastructure of Physical AI, feel free to contact me~</i></p>
+  <!-- <p><b>✨ NOTE</b>: <i>We are looking forward to having elegant researchers and engineers join us. If you're interested in the algorithm/infrastructure of Physical AI, feel free to reach out~</i></p> -->
 
 <h2>Experience</h2>
 <ul>
   <li>
-    Apr.2025 - Now, <i>Senior System Engineer</i>, <b>NVIDIA</b>
+    Apr.2025 - Now, <i>Senior System Engineer (Training Infrastructure for Physical AI)</i>, <b>NVIDIA</b>
   </li>
   <li>
     Jun.2024 - Apr.2025, <i>Research Engineer (LLM Inference & Training Optimization)</i>, <b>Lepton AI</b>
@@ -160,18 +163,28 @@
   <tr>
     <td class="pub_td1"><img src="./files/echo.svg" class="papericon"></td>
     <td class="pub_td2"><b>Cosmos-RL</b>
-      <br>Cosmos-RL is a flexible and scalable Reinforcement Learning framework specialized for Physical AI applications.
-      I am responsible for the development of the framework, including the design of the training pipeline and the implementation of key algorithms.
+      <br>Cosmos-RL is a scalable Reinforcement Learning framework for foundation models, currently the only open-source RL framework that unifies LLM, VLM, Diffusion, and VLA training under a single abstraction.
+      I lead the infrastructure for the WFM (Diffusion-based World Foundation Model) RL stack, covering training pipeline design and distributed system integration.
       <br>
       [<a href="https://github.com/nvidia-cosmos/cosmos-rl" target="_blank">Code</a>]
     </td>
   </tr>
 
   <tr>
+    <td class="pub_td1"><img src="./files/lepton.avif" class="papericon"></td>
+    <td class="pub_td2"><b>Lepton Inference Engine</b>
+      <br>The LLM inference engine developed at Lepton AI (acquired by NVIDIA in 2025).
+      I contributed to model implementation (LLM, low-latency TTS), performance optimization by CUDA kernels, and serving-side performance work.
+      <br>
+      [<a href="https://www.lepton.ai/" target="_blank">Lepton AI</a>]
+    </td>
+  </tr>
+
+  <tr>
     <td class="pub_td1"><img src="./files/bladellm.svg" class="papericon"></td>
-    <td class="pub_td2"><b>BladeLLM</b>
-      <br>BladeLLM is a high-performance LLM inference engine of Alibaba Cloud, used for the deployment of Qwen series.
-      I am responsible for the modeling of LLM models, performance optimization, interface development and triton kernel development.
+    <td class="pub_td2"><b>BladeLLM (Qwen Inference Engine)</b>
+      <br>BladeLLM is the production inference engine for the Qwen series at Alibaba Cloud.
+      As a core developer, I owned model implementations, serving-side performance work, engine interface development, and Triton kernel optimizations.
       <br>
       [<a href="https://www.alibabacloud.com/help/en/pai/user-guide/what-is-bladellm/" target="_blank">Introduction</a>]
     </td>
